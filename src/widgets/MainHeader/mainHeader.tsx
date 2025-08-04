@@ -84,7 +84,7 @@ const twClasses = twc({
   logo_image: "transition-all duration-300 ease-out",
   navigation: "flex items-center gap-10 transition-all duration-300 ease-out",
   nav_link: {
-    DEFAULt: "relative",
+    DEFAULT: "relative",
     after:
       "after:content-[''] after:absolute after:bottom-[-8px] after:left-1/2 after:-translate-x-1/2 after:w-4 after:h-1 after:rounded-2xl after:bg-primary after:scale-x-0 after:transition-transform after:duration-300",
     hover: "hover:after:scale-x-100",
