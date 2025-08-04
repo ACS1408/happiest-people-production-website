@@ -7,22 +7,22 @@ import Container from "@/components/Container";
 
 const HomeServices = () => {
   return (
-    <section data-widget="home-services" className={twClasses.section}>
+    <section data-widget="home-services" className={`home-services ${twClasses.section}`}>
       <Container>
-        <div className={twClasses.heading_wrapper}>
-          <h2 className={twClasses.heading}>
+        <div className={`home-services__title--wrapper ${twClasses.heading_wrapper}`}>
+          <h2 className={`home-services__title ${twClasses.heading}`}>
             Our <em className="font-semibold">services</em>
           </h2>
         </div>
 
-        <div className={twClasses.grid}>
+        <div className={`home-services__content ${twClasses.grid}`}>
           {services.map(({ Icon, title, description }, index) => (
-            <div key={index} className={twClasses.card}>
-              <div className={twClasses.icon_wrapper}>
+            <div key={index} className={`home-services__card ${twClasses.card}`}>
+              <div className={`home-services__card--icon ${twClasses.icon_wrapper}`}>
                 <Icon />
               </div>
-              <h3 className={twClasses.card_title}>{title}</h3>
-              <p className={twClasses.card_text}>{description}</p>
+              <h3 className={`home-services__card--title ${twClasses.card_title}`}>{title}</h3>
+              <p className={`home-services__card--text ${twClasses.card_text}`}>{description}</p>
             </div>
           ))}
         </div>
