@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 interface ContainerProps {
   children: React.ReactNode;
@@ -7,10 +7,10 @@ interface ContainerProps {
   [key: string]: any;
 }
 
-const Container: React.FC<ContainerProps> = ({ 
-  children, 
-  className = '', 
-  as: Component = 'div',
+const Container: React.FC<ContainerProps> = ({
+  children,
+  className = "",
+  as: Component = "div",
   ...props
 }) => {
   return (
@@ -20,4 +20,4 @@ const Container: React.FC<ContainerProps> = ({
   );
 };
 
-export default Container; 
+export default Container;

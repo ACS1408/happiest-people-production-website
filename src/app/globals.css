@@ -4,10 +4,11 @@
   --background: #ffffff;
   --foreground: #171717;
   --primary: #fbcf1d;
+  --primary-100: #ffeb9a;
   --secondary: #000000;
   --tertiary: #fff7d6;
   --grey: #535353;
-  --grey-light: #7e8695;
+  --grey-100: #7e8695;
 
   --title-primary-2xl: 7.125rem; /* 114px */
   --title-secondary-2xl: 6.25rem; /* 100px */
@@ -58,10 +59,11 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-primary: var(--primary);
+  --color-primary-100: var(--primary-100);
   --color-secondary: var(--secondary);
   --color-tertiary: var(--tertiary);
   --color-grey: var(--grey);
-  --color-grey-light: var(--grey-light);
+  --color-grey-100: var(--grey-100);
 
   --text-title-primary-2xl: var(--title-primary-2xl);
   --text-title-secondary-2xl: var(--title-secondary-2xl);
