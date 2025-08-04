@@ -6,7 +6,8 @@
   --primary: #fbcf1d;
   --secondary: #000000;
   --tertiary: #fff7d6;
-  --black-alt: #535353;
+  --grey: #535353;
+  --grey-light: #7e8695;
 
   --title-primary-2xl: 7.125rem; /* 114px */
   --title-secondary-2xl: 6.25rem; /* 100px */
@@ -59,10 +60,8 @@
   --color-primary: var(--primary);
   --color-secondary: var(--secondary);
   --color-tertiary: var(--tertiary);
-  --color-black-alt: var(--black-alt);
-
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-grey: var(--grey);
+  --color-grey-light: var(--grey-light);
 
   --text-title-primary-2xl: var(--title-primary-2xl);
   --text-title-secondary-2xl: var(--title-secondary-2xl);
