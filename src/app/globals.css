@@ -8,6 +8,7 @@
   --secondary: #000000;
   --tertiary: #fff7d6;
   --grey: #535353;
+  --grey-900: #292929;
   --grey-100: #7e8695;
 
   --title-primary-2xl: 7.125rem; /* 114px */
@@ -63,6 +64,7 @@
   --color-secondary: var(--secondary);
   --color-tertiary: var(--tertiary);
   --color-grey: var(--grey);
+  --color-grey-900: var(--grey-900);
   --color-grey-100: var(--grey-100);
 
   --text-title-primary-2xl: var(--title-primary-2xl);

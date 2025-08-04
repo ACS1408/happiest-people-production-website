@@ -9,54 +9,6 @@ import Behance from "@/icons/behance.svg";
 import Link from "next/link";
 import { twc } from "@/utils";
 
-// Icon map to match `name` in socials
-const iconMap: Record<string, React.FC<React.SVGProps<SVGSVGElement>>> = {
-  Facebook,
-  Linkedin,
-  Instagram,
-  Behance,
-};
-
-const socials = [
-  {
-    id: "facebook_01",
-    name: "Facebook",
-    url: "https://www.facebook.com",
-  },
-  {
-    id: "linkedin_02",
-    name: "Linkedin",
-    url: "https://www.linkedin.com",
-  },
-  {
-    id: "instagram_03",
-    name: "Instagram",
-    url: "https://www.instagram.com",
-  },
-  {
-    id: "behance_04",
-    name: "Behance",
-    url: "https://www.behance.com",
-  },
-];
-
-const navLinks = [
-  { id: "home_01", name: "Home", url: "/" },
-  { id: "services_02", name: "Services", url: "/services" },
-  { id: "about_us_03", name: "About Us", url: "/about-us" },
-  { id: "features_04", name: "Features", url: "/features" },
-  { id: "testimonials_05", name: "Testimonials", url: "/testimonials" },
-  { id: "solutions_06", name: "Solutions", url: "/solutions" },
-  {
-    id: "industry_vertical_07",
-    name: "Industry Vertical",
-    url: "/industry-vertical",
-  },
-  { id: "products_08", name: "Products", url: "/products" },
-  { id: "blogs_09", name: "Blogs", url: "/blogs" },
-  { id: "key_features_10", name: "Key Features", url: "/key-features" },
-];
-
 const MainFooter = () => {
   return (
     <footer
@@ -102,19 +54,17 @@ const MainFooter = () => {
           </div>
 
           <nav className={`main-footer__socials ${twClasses.socials}`}>
-            {socials?.map(({ id, name, url }) => {
-              const SocialIcon = iconMap[name];
+            {socials?.map(({ id, icon: Icon, url }) => {
               return (
-                SocialIcon && (
+                Icon && (
                   <a
                     key={id}
                     href={url}
                     target="_blank"
                     rel="noopener noreferrer"
                     className={`main-footer__social--link ${twClasses.social_link} ${twClasses.social_link.hover} ${twClasses.social_link.group_hover}`}
-                    aria-label={name}
                   >
-                    <SocialIcon />
+                    <Icon />
                   </a>
                 )
               );
@@ -127,6 +77,46 @@ const MainFooter = () => {
 };
 
 export default MainFooter;
+
+const socials = [
+  {
+    id: "facebook_01",
+    icon: Facebook,
+    url: "https://www.facebook.com",
+  },
+  {
+    id: "linkedin_02",
+    icon: Linkedin,
+    url: "https://www.linkedin.com",
+  },
+  {
+    id: "instagram_03",
+    icon: Instagram,
+    url: "https://www.instagram.com",
+  },
+  {
+    id: "behance_04",
+    icon: Behance,
+    url: "https://www.behance.com",
+  },
+];
+
+const navLinks = [
+  { id: "home_01", name: "Home", url: "/" },
+  { id: "services_02", name: "Services", url: "/services" },
+  { id: "about_us_03", name: "About Us", url: "/about-us" },
+  { id: "features_04", name: "Features", url: "/features" },
+  { id: "testimonials_05", name: "Testimonials", url: "/testimonials" },
+  { id: "solutions_06", name: "Solutions", url: "/solutions" },
+  {
+    id: "industry_vertical_07",
+    name: "Industry Vertical",
+    url: "/industry-vertical",
+  },
+  { id: "products_08", name: "Products", url: "/products" },
+  { id: "blogs_09", name: "Blogs", url: "/blogs" },
+  { id: "key_features_10", name: "Key Features", url: "/key-features" },
+];
 
 const twClasses = twc({
   section: "2xl:pt-32 pb-14 pt-28 pb-10",
