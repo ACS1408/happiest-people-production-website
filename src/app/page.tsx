@@ -4,6 +4,7 @@ import HomeBrands from "@/widgets/HomeBrands";
 import HomeClients from "@/widgets/HomeClients";
 import HomeServices from "@/widgets/HomeServices";
 import HomeTailoredServices from "@/widgets/HomeTailoredServices";
+import HomeTestimonials from "@/widgets/HomeTestimonials";
 import HomeValues from "@/widgets/HomeValues";
 import HomeWorks from "@/widgets/HomeWorks";
 import HomeWorkspace from "@/widgets/HomeWorkspace";
@@ -24,6 +25,7 @@ export default function Home() {
       <HomeServices />
       <HomeClients />
       <HomeValues />
+      <HomeTestimonials />
       <TailoredServiceBanner />
       <MainFooter />
     </>
