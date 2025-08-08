@@ -36,7 +36,7 @@ const HomeWorks = () => {
             </h3>
             <Button
               text="Watch Now"
-              icon={<ChevronRight />}
+              icon={<ChevronRight className="h-3 mt-px" />}
               variant="link-with-icon"
               className={`work-action ${twClasses.card_action}`}
               as={"button"}
@@ -57,7 +57,7 @@ const HomeWorks = () => {
             </h3>
             <Button
               text="Watch Now"
-              icon={<ChevronRight />}
+              icon={<ChevronRight className="h-3 mt-px" />}
               variant="link-with-icon"
               className={`work-action ${twClasses.card_action}`}
               as={"button"}
@@ -68,7 +68,7 @@ const HomeWorks = () => {
         <div className="flex justify-center mt-32">
           <Button
             text="View All"
-            icon={<ChevronRight />}
+            icon={<ChevronRight className="h-3 mt-px" />}
             variant="outlined-with-icon"
             href="/all-works"
             color="black"
@@ -84,7 +84,7 @@ export default HomeWorks;
 const twClasses = twc({
   section: "2xl:py-48 py-32",
   title:
-    "ff-figtree fs-title-secondary font-light flex-[0_0_600px] max-w-[600px]",
+    "ff-figtree fs-title-tertiary font-light flex-[0_0_600px] max-w-[600px]",
   description: "fs-para-secondary max-w-[638px] ms-auto",
   grid: "grid grid-cols-2 gap-4 2xl:mt-32 mt-16",
   card_image: "relative aspect-[766/430] w-full",

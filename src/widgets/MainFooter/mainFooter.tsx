@@ -64,7 +64,7 @@ const MainFooter = () => {
                     rel="noopener noreferrer"
                     className={`main-footer__social--link ${twClasses.social_link} ${twClasses.social_link.hover} ${twClasses.social_link.group_hover}`}
                   >
-                    <Icon />
+                    <Icon className="h-5" />
                   </a>
                 )
               );

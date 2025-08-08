@@ -16,7 +16,7 @@ const HomeValues = () => {
             <div className={`home-values__tag ${twClasses.tag}`}>
               Our values
             </div>
-            <h2 className={`home-values__heading ${twClasses.heading}`}>
+            <h2 className={`home-values__title ${twClasses.title}`}>
               Experience
               <br />
               that define
@@ -29,9 +29,7 @@ const HomeValues = () => {
             <div
               className={`home-values__item  ${twClasses.value_item} ${twClasses.value_item_with_border}`}
             >
-              <div className={`home-values__icon ${twClasses.icon_wrapper}`}>
-                <Star />
-              </div>
+              <Star className={`home-values__icon ${twClasses.icon}`} />
               <div className={`home-values__text ${twClasses.value_text}`}>
                 <h3
                   className={`home-values__text--title ${twClasses.value_title}`}
@@ -47,9 +45,7 @@ const HomeValues = () => {
             </div>
 
             <div className={`home-values__item ${twClasses.value_item}`}>
-              <div className={`home-values__icon ${twClasses.icon_wrapper}`}>
-                <Settings />
-              </div>
+              <Settings className={`home-values__icon ${twClasses.icon}`} />
               <div className={`home-values__text ${twClasses.value_text}`}>
                 <h3
                   className={`home-values__text--title ${twClasses.value_title}`}
@@ -78,12 +74,12 @@ const twClasses = twc({
   grid: "grid gap-12 lg:grid-cols-2 lg:gap-16",
   left: "space-y-4",
   tag: "font-medium text-md tracking-wide",
-  heading: "font-light text-[clamp(2rem,5vw,3.5rem)] leading-tight",
+  title: "font-light fs-title-quaternary leading-tight",
   right: "space-y-10",
   value_item_with_border: "flex gap-6 pb-10 border-b border-black/20",
   value_item: "flex gap-12",
-  icon_wrapper: "flex justify-center",
+  icon: "h-10",
   value_text: "space-y-2",
-  value_title: "text-2xl font-medium",
-  value_description: "text-lg leading-relaxed max-w-80",
+  value_title: "text-subtitle font-semibold",
+  value_description: "text-para-secondary leading-relaxed max-w-80",
 });

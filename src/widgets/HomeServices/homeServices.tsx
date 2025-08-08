@@ -9,8 +9,8 @@ const HomeServices = () => {
   return (
     <section data-widget="home-services" className={`home-services ${twClasses.section}`}>
       <Container>
-        <div className={`home-services__title--wrapper ${twClasses.heading_wrapper}`}>
-          <h2 className={`home-services__title ${twClasses.heading}`}>
+        <div className={`home-services__title--wrapper ${twClasses.title_wrapper}`}>
+          <h2 className={`home-services__title ${twClasses.title}`}>
             Our <em className="font-semibold">services</em>
           </h2>
         </div>
@@ -19,7 +19,7 @@ const HomeServices = () => {
           {services.map(({ Icon, title, description }, index) => (
             <div key={index} className={`home-services__card ${twClasses.card}`}>
               <div className={`home-services__card--icon ${twClasses.icon_wrapper}`}>
-                <Icon />
+                <Icon className="h-10" />
               </div>
               <h3 className={`home-services__card--title ${twClasses.card_title}`}>{title}</h3>
               <p className={`home-services__card--text ${twClasses.card_text}`}>{description}</p>
@@ -56,8 +56,8 @@ const services = [
 
 const twClasses = twc({
   section: "bg-black py-32 px-4",
-  heading_wrapper: "text-center mb-32",
-  heading: "text-4xl md:text-5xl font-light text-white",
+  title_wrapper: "text-center mb-32",
+  title: "fs-title-tertiary md:text-5xl font-light text-white",
   grid: "grid grid-cols-1 md:grid-cols-3 gap-16",
   card: "",
   icon_wrapper: "mb-6",

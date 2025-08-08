@@ -21,7 +21,7 @@ const HomeBanner = () => {
                     <Button
                         href="/contact-us"
                         text="Contact Us"
-                        icon={<ArrowRight />}
+                        icon={<ArrowRight className='h-3 pt-px' />}
                         variant="link-with-icon"
                         className={`home-banner__contents--button ${twClasses.button}`}
                         color="white"

@@ -14,6 +14,7 @@
   --title-primary-2xl: 7.125rem; /* 114px */
   --title-secondary-2xl: 6.25rem; /* 100px */
   --title-tertiary-2xl: 5rem; /* 80px */
+  --title-quaternary-2xl: 3.75rem; /* 60px */
   --subtitle-2xl: 1.875rem; /* 30px */
   --para-primary-2xl: 1.875rem; /* 30px */
   --para-secondary-2xl: 1.375rem; /* 22px */
@@ -21,6 +22,7 @@
   --title-primary-xl: 6.3125rem; /* 101px */
   --title-secondary-xl: 5.375rem; /* 86px */
   --title-tertiary-xl: 4.375rem; /* 70px */
+  --title-quaternary-xl: 3.5rem; /* 56px */
   --subtitle-xl: 1.6875rem; /* 27px */
   --para-primary-xl: 1.5625rem; /* 25px */
   --para-secondary-xl: 1.25rem; /* 20px */
@@ -28,6 +30,7 @@
   --title-primary-lg: 6rem; /* 96px */
   --title-secondary-lg: 5rem; /* 80px */
   --title-tertiary-lg: 4rem; /* 64px */
+  --title-quaternary-lg: 3.25rem; /* 52px */
   --subtitle-lg: 1.625rem; /* 26px */
   --para-primary-lg: 1.5rem; /* 24px */
   --para-secondary-lg: 1.25rem; /* 20px */
@@ -35,6 +38,7 @@
   --title-primary-md: 5.5rem; /* 88px */
   --title-secondary-md: 4.5rem; /* 72px */
   --title-tertiary-md: 3.75rem; /* 60px */
+  --title-quaternary-md: 3rem; /* 48px */
   --subtitle-md: 1.5rem; /* 24px */
   --para-primary-md: 1.25rem; /* 20px */
   --para-secondary-md: 1.125rem; /* 18px */
@@ -42,6 +46,7 @@
   --title-primary-sm: 5rem; /* 80px */
   --title-secondary-sm: 4rem; /* 64px */
   --title-tertiary-sm: 3.125rem; /* 50px */
+  --title-quaternary-sm: 2.5rem; /* 40px */
   --subtitle-sm: 1.5rem; /* 24px */
   --para-primary-sm: 1.25rem; /* 20px */
   --para-secondary-sm: 1.125rem; /* 18px */
@@ -49,6 +54,7 @@
   --title-primary: 3rem; /* 48px */
   --title-secondary: 2.5rem; /* 40px */
   --title-tertiary: 2rem; /* 32px */
+  --title-quaternary: 1.75rem; /* 28px */
   --subtitle: 1.25rem; /* 20px */
   --para-primary: 1.125rem; /* 18px */
   --para-secondary: 1rem; /* 16px */
@@ -70,6 +76,7 @@
   --text-title-primary-2xl: var(--title-primary-2xl);
   --text-title-secondary-2xl: var(--title-secondary-2xl);
   --text-title-tertiary-2xl: var(--title-tertiary-2xl);
+  --text-title-quaternary-2xl: var(--title-quaternary-2xl);
   --text-subtitle-2xl: var(--subtitle-2xl);
   --text-para-primary-2xl: var(--para-primary-2xl);
   --text-para-secondary-2xl: var(--para-secondary-2xl);
@@ -77,6 +84,7 @@
   --text-title-primary-xl: var(--title-primary-xl);
   --text-title-secondary-xl: var(--title-secondary-xl);
   --text-title-tertiary-xl: var(--title-tertiary-xl);
+  --text-title-quaternary-xl: var(--title-quaternary-xl);
   --text-subtitle-xl: var(--subtitle-xl);
   --text-para-primary-xl: var(--para-primary-xl);
   --text-para-secondary-xl: var(--para-secondary-xl);
@@ -84,6 +92,7 @@
   --text-title-primary-lg: var(--title-primary-lg);
   --text-title-secondary-lg: var(--title-secondary-lg);
   --text-title-tertiary-lg: var(--title-tertiary-lg);
+  --text-title-quaternary-lg: var(--title-quaternary-lg);
   --text-subtitle-lg: var(--subtitle-lg);
   --text-para-primary-lg: var(--para-primary-lg);
   --text-para-secondary-lg: var(--para-secondary-lg);
@@ -91,6 +100,7 @@
   --text-title-primary-md: var(--title-primary-md);
   --text-title-secondary-md: var(--title-secondary-md);
   --text-title-tertiary-md: var(--title-tertiary-md);
+  --text-title-quaternary-md: var(--title-quaternary-md);
   --text-subtitle-md: var(--subtitle-md);
   --text-para-primary-md: var(--para-primary-md);
   --text-para-secondary-md: var(--para-secondary-md);
@@ -98,6 +108,7 @@
   --text-title-primary-sm: var(--title-primary-sm);
   --text-title-secondary-sm: var(--title-secondary-sm);
   --text-title-tertiary-sm: var(--title-tertiary-sm);
+  --text-title-quaternary-sm: var(--title-quaternary-sm);
   --text-subtitle-sm: var(--subtitle-sm);
   --text-para-primary-sm: var(--para-primary-sm);
   --text-para-secondary-sm: var(--para-secondary-sm);
@@ -105,6 +116,7 @@
   --text-title-primary: var(--title-primary);
   --text-title-secondary: var(--title-secondary);
   --text-title-tertiary: var(--title-tertiary);
+  --text-title-quaternary: var(--title-quaternary);
   --text-subtitle: var(--subtitle);
   --text-para-primary: var(--para-primary);
   --text-para-secondary: var(--para-secondary);
@@ -142,6 +154,9 @@
   .fs-title-tertiary {
     @apply 2xl:text-title-tertiary-2xl xl:text-title-tertiary-xl lg:text-title-tertiary-lg md:text-title-tertiary-md sm:text-title-tertiary-sm text-title-tertiary;
   }
+  .fs-title-quaternary {
+    @apply 2xl:text-title-quaternary-2xl xl:text-title-quaternary-xl lg:text-title-quaternary-lg md:text-title-quaternary-md sm:text-title-quaternary-sm text-title-quaternary;
+  }
   .fs-subtitle {
     @apply 2xl:text-subtitle-2xl xl:text-subtitle-xl lg:text-subtitle-lg md:text-subtitle-md sm:text-subtitle-sm text-subtitle;
   }
@@ -154,6 +169,10 @@
 
   .btn-icon path {
     stroke: currentColor;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
   }
 }
 

@@ -28,7 +28,7 @@ const HomeAbout = () => {
             <Button
               href="/about-us"
               text="About Us"
-              icon={<ArrowRight />}
+              icon={<ArrowRight className="h-3 mt-px" />}
               variant="link-with-icon"
               className={`home-about__button ${twClasses.button}`}
               color="white"
@@ -89,7 +89,7 @@ const twClasses = twc({
   tag: "inline-block bg-gray-900 text-white px-3.5 py-1.5 rounded-full text-sm font-medium mb-8",
   grid: "grid lg:grid-cols-2 gap-12 items-center mb-20",
   left: "space-y-8",
-  title: "text-5xl lg:text-6xl xl:text-7xl font-light leading-tight",
+  title: "fs-title-secondary lg:text-6xl xl:text-7xl font-light leading-tight",
   title_em:
     "bg-gradient-to-r from-white to-primary text-transparent bg-clip-text font-semibold pe-2",
   description: "text-gray-400 text-lg leading-relaxed max-w-md",

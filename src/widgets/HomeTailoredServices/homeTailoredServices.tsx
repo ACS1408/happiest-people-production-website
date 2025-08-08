@@ -45,6 +45,6 @@ const twClasses = twc({
   grid: "grid grid-cols-2 gap-20",
   image: "relative aspect-square w-full",
   contents: "pt-20",
-  title: "text-6xl max-w-96 leading-snug",
-  description: "mt-10 leading-relaxed ps-2 text-para-primary max-w-96",
+  title: "fs-title-tertiary max-w-md leading-tight",
+  description: "mt-10 leading-relaxed ps-2 fs-para-secondary max-w-lg",
 });

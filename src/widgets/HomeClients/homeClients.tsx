@@ -41,7 +41,7 @@ const HomeClients = () => {
         <div className="flex justify-center mt-24">
           <Button
             text="View All"
-            icon={<ChevronRight />}
+            icon={<ChevronRight className="h-3 mt-px" />}
             variant="outlined-with-icon"
             href="/all-works"
             color="black"
@@ -57,6 +57,6 @@ export default HomeClients;
 const twClasses = twc({
   section: "2xl:py-48 py-32",
   title:
-    "ff-figtree fs-title-secondary font-light flex-[0_0_600px] max-w-[600px]",
+    "ff-figtree fs-title-tertiary font-light flex-[0_0_600px] max-w-[600px]",
   description: "fs-para-secondary max-w-[638px] ms-auto",
 });

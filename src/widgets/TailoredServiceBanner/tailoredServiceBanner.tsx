@@ -43,5 +43,5 @@ const twClasses = twc({
   grid: "grid grid-cols-2 gap-10",
   image: "relative aspect-[766/430] w-full",
   contents: "flex items-center",
-  title: "text-title-primary max-w-80",
+  title: "text-6xl leading-tight max-w-96",
 });
