@@ -1,9 +1,9 @@
 import React from "react";
 import Container from "@/components/Container";
 import Button from "@/components/Button";
+import Image from "next/image";
 import ChevronRight from "@/icons/chevron-right.svg";
 import { twc } from "@/utils";
-import Image from "next/image";
 
 const HomeClients = () => {
   return (

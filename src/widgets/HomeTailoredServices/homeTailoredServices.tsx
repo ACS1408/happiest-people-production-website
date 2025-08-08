@@ -1,7 +1,7 @@
-import Container from "@/components/Container";
-import { twc } from "@/utils";
-import Image from "next/image";
 import React from "react";
+import Container from "@/components/Container";
+import Image from "next/image";
+import { twc } from "@/utils";
 
 const HomeTailoredServices = () => {
   return (
