@@ -3,6 +3,7 @@ import Container from "@/components/Container";
 import Button from "@/components/Button";
 import ChevronRight from "@/icons/chevron-right.svg";
 import { twc } from "@/utils";
+import Image from "next/image";
 
 const HomeClients = () => {
   return (
@@ -20,7 +21,24 @@ const HomeClients = () => {
             exceptional results tailored to their unique goals.
           </p>
         </div>
-        <div className="flex justify-center mt-32">
+        <div className="home-clients__list grid grid-cols-4 mt-24">
+          {[...Array(8)]?.map((_, i) => {
+            return (
+              <div
+                className="home-clients__list--item border border-gray-200 flex justify-center items-center py-16 px-8"
+                key={i}
+              >
+                <Image
+                  src="/images/cartknitter.png"
+                  alt="client logo"
+                  width={200}
+                  height={100}
+                />
+              </div>
+            );
+          })}
+        </div>
+        <div className="flex justify-center mt-24">
           <Button
             text="View All"
             icon={<ChevronRight />}
