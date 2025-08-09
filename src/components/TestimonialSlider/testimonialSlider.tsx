@@ -62,6 +62,42 @@ const AutoHeight = (slider: any) => {
   slider.on("updated", setHeight);
 };
 
+// Autoplay plugin
+const Autoplay = (interval = 4000) => {
+  return (slider: any) => {
+    let timeout: ReturnType<typeof setTimeout>;
+    let mouseOver = false;
+
+    function clearNextTimeout() {
+      clearTimeout(timeout);
+    }
+
+    function nextTimeout() {
+      clearTimeout(timeout);
+      if (mouseOver) return;
+      timeout = setTimeout(() => {
+        slider.next();
+      }, interval);
+    }
+
+    slider.on("created", () => {
+      slider.container.addEventListener("mouseover", () => {
+        mouseOver = true;
+        clearNextTimeout();
+      });
+      slider.container.addEventListener("mouseout", () => {
+        mouseOver = false;
+        nextTimeout();
+      });
+      nextTimeout();
+    });
+
+    slider.on("dragStarted", clearNextTimeout);
+    slider.on("animationEnded", nextTimeout);
+    slider.on("updated", nextTimeout);
+  };
+};
+
 // Wave text animation
 const WaveText = ({
   text,
@@ -100,7 +136,7 @@ const TestimonialSlider = () => {
         setAnimationTrigger((prev) => prev + 1);
       },
     },
-    [Fade, AutoHeight]
+    [Fade, AutoHeight, Autoplay(4000)] // autoplay every 4s
   );
 
   return (
