@@ -8,6 +8,7 @@ interface CircularTextProps {
   icon?: React.ReactNode;
   letterSpacing: number;
   startAngle?: number; // in degrees, where 0 = top, clockwise
+  circularRef?: React.Ref<SVGSVGElement>;
 }
 
 const CircularText: React.FC<CircularTextProps> = ({
@@ -16,6 +17,7 @@ const CircularText: React.FC<CircularTextProps> = ({
   icon,
   letterSpacing,
   startAngle = 0,
+  circularRef,
 }) => {
   const [fontSize, setFontSize] = useState(14);
 
@@ -45,7 +47,8 @@ const CircularText: React.FC<CircularTextProps> = ({
     >
       <svg
         viewBox={`0 0 ${diameter + 40} ${diameter + 40}`}
-        className="absolute w-full h-full"
+        className="absolute w-full h-full z-10"
+        ref={circularRef}
       >
         <defs>
           <path
@@ -58,7 +61,11 @@ const CircularText: React.FC<CircularTextProps> = ({
             `}
           />
         </defs>
-        <g transform={`rotate(${startAngle}, ${(diameter + 40) / 2}, ${(diameter + 40) / 2})`}>
+        <g
+          transform={`rotate(${startAngle}, ${(diameter + 40) / 2}, ${
+            (diameter + 40) / 2
+          })`}
+        >
           <text
             fill="white"
             style={{

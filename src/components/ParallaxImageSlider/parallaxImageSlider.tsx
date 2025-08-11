@@ -1,7 +1,9 @@
+"use client";
 import React from "react";
 import Image from "next/image";
 import type { ImageType } from "@/types/typeUtils";
 import { twc } from "@/utils";
+import useParallaxSlider from "./useParallaxSlider";
 
 interface ParallaxImageSlider {
   images: ImageType[];
@@ -11,20 +13,22 @@ const ParallaxImageSlider: React.FC<ParallaxImageSlider> = ({
   images,
   ...props
 }) => {
+  const { main } = useParallaxSlider();
   return (
     <div
       data-component="parallax-image-slider"
       className={`parallax-image-slider ${twClasses.slider}`}
+      ref={main}
       {...props}
     >
-      <div className={twClasses.outer}>
-        <div className={twClasses.wrapper}>
+      <div className={`parallax-image-slider__outer ${twClasses.outer}`}>
+        <div className={`parallax-image-slider__wrapper ${twClasses.wrapper}`}>
           {images &&
             images?.length !== 0 &&
             images?.map((image, i) => {
               return (
                 <div
-                  className={`${twClasses.slide} ${
+                  className={`parallax-image-slider__slide ${twClasses.slide} ${
                     (i + 1) % 3 === 0
                       ? twClasses.slide.ratio_3
                       : (i + 1) % 3 === 2
@@ -33,7 +37,9 @@ const ParallaxImageSlider: React.FC<ParallaxImageSlider> = ({
                   }`}
                   key={i}
                 >
-                  <figure className={`${twClasses.image}`}>
+                  <figure
+                    className={`parallax-image-slider__image ${twClasses.image}`}
+                  >
                     <Image
                       src={image?.url}
                       fill
@@ -54,8 +60,8 @@ export default ParallaxImageSlider;
 
 const twClasses = twc({
   slider: "",
-  outer: "",
-  wrapper: "flex gap-4 overflow-auto no-scrollbar",
+  outer: "overflow-auto no-scrollbar",
+  wrapper: "flex gap-4",
   image: "relative h-[400px]",
   slide: {
     DEFAULT: "overflow-hidden",
