@@ -4,6 +4,7 @@ import ArrowRight from "@/icons/arrow-right.svg";
 import { twc } from "@/utils";
 import Image from "next/image";
 import Container from "@/components/Container";
+import SlotCounter from "@/components/SlotCounter";
 
 const HomeAbout = () => {
   return (
@@ -58,7 +59,7 @@ const HomeAbout = () => {
               <div
                 className={`home-about__stats--count ${twClasses.stat_count}`}
               >
-                {count}
+                <SlotCounter target={count} duration={3} />
               </div>
               <div
                 className={`home-about__stats--label ${twClasses.stat_label}`}
