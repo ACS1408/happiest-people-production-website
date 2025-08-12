@@ -55,7 +55,7 @@ const HomeClients = () => {
 export default HomeClients;
 
 const twClasses = twc({
-  section: "2xl:py-48 py-32",
+  section: "2xl:py-48 py-32 bg-white",
   title:
     "ff-figtree fs-title-tertiary font-light flex-[0_0_600px] max-w-[600px]",
   description: "fs-para-secondary max-w-[638px] ms-auto",

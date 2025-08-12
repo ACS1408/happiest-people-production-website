@@ -14,7 +14,7 @@ import TailoredServiceBanner from "@/widgets/TailoredServiceBanner";
 
 export default function Home() {
   return (
-    <>
+    <main className="z-[2] relative">
       <MainHeader />
       <HomeBanner />
       <HomeBrands />
@@ -28,6 +28,6 @@ export default function Home() {
       <HomeTestimonials />
       <TailoredServiceBanner />
       <MainFooter />
-    </>
+    </main>
   );
 }

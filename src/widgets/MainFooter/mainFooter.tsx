@@ -119,7 +119,7 @@ const navLinks = [
 ];
 
 const twClasses = twc({
-  section: "2xl:pt-32 pb-14 pt-28 pb-10",
+  section: "2xl:pt-32 pb-14 pt-28 pb-10 sticky z-[-1] bottom-0",
   main_grid: "grid grid-cols-2 gap-5",
   nav: "grid grid-cols-2 gap-x-10 gap-y-3 ps-[20%]",
   nav_link: {
