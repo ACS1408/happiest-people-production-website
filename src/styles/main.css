@@ -37,5 +37,10 @@
 .page-loaded .home-banner__contents--title {
   opacity: 1;
 }
+.page-loaded .main-footer {
+  position: sticky;
+  bottom: 0;
+  z-index: -1;
+}
 
 /*# sourceMappingURL=main.css.map */
