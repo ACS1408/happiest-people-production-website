@@ -1,7 +1,6 @@
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import Container from "@/components/Container";
 import Button from "@/components/Button";
-import Image from "next/image";
 import ArrowRight from "@/icons/arrow-right.svg";
 import { twc } from "@/utils";
 import useTextSplitAnimation from "@/utils/useTextSplitAnimation";

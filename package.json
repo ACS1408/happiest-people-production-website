@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "sass": "sass src/styles/scss/main.scss src/styles/main.css",
-    "sass:watch": "sass --watch src/styles/scss/main.scss src/styles/main.css"
+    "sass:watch": "sass --watch src/styles/scss/main.scss src/styles/main.css",
+    "purge": "rm -rf node_modules .next"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",

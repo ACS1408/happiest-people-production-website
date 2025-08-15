@@ -54,6 +54,8 @@ const useTextSplitAnimation = (
       ease: options.ease || "power3.out",
       stagger: options.stagger ?? 0.035,
       force3D: true,
+      autoSplit: true,
+      onComplete: () => split.revert(),
     });
 
     return () => {
