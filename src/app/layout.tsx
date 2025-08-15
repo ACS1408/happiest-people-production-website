@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Figtree, Manrope } from "next/font/google";
-import "./globals.css";
+import "../styles/globals.css";
+import "../styles/main.css";
 
 const figtree = Figtree({
   variable: '--font-figtree',

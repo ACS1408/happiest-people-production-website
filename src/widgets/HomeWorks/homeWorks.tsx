@@ -1,11 +1,17 @@
-import React from "react";
+import React, { useRef } from "react";
 import Container from "@/components/Container";
 import Button from "@/components/Button";
 import Image from "next/image";
 import ChevronRight from "@/icons/chevron-right.svg";
 import { twc } from "@/utils";
+import useTextSplitAnimation from "@/utils/useTextSplitAnimation";
 
 const HomeWorks = () => {
+  const titleRef = useRef<HTMLHeadingElement>(null);
+  const descRef = useRef<HTMLParagraphElement>(null);
+  useTextSplitAnimation(titleRef, { stagger: 0.03 });
+  useTextSplitAnimation(descRef, { stagger: 0, duration: 1.5 });
+
   return (
     <section
       data-widget="home-works"
@@ -13,10 +19,10 @@ const HomeWorks = () => {
     >
       <Container>
         <div className="flex items-center">
-          <h2 className={`home-works__title ${twClasses.title}`}>
+          <h2 className={`home-works__title ${twClasses.title}`} ref={titleRef}>
             Our <em className="font-medium">Works</em>
           </h2>
-          <p className={`home-works__description ${twClasses.description}`}>
+          <p className={`home-works__description ${twClasses.description}`} ref={descRef}>
             We value our clients as partners and are committed to delivering
             exceptional results tailored to their unique goals.
           </p>

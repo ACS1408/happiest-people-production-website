@@ -8,6 +8,7 @@ import { twc } from "@/utils";
 
 const MainHeader = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isAnimStart, setIsAnimStart] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {

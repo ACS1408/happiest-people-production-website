@@ -1,10 +1,16 @@
-import React from "react";
+import React, { useRef } from "react";
 import Star from "@/icons/star.svg";
 import Settings from "@/icons/settings.svg";
 import Container from "@/components/Container";
 import { twc } from "@/utils";
+import useTextSplitAnimation from "@/utils/useTextSplitAnimation";
 
 const HomeValues = () => {
+  const labelRef = useRef<HTMLHeadingElement>(null);
+  const titleRef = useRef<HTMLHeadingElement>(null);
+  useTextSplitAnimation(labelRef, { stagger: 0 });
+  useTextSplitAnimation(titleRef, { stagger: 0.03 });
+
   return (
     <section
       data-widget="home-values"
@@ -13,10 +19,13 @@ const HomeValues = () => {
       <Container>
         <div className={`home-values__grid ${twClasses.grid}`}>
           <div className={`home-values__left ${twClasses.left}`}>
-            <div className={`home-values__tag ${twClasses.tag}`}>
+            <div className={`home-values__tag ${twClasses.tag}`} ref={labelRef}>
               Our values
             </div>
-            <h2 className={`home-values__title ${twClasses.title}`}>
+            <h2
+              className={`home-values__title ${twClasses.title}`}
+              ref={titleRef}
+            >
               Experience
               <br />
               that define

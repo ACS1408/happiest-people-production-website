@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useRef } from "react";
 import Container from "@/components/Container";
 import Image from "next/image";
 import { twc } from "@/utils";
+import useTextSplitAnimation from "@/utils/useTextSplitAnimation";
 
 const TailoredServiceBanner = () => {
+  const titleRef = useRef<HTMLHeadingElement>(null);
+  useTextSplitAnimation(titleRef, { stagger: 0.03 });
+
   return (
     <section
       data-widget="home-tailored-service-banner"
@@ -26,6 +30,7 @@ const TailoredServiceBanner = () => {
           >
             <h2
               className={`home-tailored-service-banner__title ${twClasses.title}`}
+              ref={titleRef}
             >
               We serve a wide <em className="font-semibold">tailored</em>
             </h2>

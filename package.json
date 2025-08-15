@@ -3,10 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbo",
+    "dev": "concurrently \"next dev --turbo\" \"sass --watch src/styles/scss/main.scss src/styles/main.css\"",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "sass": "sass src/styles/scss/main.scss src/styles/main.css",
+    "sass:watch": "sass --watch src/styles/scss/main.scss src/styles/main.css"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
@@ -23,8 +25,10 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "concurrently": "^9.2.0",
     "eslint": "^9",
     "eslint-config-next": "15.4.4",
+    "sass": "^1.90.0",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

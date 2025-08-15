@@ -1,3 +1,5 @@
+"use client";
+import { useEffect, useRef } from "react";
 import HomeAbout from "@/widgets/HomeAbout";
 import HomeBanner from "@/widgets/HomeBanner";
 import HomeBrands from "@/widgets/HomeBrands";
@@ -13,8 +15,17 @@ import MainHeader from "@/widgets/MainHeader";
 import TailoredServiceBanner from "@/widgets/TailoredServiceBanner";
 
 export default function Home() {
+  const mainRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    // Add page-loaded class on mount
+    if (mainRef.current) {
+      mainRef.current.classList.add("page-loaded");
+    }
+  }, []);
+
   return (
-    <main className="z-[2] relative">
+    <main className="z-[2] relative" ref={mainRef}>
       <MainHeader />
       <HomeBanner />
       <HomeBrands />

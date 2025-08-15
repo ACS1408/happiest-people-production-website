@@ -1,41 +1,13 @@
 "use client";
-import React, { useRef } from "react";
+import React from "react";
 import Container from "@/components/Container";
 import CircularText from "@/components/CircularText";
 import TestimonialSlider from "@/components/TestimonialSlider";
 import { twc } from "@/utils";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useGSAP } from "@gsap/react";
-
-gsap.registerPlugin(ScrollTrigger, useGSAP);
+import useHomeTestimonials from "./useHomeTestimonials";
 
 const HomeTestimonials = () => {
-  const circularRef = useRef<SVGSVGElement | null>(null);
-  const rotationTween = useRef<gsap.core.Tween | null>(null);
-
-  useGSAP(() => {
-    if (!circularRef.current) return;
-
-    // Infinite rotation tween
-    rotationTween.current = gsap.to(circularRef.current, {
-      rotation: 360,
-      duration: 8,
-      ease: "none",
-      repeat: -1,
-      transformOrigin: "50% 50%",
-    });
-
-    // Detect scroll direction and reverse spin
-    ScrollTrigger.create({
-      trigger: document.documentElement,
-      start: "top top",
-      end: "bottom bottom",
-      onUpdate: (self) => {
-        rotationTween.current?.timeScale(self.direction === 1 ? 1 : -1);
-      },
-    });
-  }, []);
+  const { circularRef, iconRef } = useHomeTestimonials();
 
   return (
     <section
@@ -51,6 +23,7 @@ const HomeTestimonials = () => {
               letterSpacing={10}
               startAngle={40}
               circularRef={circularRef}
+              iconRef={iconRef}
             />
           </div>
 

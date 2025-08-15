@@ -1,0 +1,46 @@
+@keyframes waveFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-wave {
+  animation: waveFadeIn 0.5s ease forwards;
+}
+
+.main-header {
+  opacity: 0;
+  transform: translateY(-80px);
+  transition: 1s cubic-bezier(0.4, 0, 0.2, 1) all;
+}
+
+.home-banner__bg .image {
+  transform: scale(1.1);
+  transition: 1.5s cubic-bezier(0.4, 0, 0.2, 1) all;
+}
+
+.home-banner__contents--title {
+  opacity: 0;
+}
+
+.page-loaded .main-header {
+  opacity: 1;
+  transform: translateY(0);
+}
+.page-loaded .home-banner__bg .image {
+  transform: scale(1);
+}
+.page-loaded .home-banner__contents--title {
+  opacity: 1;
+}
+.page-loaded .main-footer {
+  position: sticky;
+  bottom: 0;
+  z-index: -1;
+}
+
+/*# sourceMappingURL=main.css.map */

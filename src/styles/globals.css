@@ -1,0 +1,219 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --primary: #fbcf1d;
+  --primary-100: #ffeb9a;
+  --secondary: #000000;
+  --tertiary: #fff7d6;
+  --grey: #535353;
+  --grey-900: #292929;
+  --grey-100: #7e8695;
+
+  --title-primary-2xl: 7.125rem; /* 114px */
+  --title-secondary-2xl: 6.25rem; /* 100px */
+  --title-tertiary-2xl: 5rem; /* 80px */
+  --title-quaternary-2xl: 3.75rem; /* 60px */
+  --subtitle-2xl: 1.875rem; /* 30px */
+  --para-primary-2xl: 1.875rem; /* 30px */
+  --para-secondary-2xl: 1.375rem; /* 22px */
+
+  --title-primary-xl: 6.3125rem; /* 101px */
+  --title-secondary-xl: 5.375rem; /* 86px */
+  --title-tertiary-xl: 4.375rem; /* 70px */
+  --title-quaternary-xl: 3.5rem; /* 56px */
+  --subtitle-xl: 1.6875rem; /* 27px */
+  --para-primary-xl: 1.5625rem; /* 25px */
+  --para-secondary-xl: 1.25rem; /* 20px */
+
+  --title-primary-lg: 6rem; /* 96px */
+  --title-secondary-lg: 5rem; /* 80px */
+  --title-tertiary-lg: 4rem; /* 64px */
+  --title-quaternary-lg: 3.25rem; /* 52px */
+  --subtitle-lg: 1.625rem; /* 26px */
+  --para-primary-lg: 1.5rem; /* 24px */
+  --para-secondary-lg: 1.25rem; /* 20px */
+
+  --title-primary-md: 5.5rem; /* 88px */
+  --title-secondary-md: 4.5rem; /* 72px */
+  --title-tertiary-md: 3.75rem; /* 60px */
+  --title-quaternary-md: 3rem; /* 48px */
+  --subtitle-md: 1.5rem; /* 24px */
+  --para-primary-md: 1.25rem; /* 20px */
+  --para-secondary-md: 1.125rem; /* 18px */
+
+  --title-primary-sm: 5rem; /* 80px */
+  --title-secondary-sm: 4rem; /* 64px */
+  --title-tertiary-sm: 3.125rem; /* 50px */
+  --title-quaternary-sm: 2.5rem; /* 40px */
+  --subtitle-sm: 1.5rem; /* 24px */
+  --para-primary-sm: 1.25rem; /* 20px */
+  --para-secondary-sm: 1.125rem; /* 18px */
+
+  --title-primary: 3rem; /* 48px */
+  --title-secondary: 2.5rem; /* 40px */
+  --title-tertiary: 2rem; /* 32px */
+  --title-quaternary: 1.75rem; /* 28px */
+  --subtitle: 1.25rem; /* 20px */
+  --para-primary: 1.125rem; /* 18px */
+  --para-secondary: 1rem; /* 16px */
+
+  --container-padding: 1rem;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-100: var(--primary-100);
+  --color-secondary: var(--secondary);
+  --color-tertiary: var(--tertiary);
+  --color-grey: var(--grey);
+  --color-grey-900: var(--grey-900);
+  --color-grey-100: var(--grey-100);
+
+  --text-title-primary-2xl: var(--title-primary-2xl);
+  --text-title-secondary-2xl: var(--title-secondary-2xl);
+  --text-title-tertiary-2xl: var(--title-tertiary-2xl);
+  --text-title-quaternary-2xl: var(--title-quaternary-2xl);
+  --text-subtitle-2xl: var(--subtitle-2xl);
+  --text-para-primary-2xl: var(--para-primary-2xl);
+  --text-para-secondary-2xl: var(--para-secondary-2xl);
+
+  --text-title-primary-xl: var(--title-primary-xl);
+  --text-title-secondary-xl: var(--title-secondary-xl);
+  --text-title-tertiary-xl: var(--title-tertiary-xl);
+  --text-title-quaternary-xl: var(--title-quaternary-xl);
+  --text-subtitle-xl: var(--subtitle-xl);
+  --text-para-primary-xl: var(--para-primary-xl);
+  --text-para-secondary-xl: var(--para-secondary-xl);
+
+  --text-title-primary-lg: var(--title-primary-lg);
+  --text-title-secondary-lg: var(--title-secondary-lg);
+  --text-title-tertiary-lg: var(--title-tertiary-lg);
+  --text-title-quaternary-lg: var(--title-quaternary-lg);
+  --text-subtitle-lg: var(--subtitle-lg);
+  --text-para-primary-lg: var(--para-primary-lg);
+  --text-para-secondary-lg: var(--para-secondary-lg);
+
+  --text-title-primary-md: var(--title-primary-md);
+  --text-title-secondary-md: var(--title-secondary-md);
+  --text-title-tertiary-md: var(--title-tertiary-md);
+  --text-title-quaternary-md: var(--title-quaternary-md);
+  --text-subtitle-md: var(--subtitle-md);
+  --text-para-primary-md: var(--para-primary-md);
+  --text-para-secondary-md: var(--para-secondary-md);
+
+  --text-title-primary-sm: var(--title-primary-sm);
+  --text-title-secondary-sm: var(--title-secondary-sm);
+  --text-title-tertiary-sm: var(--title-tertiary-sm);
+  --text-title-quaternary-sm: var(--title-quaternary-sm);
+  --text-subtitle-sm: var(--subtitle-sm);
+  --text-para-primary-sm: var(--para-primary-sm);
+  --text-para-secondary-sm: var(--para-secondary-sm);
+
+  --text-title-primary: var(--title-primary);
+  --text-title-secondary: var(--title-secondary);
+  --text-title-tertiary: var(--title-tertiary);
+  --text-title-quaternary: var(--title-quaternary);
+  --text-subtitle: var(--subtitle);
+  --text-para-primary: var(--para-primary);
+  --text-para-secondary: var(--para-secondary);
+
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1200px;
+  --breakpoint-2xl: 1600px;
+  --breakpoint-3xl: 1920px;
+}
+
+@layer base {
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-manrope);
+  }
+}
+
+@layer utilities {
+  .ff-figtree {
+    font-family: var(--font-figtree), sans-serif;
+  }
+  .ff-manrope {
+    font-family: var(--font-manrope), sans-serif;
+  }
+
+  .fs-title-primary {
+    @apply 2xl:text-title-primary-2xl xl:text-title-primary-xl lg:text-title-primary-lg md:text-title-primary-md sm:text-title-primary-sm text-title-primary;
+  }
+  .fs-title-secondary {
+    @apply 2xl:text-title-secondary-2xl xl:text-title-secondary-xl lg:text-title-secondary-lg md:text-title-secondary-md sm:text-title-secondary-sm text-title-secondary;
+  }
+  .fs-title-tertiary {
+    @apply 2xl:text-title-tertiary-2xl xl:text-title-tertiary-xl lg:text-title-tertiary-lg md:text-title-tertiary-md sm:text-title-tertiary-sm text-title-tertiary;
+  }
+  .fs-title-quaternary {
+    @apply 2xl:text-title-quaternary-2xl xl:text-title-quaternary-xl lg:text-title-quaternary-lg md:text-title-quaternary-md sm:text-title-quaternary-sm text-title-quaternary;
+  }
+  .fs-subtitle {
+    @apply 2xl:text-subtitle-2xl xl:text-subtitle-xl lg:text-subtitle-lg md:text-subtitle-md sm:text-subtitle-sm text-subtitle;
+  }
+  .fs-para-primary {
+    @apply 2xl:text-para-primary-2xl xl:text-para-primary-xl lg:text-para-primary-lg md:text-para-primary-md sm:text-para-primary-sm text-para-primary;
+  }
+  .fs-para-secondary {
+    @apply 2xl:text-para-secondary-2xl xl:text-para-secondary-xl lg:text-para-secondary-lg md:text-para-secondary-md sm:text-para-secondary-sm text-para-secondary;
+  }
+
+  .btn-icon path {
+    stroke: currentColor;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@layer components {
+  .container {
+    width: 100% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: var(--container-padding) !important;
+    padding-right: var(--container-padding) !important;
+    max-width: var(--container-max-width) !important;
+  }
+}
+
+/* Responsive container sizes */
+@media (min-width: 576px) {
+  .container {
+    --container-max-width: 540px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    --container-max-width: 720px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    --container-max-width: 860px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    --container-max-width: 1180px;
+  }
+}
+
+@media (min-width: 1600px) {
+  .container {
+    --container-max-width: 1550px;
+  }
+}

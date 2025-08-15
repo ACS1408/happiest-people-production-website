@@ -7,8 +7,9 @@ interface CircularTextProps {
   diameter: number;
   icon?: React.ReactNode;
   letterSpacing: number;
-  startAngle?: number; // in degrees, where 0 = top, clockwise
+  startAngle?: number;
   circularRef?: React.Ref<SVGSVGElement>;
+  iconRef?: React.Ref<HTMLDivElement>; // 👈 added
 }
 
 const CircularText: React.FC<CircularTextProps> = ({
@@ -18,10 +19,10 @@ const CircularText: React.FC<CircularTextProps> = ({
   letterSpacing,
   startAngle = 0,
   circularRef,
+  iconRef,
 }) => {
   const [fontSize, setFontSize] = useState(14);
 
-  // Build seamless text
   const text = textArray.join(" - ") + " - ";
   const radius = diameter / 2 - 8;
   const circumference = 2 * Math.PI * radius;
@@ -35,7 +36,6 @@ const CircularText: React.FC<CircularTextProps> = ({
     ctx.font = `${size}px sans-serif`;
     const textWidth = ctx.measureText(text).width + letterSpacing * text.length;
 
-    // Scale font size to perfectly fill circumference
     size = (circumference / textWidth) * size;
     setFontSize(size);
   }, [text, circumference, letterSpacing]);
@@ -53,12 +53,10 @@ const CircularText: React.FC<CircularTextProps> = ({
         <defs>
           <path
             id="circlePath"
-            d={`
-              M ${(diameter + 40) / 2}, ${(diameter + 40) / 2}
-              m -${radius},0
-              a ${radius},${radius} 0 1,1 ${radius * 2},0
-              a ${radius},${radius} 0 1,1 -${radius * 2},0
-            `}
+            d={`M ${(diameter + 40) / 2}, ${(diameter + 40) / 2}
+                m -${radius},0
+                a ${radius},${radius} 0 1,1 ${radius * 2},0
+                a ${radius},${radius} 0 1,1 -${radius * 2},0`}
           />
         </defs>
         <g
@@ -75,14 +73,15 @@ const CircularText: React.FC<CircularTextProps> = ({
             }}
           >
             <textPath href="#circlePath" startOffset="0%">
-              {/* Repeat enough times to fill without gaps */}
               {text.repeat(3)}
             </textPath>
           </text>
         </g>
       </svg>
 
-      {icon || <DoubleQuotes className="h-28" />}
+      <div ref={iconRef} className="z-20 [&>*]:will-change-transform">
+        {icon || <DoubleQuotes className="h-32" />}
+      </div>
     </div>
   );
 };
