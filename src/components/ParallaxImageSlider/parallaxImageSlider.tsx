@@ -58,7 +58,7 @@ const twClasses = twc({
   slider: "",
   outer: "overflow-auto no-scrollbar",
   wrapper: "flex gap-4",
-  image: "relative h-[400px]",
+  image: "relative h-[calc(100vh_-_200px)]",
   slide: {
     DEFAULT: "overflow-hidden",
     ratio_1: "flex-[0_0_50%] max-w-[50%]",
