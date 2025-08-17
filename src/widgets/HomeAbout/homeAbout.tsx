@@ -98,12 +98,12 @@ const twClasses = twc({
   image_wrapper: "flex justify-center items-start",
   image_figure: "relative lg:-mt-16",
   image: "object-contain",
-  stats: "grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12",
+  stats: "flex items-center justify-between mt-10",
   stat: (hasBorder: boolean) =>
-    `text-center lg:text-left ${
-      hasBorder ? "border-l border-gray-700 pl-8 lg:pl-12" : ""
+    `text-center lg:text-left px-8 lg:px-16 ${
+      hasBorder ? "border-l border-gray-300" : "ps-0"
     }`,
   stat_count:
-    "ff-figtree text-4xl lg:text-5xl xl:text-6xl font-light text-white mb-2",
+    "ff-figtree text-4xl lg:text-5xl xl:text-6xl font-medium text-white mb-2",
   stat_label: "text-gray-400 text-sm lg:text-base",
 });
