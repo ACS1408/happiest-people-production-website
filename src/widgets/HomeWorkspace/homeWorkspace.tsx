@@ -55,28 +55,34 @@ export default HomeWorkspace;
 
 const sliderImages = [
   {
-    url: "/images/workspace-1.jpg",
+    url: "/images/workspace-1.webp",
     alt: "workspace-1",
+    ratio: "ratio_1",
   },
   {
-    url: "/images/workspace-2.jpg",
+    url: "/images/workspace-2.webp",
     alt: "workspace-2",
+    ratio: "ratio_2",
   },
   {
-    url: "/images/workspace-3.jpg",
+    url: "/images/workspace-3.webp",
     alt: "workspace-3",
+    ratio: "ratio_3",
   },
   {
-    url: "/images/workspace-1.jpg",
+    url: "/images/workspace-1.webp",
     alt: "workspace-1",
+    ratio: "ratio_1",
   },
   {
-    url: "/images/workspace-2.jpg",
+    url: "/images/workspace-2.webp",
     alt: "workspace-2",
+    ratio: "ratio_2",
   },
   {
-    url: "/images/workspace-3.jpg",
+    url: "/images/workspace-3.webp",
     alt: "workspace-3",
+    ratio: "ratio_3",
   },
 ];
 

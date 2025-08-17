@@ -1,13 +1,14 @@
 "use client";
-
 import React, { useState, useEffect } from "react";
 import Container from "@/components/Container/container";
 import Image from "next/image";
 import Link from "next/link";
 import { twc } from "@/utils";
+import { usePathname } from "next/navigation";
 
 const MainHeader = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -40,11 +41,15 @@ const MainHeader = () => {
         </div>
         <nav
           className={`main-header__navigation ${twClasses.navigation} ${
-            isScrolled ? "text-black" : "text-white"
+            isScrolled
+              ? "text-black"
+              : pathname !== "/"
+              ? "text-black"
+              : "text-white"
           }`}
         >
           <Link
-            href="/about-us"
+            href="/about"
             className={`main-header__navigation--link ${twClasses.nav_link} ${twClasses.nav_link.after} ${twClasses.nav_link.hover}`}
           >
             About Us

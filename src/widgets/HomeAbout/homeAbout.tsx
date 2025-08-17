@@ -43,7 +43,7 @@ const HomeAbout = () => {
               className={`home-about__image--figure ${twClasses.image_figure}`}
             >
               <Image
-                src="/images/golden-video-recorder.png"
+                src="/images/golden-video-recorder.webp"
                 alt="smiling golden video recorder"
                 width="360"
                 height="282"
@@ -98,7 +98,7 @@ const twClasses = twc({
   image_wrapper: "flex justify-center items-start",
   image_figure: "relative lg:-mt-16",
   image: "object-contain",
-  stats: "flex items-center justify-between mt-10",
+  stats: "grid grid-cols-4 mt-10",
   stat: (hasBorder: boolean) =>
     `text-center lg:text-left px-8 lg:px-16 ${
       hasBorder ? "border-l border-gray-300" : "ps-0"

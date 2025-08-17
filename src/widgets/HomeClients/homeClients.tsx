@@ -41,7 +41,7 @@ const HomeClients = () => {
                 key={i}
               >
                 <Image
-                  src="/images/cartknitter.png"
+                  src="/images/cartknitter.webp"
                   alt="client logo"
                   width={200}
                   height={100}

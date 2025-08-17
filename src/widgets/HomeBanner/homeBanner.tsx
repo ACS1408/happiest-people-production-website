@@ -17,7 +17,7 @@ const HomeBanner = () => {
     >
       <figure className={`home-banner__bg ${twClasses.background}`}>
         <ImageBlurLoader
-          src="/images/banner-image.png"
+          src="/images/banner-image.webp"
           fill
           alt="people working together new movie"
           className="object-cover"

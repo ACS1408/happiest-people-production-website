@@ -8,6 +8,7 @@ import AboutQualityWorks from "@/widgets/AboutQualityWorks";
 import AboutCareers from "@/widgets/AboutCareers";
 import TailoredServiceBanner from "@/widgets/TailoredServiceBanner";
 import AboutBeliveSystem from "@/widgets/AboutBeliveSystem";
+import AboutWideTailored from "@/widgets/AboutWideTailored";
 
 const About = () => {
   const mainRef = useRef<HTMLElement>(null);
@@ -26,6 +27,7 @@ const About = () => {
         <AboutQualityWorks />
         <AboutCareers />
         <AboutBeliveSystem />
+        <AboutWideTailored />
         <TailoredServiceBanner />
         <MainFooter />
       </SmoothScrollContext>

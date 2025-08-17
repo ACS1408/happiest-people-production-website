@@ -19,7 +19,7 @@ const AboutQualityWorks = () => {
         <div className={`about-quality-works__grid ${twClasses.grid}`}>
           <figure className={`about-quality-works__image ${twClasses.image}`}>
             <Image
-              src="/images/yellow-tv.png"
+              src="/images/security.webp"
               alt="yellow tv"
               fill
               className="object-contain"

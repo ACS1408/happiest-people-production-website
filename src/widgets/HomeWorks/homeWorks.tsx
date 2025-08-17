@@ -31,7 +31,7 @@ const HomeWorks = () => {
           <div className="home-works__list--item">
             <figure className={`work-image ${twClasses.card_image}`}>
               <Image
-                src="/images/work-1.jpg"
+                src="/images/work-1.webp"
                 alt=""
                 fill
                 className="object-cover"
@@ -52,7 +52,7 @@ const HomeWorks = () => {
           <div className="home-works__list--item">
             <figure className={`work-image ${twClasses.card_image}`}>
               <Image
-                src="/images/work-2.jpg"
+                src="/images/work-2.webp"
                 alt=""
                 fill
                 className="object-cover"

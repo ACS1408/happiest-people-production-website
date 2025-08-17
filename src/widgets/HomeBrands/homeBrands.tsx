@@ -8,11 +8,11 @@ const HomeBrands = () => {
         <section data-widget="home-brands" className={`home-brands ${twClasses.section}`}>
             <Container>
                 <div className={`home-brands__image-grid ${twClasses.image_grid}`}>
-                    <Image src="/images/virtina.png" width={165} height={66} alt="virtina logo" />
-                    <Image src="/images/cartknitter.png" width={192} height={66} alt="cartknitter logo" />
-                    <Image src="/images/rainmaker.png" width={192} height={66} alt="rainmaker logo" />
-                    <Image src="/images/cartknitter.png" width={192} height={66} alt="cartknitter logo" />
-                    <Image src="/images/rainmaker.png" width={192} height={66} alt="rainmaker logo" />
+                    <Image src="/images/virtina.webp" width={165} height={66} alt="virtina logo" />
+                    <Image src="/images/cartknitter.webp" width={192} height={66} alt="cartknitter logo" />
+                    <Image src="/images/rainmaker.webp" width={192} height={66} alt="rainmaker logo" />
+                    <Image src="/images/cartknitter.webp" width={192} height={66} alt="cartknitter logo" />
+                    <Image src="/images/rainmaker.webp" width={192} height={66} alt="rainmaker logo" />
                 </div>
             </Container>
         </section>

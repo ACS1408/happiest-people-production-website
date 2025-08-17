@@ -29,11 +29,7 @@ const ParallaxImageSlider: React.FC<ParallaxImageSlider> = ({
               return (
                 <div
                   className={`parallax-image-slider__slide ${twClasses.slide} ${
-                    (i + 1) % 3 === 0
-                      ? twClasses.slide.ratio_3
-                      : (i + 1) % 3 === 2
-                      ? twClasses.slide.ratio_2
-                      : twClasses.slide.ratio_1
+                    twClasses.slide[`${image.ratio}`]
                   }`}
                   key={i}
                 >

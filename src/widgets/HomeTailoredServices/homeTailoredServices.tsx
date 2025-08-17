@@ -19,7 +19,7 @@ const HomeTailoredServices = () => {
         <div className={`home-tailored-service__grid ${twClasses.grid}`}>
           <figure className={`home-tailored-service__image ${twClasses.image}`}>
             <Image
-              src="/images/yellow-tv.png"
+              src="/images/yellow-tv.webp"
               alt="yellow tv"
               fill
               className="object-contain"

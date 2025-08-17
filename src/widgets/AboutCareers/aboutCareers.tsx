@@ -1,27 +1,36 @@
 import Button from "@/components/Button";
 import Container from "@/components/Container";
-import React from "react";
+import React, { useRef } from "react";
 import ChevronRight from "@/icons/chevron-right.svg";
 import ParallaxImageSlider from "@/components/ParallaxImageSlider";
+import useTextSplitAnimation from "@/utils/useTextSplitAnimation";
 
 const AboutCareers = () => {
+  const titleRef = useRef<HTMLHeadingElement>(null);
+  const descRef = useRef<HTMLParagraphElement>(null);
+  useTextSplitAnimation(titleRef, { stagger: 0.03 });
+  useTextSplitAnimation(descRef, { stagger: 0, duration: 1.5 });
+
   return (
     <section
       data-widget="about-careers"
       className={`about-careers ${twClasses.section}`}
     >
       <Container>
-        <div className={`about-careers__label ${twClasses.tag}`}>
-          Work space
-        </div>
-        <h2 className={`about-careers__title ${twClasses.title}`}>
-          We serve
+        <h2
+          className={`about-careers__title ${twClasses.title}`}
+          ref={titleRef}
+        >
+          We ready to
           <br />
-          <em className="font-medium">workspace</em>
+          wide <em className="font-medium">together</em>
         </h2>
 
         <div className={`about-careers__contents ${twClasses.contents}`}>
-          <p className={`about-careers__description ${twClasses.description}`}>
+          <p
+            className={`about-careers__description ${twClasses.description}`}
+            ref={descRef}
+          >
             Dataravn empowers businesses with complete control over their SaaS
             backups, eliminating vendor lock-in and ensuring data security,
             compliance, and flexibility.
@@ -50,28 +59,34 @@ export default AboutCareers;
 
 const sliderImages = [
   {
-    url: "/images/workspace-1.jpg",
-    alt: "workspace-1",
+    url: "/images/career-1.webp",
+    alt: "career-1",
+    ratio: "ratio_1",
   },
   {
-    url: "/images/workspace-2.jpg",
-    alt: "workspace-2",
+    url: "/images/career-2.webp",
+    alt: "career-2",
+    ratio: "ratio_2",
   },
   {
-    url: "/images/workspace-3.jpg",
-    alt: "workspace-3",
+    url: "/images/career-3.webp",
+    alt: "career-3",
+    ratio: "ratio_2",
   },
   {
-    url: "/images/workspace-1.jpg",
-    alt: "workspace-1",
+    url: "/images/career-1.webp",
+    alt: "career-1",
+    ratio: "ratio_1",
   },
   {
-    url: "/images/workspace-2.jpg",
-    alt: "workspace-2",
+    url: "/images/career-2.webp",
+    alt: "career-2",
+    ratio: "ratio_2",
   },
   {
-    url: "/images/workspace-3.jpg",
-    alt: "workspace-3",
+    url: "/images/career-3.webp",
+    alt: "career-3",
+    ratio: "ratio_2",
   },
 ];
 

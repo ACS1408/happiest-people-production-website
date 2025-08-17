@@ -104,7 +104,7 @@ const socials = [
 const navLinks = [
   { id: "home_01", name: "Home", url: "/" },
   { id: "services_02", name: "Services", url: "/services" },
-  { id: "about_us_03", name: "About Us", url: "/about-us" },
+  { id: "about_us_03", name: "About Us", url: "/about" },
   { id: "features_04", name: "Features", url: "/features" },
   { id: "testimonials_05", name: "Testimonials", url: "/testimonials" },
   { id: "solutions_06", name: "Solutions", url: "/solutions" },

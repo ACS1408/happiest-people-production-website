@@ -10,19 +10,19 @@ const testimonials = [
     quote: `Hubfolio studio ability to create a high quality UI stands out. It's something we placed a premium on. A studio with passionate, professional, fun and full creativity. Recommend!.`,
     name: "Bradley Gordon",
     role: "CEO & Founder, Archin Studio",
-    avatar: "/images/avatar.png",
+    avatar: "/images/avatar.webp",
   },
   {
     quote: `Working with Hubfolio has been an absolute pleasure. They bring innovation and dedication to every project.`,
     name: "Sophia Williams",
     role: "Creative Director, DesignWorks",
-    avatar: "/images/avatar.png",
+    avatar: "/images/avatar.webp",
   },
   {
     quote: `The quality and attention to detail they deliver is unmatched. They made our vision come alive.`,
     name: "James Carter",
     role: "Product Manager, TechHub",
-    avatar: "/images/avatar.png",
+    avatar: "/images/avatar.webp",
   },
 ];
 

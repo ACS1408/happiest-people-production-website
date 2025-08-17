@@ -19,7 +19,7 @@ const TailoredServiceBanner = () => {
             className={`home-tailored-service-banner__image ${twClasses.image}`}
           >
             <Image
-              src="/images/yellow-camera.png"
+              src="/images/yellow-camera.webp"
               alt="yellow camera with circular waves around."
               fill
               className="object-contain"
