@@ -11,6 +11,7 @@ const useAboutBanner = () => {
   const crowRef = useRef<SVGPathElement>(null);
   const cloud1Ref = useRef<SVGPathElement>(null);
   const cloud2Ref = useRef<SVGPathElement>(null);
+  const treeRef = useRef<SVGGElement>(null);
 
   useGSAP(
     () => {
@@ -18,6 +19,10 @@ const useAboutBanner = () => {
       gsap.set(buildingRef.current, {
         autoAlpha: 0,
         y: 100,
+      });
+
+      gsap.set(treeRef.current, {
+        yPercent: 100,
       });
 
       gsap.set(crowRef.current, {
@@ -56,6 +61,15 @@ const useAboutBanner = () => {
         visibility: "visible",
         ease: "power3.out",
       })
+        // Animate tree rising
+        .to(
+          treeRef.current,
+          {
+            yPercent: 0,
+            ease: "power1.inOut",
+          },
+          "<+=0.2"
+        )
         // Animate cloud 1 moving
         .to(
           cloud1Ref.current,
@@ -64,7 +78,7 @@ const useAboutBanner = () => {
             x: 0,
             ease: "power1.inOut",
           },
-          "<"
+          "<+=0.2"
         )
         // Animate cloud 2 moving
         .to(
@@ -98,6 +112,7 @@ const useAboutBanner = () => {
     crowRef,
     cloud1Ref,
     cloud2Ref,
+    treeRef,
   };
 };
 

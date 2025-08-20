@@ -14,13 +14,13 @@ const HomeAbout = () => {
         <span className={`home-about__tag ${twClasses.tag}`}>About Us</span>
         <div className={`home-about__grid ${twClasses.grid}`}>
           <div className={`home-about__grid--left ${twClasses.left}`}>
-            <h1 className={`home-about__title ${twClasses.title}`}>
+            <h2 className={`home-about__title ${twClasses.title}`}>
               We serve a<br />
               wide{" "}
               <em className={`home-about__title--em ${twClasses.title_em}`}>
                 tailored
               </em>
-            </h1>
+            </h2>
 
             <p className={`home-about__description ${twClasses.description}`}>
               Lorem ipsum solutions tailored to tackle specific challenges
