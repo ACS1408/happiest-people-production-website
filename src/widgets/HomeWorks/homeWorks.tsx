@@ -36,7 +36,7 @@ const HomeWorks = () => {
             return <ImageCard key={index} image={image} title={title} />;
           })}
         </div>
-        <div className="flex justify-center mt-32">
+        <div className={`home-works__view-all ${twClasses.view_all}`}>
           <Button
             text="View All"
             icon={<ChevronRight className="h-3 mt-px" />}
@@ -75,4 +75,5 @@ const twClasses = twc({
     "ff-figtree fs-title-tertiary font-light flex-[0_0_600px] max-w-[600px]",
   description: "fs-para-secondary max-w-[638px] ms-auto",
   grid: "grid grid-cols-2 gap-4 2xl:mt-32 mt-16",
+  view_all: "flex justify-center mt-32",
 });

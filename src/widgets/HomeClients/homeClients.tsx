@@ -33,11 +33,11 @@ const HomeClients = () => {
             exceptional results tailored to their unique goals.
           </p>
         </div>
-        <div className="home-clients__list grid grid-cols-4 mt-24">
+        <div className={`home-clients__list ${twClasses.list}`}>
           {[...Array(8)]?.map((_, i) => {
             return (
               <div
-                className="home-clients__list--item border border-gray-200 flex justify-center items-center py-16 px-8"
+                className={`home-clients__list--item ${twClasses.list_item}`}
                 key={i}
               >
                 <Image
@@ -50,7 +50,7 @@ const HomeClients = () => {
             );
           })}
         </div>
-        <div className="flex justify-center mt-24">
+        <div className={`home-clients__view-all ${twClasses.view_all}`}>
           <Button
             text="View All"
             icon={<ChevronRight className="h-3 mt-px" />}
@@ -71,4 +71,8 @@ const twClasses = twc({
   title:
     "ff-figtree fs-title-tertiary font-light flex-[0_0_600px] max-w-[600px]",
   description: "fs-para-secondary max-w-[638px] ms-auto",
+  list: "grid grid-cols-4 mt-24",
+  view_all: "flex justify-center mt-24",
+  list_item:
+    "border border-gray-200 flex justify-center items-center py-16 px-8",
 });

@@ -15,8 +15,10 @@ const HomeTestimonials = () => {
       className={`home-testimonials ${twClasses.section}`}
     >
       <Container>
-        <div className="grid grid-cols-3">
-          <div className="origin-center size-max will-change-transform">
+        <div className={`home-testimonials__grid ${twClasses.grid}`}>
+          <div
+            className={`home-testimonials__circular-text ${twClasses.circularText}`}
+          >
             <CircularText
               textArray={["Trusted By Clients", "Testimonial"]}
               diameter={200}
@@ -27,7 +29,7 @@ const HomeTestimonials = () => {
             />
           </div>
 
-          <div className="col-span-2">
+          <div className={`home-testimonials__slider ${twClasses.slider}`}>
             <TestimonialSlider />
           </div>
         </div>
@@ -40,4 +42,7 @@ export default HomeTestimonials;
 
 const twClasses = twc({
   section: "bg-black py-32",
+  grid: "grid grid-cols-3",
+  circularText: "origin-center size-max will-change-transform",
+  slider: "col-span-2",
 });
