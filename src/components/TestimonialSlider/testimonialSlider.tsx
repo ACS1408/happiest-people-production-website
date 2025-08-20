@@ -3,7 +3,9 @@
 import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const testimonials = [
   {
@@ -67,6 +69,7 @@ const Autoplay = (interval = 4000) => {
   return (slider: any) => {
     let timeout: ReturnType<typeof setTimeout>;
     let mouseOver = false;
+    let scrollTriggerInstance: ScrollTrigger;
 
     function clearNextTimeout() {
       clearTimeout(timeout);
@@ -74,22 +77,42 @@ const Autoplay = (interval = 4000) => {
 
     function nextTimeout() {
       clearTimeout(timeout);
-      if (mouseOver) return;
+      if (mouseOver || (scrollTriggerInstance && !scrollTriggerInstance.isActive)) return;
       timeout = setTimeout(() => {
         slider.next();
       }, interval);
     }
 
     slider.on("created", () => {
+      gsap.registerPlugin(ScrollTrigger);
+      
+      scrollTriggerInstance = ScrollTrigger.create({
+        trigger: slider.container,
+        start: "top bottom-=100",
+        end: "bottom top+=100",
+        onEnter: () => nextTimeout(),
+        onEnterBack: () => nextTimeout(),
+        onLeave: () => clearNextTimeout(),
+        onLeaveBack: () => clearNextTimeout(),
+      });
+
       slider.container.addEventListener("mouseover", () => {
         mouseOver = true;
         clearNextTimeout();
       });
+      
       slider.container.addEventListener("mouseout", () => {
         mouseOver = false;
-        nextTimeout();
+        if (scrollTriggerInstance.isActive) {
+          nextTimeout();
+        }
       });
-      nextTimeout();
+    });
+
+    slider.on("destroyed", () => {
+      if (scrollTriggerInstance) {
+        scrollTriggerInstance.kill();
+      }
     });
 
     slider.on("dragStarted", clearNextTimeout);
