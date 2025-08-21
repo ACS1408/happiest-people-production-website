@@ -1,17 +1,22 @@
 import React from "react";
 import Container from "@/components/Container";
 import Image from "next/image";
-import { twc } from "@/utils";
 import BlockQuote from "@/icons/blockquotes.svg";
+import useInsightsSlider from "./useInsightsSlider";
+import { twc } from "@/utils";
 
 const AboutInsights = () => {
+  const { rootRef, contentRef, slides, index, setSlideRef } =
+    useInsightsSlider();
+
   return (
     <section
       data-widget="about-insights"
       className={`about-insights ${twClasses.section}`}
     >
       <Container>
-        <div className={`about-insights__grid ${twClasses.grid}`}>
+        <div className={`about-insights__grid ${twClasses.grid}`} ref={rootRef}>
+          {/* Left Content */}
           <div className={`about-insights__grid--left ${twClasses.left}`}>
             <h1 className={`about-insights__title ${twClasses.title}`}>
               Insights from
@@ -20,43 +25,56 @@ const AboutInsights = () => {
                 the mastermind
               </em>
             </h1>
-            <div className={`about-insights__content ${twClasses.content}`}>
-              <BlockQuote className="h-8" />
+            <div
+              className={`about-insights__content ${twClasses.content}`}
+              ref={contentRef}
+            >
+              <BlockQuote className="h-8 text-white/70 shrink-0" />
               <div
                 className={`about-insights__content--right ${twClasses.content_right}`}
               >
                 <p
                   className={`about-insights__description ${twClasses.description}`}
                 >
-                  Dataravn empowers businesses with complete control over their
-                  SaaS backups, eliminating vendor lock-in
+                  {slides[index].quote}
                 </p>
                 <div className={`about-insights__author ${twClasses.author}`}>
                   <div className={`author-name ${twClasses.author_name}`}>
-                    Arun Kumar
+                    {slides[index].author}
                   </div>
                   <div
                     className={`author-designation ${twClasses.author_designation}`}
                   >
-                    Managing Director
+                    {slides[index].designation}
                   </div>
                 </div>
               </div>
             </div>
           </div>
 
+          {/* Right Images */}
           <div
             className={`about-insights__image--wrapper ${twClasses.image_wrapper}`}
           >
             <figure
               className={`about-insights__image--figure ${twClasses.image_figure}`}
             >
-              <Image
-                src="/images/mastermind.webp"
-                alt="mastermind"
-                fill
-                className={`about-insights__image ${twClasses.image}`}
-              />
+              <div className="w-full h-full relative overflow-hidden">
+                {slides.map((s, i) => (
+                  <div
+                    key={i}
+                    ref={(el) => setSlideRef(el, i)}
+                    className="absolute inset-0"
+                  >
+                    <Image
+                      src={s.image}
+                      alt="insights"
+                      fill
+                      className={`about-insights__image ${twClasses.image}`}
+                    />
+                  </div>
+                ))}
+              </div>
             </figure>
           </div>
         </div>

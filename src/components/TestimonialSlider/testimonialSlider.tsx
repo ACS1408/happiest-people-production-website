@@ -1,11 +1,10 @@
 "use client";
-
-import { useKeenSlider } from "keen-slider/react";
-import "keen-slider/keen-slider.min.css";
+import React, { useState } from "react";
 import Image from "next/image";
-import { useState, useRef, useEffect } from "react";
+import { useKeenSlider } from "keen-slider/react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import "keen-slider/keen-slider.min.css";
 
 const testimonials = [
   {
@@ -77,7 +76,11 @@ const Autoplay = (interval = 4000) => {
 
     function nextTimeout() {
       clearTimeout(timeout);
-      if (mouseOver || (scrollTriggerInstance && !scrollTriggerInstance.isActive)) return;
+      if (
+        mouseOver ||
+        (scrollTriggerInstance && !scrollTriggerInstance.isActive)
+      )
+        return;
       timeout = setTimeout(() => {
         slider.next();
       }, interval);
@@ -85,7 +88,7 @@ const Autoplay = (interval = 4000) => {
 
     slider.on("created", () => {
       gsap.registerPlugin(ScrollTrigger);
-      
+
       scrollTriggerInstance = ScrollTrigger.create({
         trigger: slider.container,
         start: "top bottom-=100",
@@ -100,7 +103,7 @@ const Autoplay = (interval = 4000) => {
         mouseOver = true;
         clearNextTimeout();
       });
-      
+
       slider.container.addEventListener("mouseout", () => {
         mouseOver = false;
         if (scrollTriggerInstance.isActive) {
