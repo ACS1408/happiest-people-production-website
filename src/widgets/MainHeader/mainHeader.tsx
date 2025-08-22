@@ -1,13 +1,16 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Container from "@/components/Container/container";
 import Image from "next/image";
 import Link from "next/link";
 import { twc } from "@/utils";
 import { usePathname } from "next/navigation";
+import gsap from "gsap";
 
 const MainHeader = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -19,6 +22,50 @@ const MainHeader = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 992) {
+        setIsMenuOpen(false);
+        if (menuRef.current) {
+          gsap.set(menuRef.current, { clearProps: "all" });
+        }
+        // Reset body overflow when resizing to desktop
+        document.body.style.overflow = '';
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      // Reset body overflow when component unmounts
+      document.body.style.overflow = '';
+    };
+  }, []);
+
+  useEffect(() => {
+    if (window.innerWidth < 992) {
+      // Toggle body scroll
+      document.body.style.overflow = isMenuOpen ? 'hidden' : '';
+      
+      // Animate menu
+      if (menuRef.current) {
+        if (isMenuOpen) {
+          gsap.to(menuRef.current, {
+            x: "0%",
+            duration: 0.5,
+            ease: "power3.out",
+          });
+        } else {
+          gsap.to(menuRef.current, {
+            x: "100%",
+            duration: 0.5,
+            ease: "power3.in",
+          });
+        }
+      }
+    }
+  }, [isMenuOpen]);
 
   return (
     <header
@@ -39,40 +86,65 @@ const MainHeader = () => {
             />
           </Link>
         </div>
-        <nav
-          className={`main-header__navigation ${twClasses.navigation} ${
+
+        {/* Hamburger Menu Button */}
+        <button
+          className={`${twClasses.hamburger} ${isMenuOpen ? "open" : ""} ${
             isScrolled
               ? "text-black"
-              : pathname !== "/"
+              : pathname !== "/" || isMenuOpen
               ? "text-black"
               : "text-white"
           }`}
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          aria-label="Toggle menu"
         >
-          <Link
-            href="/about"
-            className={`main-header__navigation--link ${twClasses.nav_link} ${twClasses.nav_link.after} ${twClasses.nav_link.hover}`}
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        {/* Navigation Menu */}
+        <div ref={menuRef} className={twClasses.menu_container}>
+          <nav
+            className={`main-header__navigation ${twClasses.navigation} ${
+              isScrolled
+                ? "text-black"
+                : pathname !== "/"
+                ? "text-black"
+                : "text-white"
+            }`}
           >
-            About Us
-          </Link>
-          <Link
-            href="/testimonials"
-            className={`main-header__navigation--link ${twClasses.nav_link} ${twClasses.nav_link.after} ${twClasses.nav_link.hover}`}
-          >
-            Testimonials
-          </Link>
-          <Link
-            href="/careers"
-            className={`main-header__navigation--link ${twClasses.nav_link} ${twClasses.nav_link.after} ${twClasses.nav_link.hover}`}
-          >
-            Careers
-          </Link>
-          <Link
-            href="/contact-us"
-            className={`main-header__navigation--link ${twClasses.nav_link} ${twClasses.nav_link.after} ${twClasses.nav_link.hover}`}
-          >
-            Contact Us
-          </Link>
-        </nav>
+            <Link
+              href="/about"
+              className={`main-header__navigation--link ${twClasses.nav_link} ${twClasses.nav_link.after} ${twClasses.nav_link.hover}`}
+              onClick={() => setIsMenuOpen(false)}
+            >
+              About Us
+            </Link>
+            <Link
+              href="/testimonials"
+              className={`main-header__navigation--link ${twClasses.nav_link} ${twClasses.nav_link.after} ${twClasses.nav_link.hover}`}
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Testimonials
+            </Link>
+            <Link
+              href="/careers"
+              className={`main-header__navigation--link ${twClasses.nav_link} ${twClasses.nav_link.after} ${twClasses.nav_link.hover}`}
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Careers
+            </Link>
+            <Link
+              href="/contact-us"
+              className={`main-header__navigation--link ${twClasses.nav_link} ${twClasses.nav_link.after} ${twClasses.nav_link.hover}`}
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Contact Us
+            </Link>
+          </nav>
+        </div>
       </Container>
     </header>
   );
@@ -84,14 +156,20 @@ const twClasses = twc({
   header:
     "fixed top-0 left-0 w-full z-[1024] transition-all duration-300 ease-out",
   header_scrolled: "bg-white/90 backdrop-blur-sm shadow-lg",
-  container: "flex justify-between items-center",
+  container: "flex justify-between items-center relative",
   logo: "flex items-center gap-4",
   logo_image: "transition-all duration-300 ease-out",
-  navigation: "flex items-center gap-10 transition-all duration-300 ease-out",
+  navigation:
+    "flex lg:items-center transition-all duration-300 ease-out lg:gap-10 max-lg:flex-col max-lg:w-full max-lg:pt-20",
+  menu_container:
+    "max-lg:fixed max-lg:top-0 max-lg:right-0 max-lg:h-screen max-lg:w-[425px] max-lg:w-full max-lg:bg-white max-lg:shadow-xl max-lg:transform max-lg:translate-x-full max-lg:z-50 max-lg:pt-8",
+  hamburger:
+    "max-lg:flex hidden flex-col justify-center items-center w-8 h-8 gap-1.5 z-[1025] [&.open>span:nth-child(1)]:rotate-45 [&.open>span:nth-child(1)]:translate-y-[9px] [&.open>span:nth-child(2)]:opacity-0 [&.open>span:nth-child(3)]:-rotate-45 [&.open>span:nth-child(3)]:-translate-y-[9px] [&>span]:w-6 [&>span]:h-0.5 [&>span]:bg-[currentColor] [&>span]:rounded-full [&>span]:transition-all [&>span]:duration-300",
   nav_link: {
-    DEFAULT: "relative",
+    DEFAULT:
+      "relative max-lg:block max-lg:text-black max-lg:w-full max-lg:py-4 max-lg:px-8 max-lg:text-lg max-lg:hover:bg-gray-50 transition-colors duration-200",
     after:
-      "after:content-[''] after:absolute after:bottom-[-8px] after:left-1/2 after:-translate-x-1/2 after:w-4 after:h-1 after:rounded-2xl after:bg-primary after:scale-x-0 after:transition-transform after:duration-300",
-    hover: "hover:after:scale-x-100",
+      "after:content-[''] after:absolute after:bottom-[-8px] after:left-1/2 after:-translate-x-1/2 after:w-4 after:h-1 after:rounded-2xl after:bg-primary after:scale-x-0 after:transition-transform after:duration-300 max-lg:after:hidden",
+    hover: "hover:after:scale-x-100 max-lg:hover:after:scale-x-0",
   },
 });

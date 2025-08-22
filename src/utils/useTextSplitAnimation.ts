@@ -1,8 +1,8 @@
 "use client";
-import { useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/all";
+import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin(SplitText, ScrollTrigger);
 
@@ -19,42 +19,49 @@ const useTextSplitAnimation = (
   ref: React.RefObject<any>,
   options: Options = {}
 ) => {
-  useEffect(() => {
-    if (!ref.current) return;
-    const split = new SplitText(ref.current, {
-      type: "words,chars",
-      charsClass: "split-char",
-      wordsClass: "split-word",
-    });
+  useGSAP(() => {
+    let tl: any;
+    let split: any;
 
-    gsap.set(split.chars, {
-      willChange: "transform, opacity",
-      backfaceVisibility: "hidden",
-      force3D: true,
-    });
+    ScrollTrigger.matchMedia({
+      "(min-width: 1200px)": function () {
+        if (!ref.current) return;
+        const split = new SplitText(ref.current, {
+          type: "words,chars",
+          charsClass: "split-char",
+          wordsClass: "split-word",
+        });
 
-    gsap.set(ref.current, { perspective: 600 });
+        gsap.set(split.chars, {
+          willChange: "transform, opacity",
+          backfaceVisibility: "hidden",
+          force3D: true,
+        });
 
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: ref.current,
-        start: options.start || "top 80%",
-        end: options.end || "bottom 20%",
-        toggleActions: options.once
-          ? "play none none none"
-          : "play none none reverse",
+        gsap.set(ref.current, { perspective: 600 });
+
+        tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: ref.current,
+            start: options.start || "top 80%",
+            end: options.end || "bottom 20%",
+            toggleActions: options.once
+              ? "play none none none"
+              : "play none none reverse",
+          },
+        });
+
+        tl.from(split.chars, {
+          y: 40,
+          rotationX: 90,
+          opacity: 0,
+          duration: options.duration || 1.2,
+          ease: options.ease || "power3.out",
+          stagger: options.stagger ?? 0.035,
+          force3D: true,
+          onComplete: () => split.revert(),
+        });
       },
-    });
-
-    tl.from(split.chars, {
-      y: 40,
-      rotationX: 90,
-      opacity: 0,
-      duration: options.duration || 1.2,
-      ease: options.ease || "power3.out",
-      stagger: options.stagger ?? 0.035,
-      force3D: true,
-      onComplete: () => split.revert(),
     });
 
     return () => {

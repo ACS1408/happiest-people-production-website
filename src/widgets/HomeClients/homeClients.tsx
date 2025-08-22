@@ -18,7 +18,7 @@ const HomeClients = () => {
       className={`home-clients ${twClasses.section}`}
     >
       <Container>
-        <div className="flex items-center">
+        <div className="lg:flex lg:items-center">
           <h2
             className={`home-clients__title ${twClasses.title}`}
             ref={titleRef}
@@ -26,7 +26,7 @@ const HomeClients = () => {
             Our <em className="font-medium">Clients</em>
           </h2>
           <p
-            className={`home-clients__description ${twClasses.description}`}
+            className={`home-clients__description max-lg:mt-4 ${twClasses.description}`}
             ref={descRef}
           >
             We value our clients as partners and are committed to delivering
@@ -67,12 +67,12 @@ const HomeClients = () => {
 export default HomeClients;
 
 const twClasses = twc({
-  section: "2xl:py-48 py-32 bg-white",
+  section: "2xl:py-48 xl:py-32 py-16 bg-white",
   title:
     "ff-figtree fs-title-tertiary font-light flex-[0_0_600px] max-w-[600px]",
   description: "fs-para-secondary max-w-[638px] ms-auto",
-  list: "grid grid-cols-4 mt-24",
-  view_all: "flex justify-center mt-24",
+  list: "grid lg:grid-cols-4 sm:grid-cols-3 grid-cols-2 xl:mt-24 mt-12",
+  view_all: "flex justify-center xl:mt-24 mt-16",
   list_item:
-    "border border-gray-200 flex justify-center items-center py-16 px-8",
+    "border border-gray-200 flex justify-center items-center lg:py-16 lg:px-8 py-12 px-6",
 });

@@ -11,6 +11,21 @@ const HomeAbout = () => {
     <section data-widget="home-about" className={twClasses.section}>
       <div className={`home-about__gradient ${twClasses.gradient}`} />
       <Container>
+        <div
+          className={`home-about__image--wrapper xl:hidden mb-10 ${twClasses.image_wrapper}`}
+        >
+          <figure
+            className={`home-about__image--figure max-w-[80%] ${twClasses.image_figure}`}
+          >
+            <Image
+              src="/images/golden-video-recorder.webp"
+              alt="smiling golden video recorder"
+              width="360"
+              height="282"
+              className={`home-about__image ${twClasses.image}`}
+            />
+          </figure>
+        </div>
         <span className={`home-about__tag ${twClasses.tag}`}>About Us</span>
         <div className={`home-about__grid ${twClasses.grid}`}>
           <div className={`home-about__grid--left ${twClasses.left}`}>
@@ -37,7 +52,7 @@ const HomeAbout = () => {
           </div>
 
           <div
-            className={`home-about__image--wrapper ${twClasses.image_wrapper}`}
+            className={`home-about__image--wrapper xl:block hidden ${twClasses.image_wrapper}`}
           >
             <figure
               className={`home-about__image--figure ${twClasses.image_figure}`}
@@ -55,7 +70,7 @@ const HomeAbout = () => {
 
         <div className={`home-about__stats ${twClasses.stats}`}>
           {stats.map(({ count, label }, i) => (
-            <div key={i} className={twClasses.stat(i !== 0)}>
+            <div key={i} className={twClasses.stat(i)}>
               <div
                 className={`home-about__stats--count ${twClasses.stat_count}`}
               >
@@ -84,11 +99,11 @@ const stats = [
 ];
 
 const twClasses = twc({
-  section: "relative bg-black text-white py-32 overflow-hidden",
+  section: "relative bg-black text-white lg:py-32 py-16 overflow-hidden",
   gradient:
     "absolute top-0 right-0 w-96 translate-x-[40%] h-96 bg-gradient-to-bl from-primary via-primary-900 to-transparent opacity-30 rounded-full blur-3xl",
   tag: "inline-block bg-gray-900 text-white px-3.5 py-1.5 rounded-full text-sm font-medium mb-8",
-  grid: "grid lg:grid-cols-2 gap-12 items-center mb-20",
+  grid: "grid xl:grid-cols-2 gap-12 items-center mb-20",
   left: "space-y-8",
   title: "fs-title-secondary lg:text-6xl xl:text-7xl font-light leading-tight",
   title_em:
@@ -98,10 +113,12 @@ const twClasses = twc({
   image_wrapper: "flex justify-center items-start",
   image_figure: "relative lg:-mt-16",
   image: "object-contain",
-  stats: "grid grid-cols-4 mt-10",
-  stat: (hasBorder: boolean) =>
-    `text-center lg:text-left px-8 lg:px-16 ${
-      hasBorder ? "border-l border-gray-300" : "ps-0"
+  stats: "flex flex-wrap md:justify-between max-md:gap-y-8",
+  stat: (index: number) =>
+    `text-left md:flex-1 xl:px-16 lg:px-8 px-6 max-md:flex-[0_0_50%] max-md:max-w-[50%] ${
+      index !== 0 ? "md:border-l md:border-gray-300" : "ps-0"
+    } ${
+      index % 2 === 1 ? "max-md:border-l max-md:border-gray-300" : "max-md:pl-0"
     }`,
   stat_count:
     "ff-figtree text-4xl lg:text-5xl xl:text-6xl font-medium text-white mb-2",

@@ -17,7 +17,7 @@ const MainFooter = () => {
     >
       <Container>
         <div className={`main-footer__main-grid ${twClasses.main_grid}`}>
-          <figure>
+          <figure className="max-md:max-w-40">
             <Image
               src="/images/hpp-logo-with-text.svg"
               alt="happy people productions logo in black"
@@ -119,9 +119,9 @@ const navLinks = [
 ];
 
 const twClasses = twc({
-  section: "2xl:pt-32 pb-14 pt-28 pb-10",
-  main_grid: "grid grid-cols-2 gap-5",
-  nav: "grid grid-cols-2 gap-x-10 gap-y-3 ps-[20%]",
+  section: "xl:pt-32 xl:pb-14 lg:pt-28 pb-10 pt-16",
+  main_grid: "grid md:grid-cols-2 md:gap-5 gap-10",
+  nav: "grid grid-cols-2 gap-x-10 gap-y-3 md:ps-[20%]",
   nav_link: {
     DEFAULT: "transition-colors duration-300 ease-in-out",
     hover: "hover:text-primary",
@@ -132,8 +132,8 @@ const twClasses = twc({
       "font-semibold transition-colors duration-300 ease-in-out mt-2 inline-block",
     hover: "hover:text-primary",
   },
-  footer_bottom: "flex justify-between gap-3 pt-20 flex-wrap",
-  socials: "flex gap-3 group",
+  footer_bottom: "flex justify-between gap-3 md:pt-20 pt-16 flex-wrap",
+  socials: "flex gap-3 group max-lg:mt-4",
   social_link: {
     DEFAULT:
       "border border-grey rounded-full size-12 flex justify-center items-center transition-transform duration-300 will-change-transform",

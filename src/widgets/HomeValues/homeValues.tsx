@@ -79,14 +79,14 @@ const HomeValues = () => {
 export default HomeValues;
 
 const twClasses = twc({
-  section: "py-32 bg-primary",
+  section: "xl:py-32 py-16 bg-primary",
   grid: "grid gap-12 lg:grid-cols-2 lg:gap-16",
   left: "space-y-4",
   tag: "font-medium text-md tracking-wide",
   title: "font-light fs-title-quaternary leading-tight",
-  right: "space-y-10",
-  value_item_with_border: "flex gap-6 pb-10 border-b border-black/20",
-  value_item: "flex gap-12",
+  right: "lg:space-y-10 space-y-8",
+  value_item_with_border: "flex gap-6 lg:pb-10 pb-8 border-b border-black/20",
+  value_item: "flex lg:gap-12 gap-6",
   icon: "h-10",
   value_text: "space-y-2",
   value_title: "text-subtitle font-semibold",

@@ -133,7 +133,7 @@ const WaveText = ({
   triggerKey: number;
 }) => {
   return (
-    <p className="text-3xl leading-tight mb-6 font-light">
+    <p className="xl:text-3xl text-2xl leading-tight mb-6 font-light">
       {text.split("").map((char, i) => (
         <span
           key={`${triggerKey}-${i}`}
@@ -166,14 +166,17 @@ const TestimonialSlider = () => {
   );
 
   return (
-    <div className="w-full max-w-4xl mx-auto relative">
+    <div
+      className="w-full max-w-4xl mx-auto relative"
+      data-component="testimonial-slider"
+    >
       <div
         ref={sliderRef}
         className="keen-slider relative transition-[height] duration-500 ease-in-out"
       >
         {testimonials.map((t, idx) => (
           <div key={idx} className="keen-slider__slide">
-            <div className="slide-inner flex flex-col items-start justify-between gap-8 px-6 py-10 text-white bg-black rounded-2xl">
+            <div className="slide-inner flex flex-col items-start justify-between gap-8 lg:px-6 lg:py-10 px-0 py-0 text-white bg-black rounded-2xl">
               <WaveText text={`“${t.quote}”`} triggerKey={animationTrigger} />
               <div className="flex items-center gap-4">
                 <div className="w-10 h-10 relative rounded-full overflow-hidden">
@@ -195,7 +198,7 @@ const TestimonialSlider = () => {
       </div>
 
       {/* Pagination */}
-      <div className="flex justify-center mt-6 gap-4 absolute bottom-14 right-8 rounded-2xl border border-grey-900 px-6 py-2">
+      <div className="flex justify-center mt-6 gap-4 xl:absolute xl:bottom-14 xl:right-8 rounded-2xl border border-grey-900 px-6 py-2 max-lg:w-max max-lg:me-auto max-lg:mt-10">
         {testimonials.map((_, idx) => (
           <button
             key={idx}

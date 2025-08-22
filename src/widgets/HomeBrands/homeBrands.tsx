@@ -2,18 +2,70 @@ import React from 'react'
 import Container from '@/components/Container'
 import Image from 'next/image'
 import { twc } from '@/utils'
+import MarqueeSlider from '@/components/MarqueeSlider'
+
+interface BrandLogo {
+    name: string;
+    src: string;
+    width: number;
+    height: number;
+}
+
+const brandLogos: BrandLogo[] = [
+    {
+        name: "Virtina",
+        src: "/images/virtina.webp",
+        width: 165,
+        height: 66
+    },
+    {
+        name: "Cartknitter",
+        src: "/images/cartknitter.webp",
+        width: 192,
+        height: 66
+    },
+    {
+        name: "Rainmaker",
+        src: "/images/rainmaker.webp",
+        width: 192,
+        height: 66
+    },
+    {
+        name: "Virtina",
+        src: "/images/virtina.webp",
+        width: 165,
+        height: 66
+    },
+    {
+        name: "Cartknitter",
+        src: "/images/cartknitter.webp",
+        width: 192,
+        height: 66
+    },
+    {
+        name: "Rainmaker",
+        src: "/images/rainmaker.webp",
+        width: 192,
+        height: 66
+    }
+];
 
 const HomeBrands = () => {
     return (
         <section data-widget="home-brands" className={`home-brands ${twClasses.section}`}>
             <Container>
-                <div className={`home-brands__image-grid ${twClasses.image_grid}`}>
-                    <Image src="/images/virtina.webp" width={165} height={66} alt="virtina logo" />
-                    <Image src="/images/cartknitter.webp" width={192} height={66} alt="cartknitter logo" />
-                    <Image src="/images/rainmaker.webp" width={192} height={66} alt="rainmaker logo" />
-                    <Image src="/images/cartknitter.webp" width={192} height={66} alt="cartknitter logo" />
-                    <Image src="/images/rainmaker.webp" width={192} height={66} alt="rainmaker logo" />
-                </div>
+                <MarqueeSlider className={`home-brands__image-grid ${twClasses.image_grid}`}>
+                    {brandLogos.map((brand, index) => (
+                        <Image
+                            key={`${brand.name}-${index}`}
+                            src={brand.src}
+                            width={brand.width}
+                            height={brand.height}
+                            alt={`${brand.name} logo`}
+                            className="lg:mx-8 mx-2"
+                        />
+                    ))}
+                </MarqueeSlider>
             </Container>
         </section>
     )
@@ -22,6 +74,6 @@ const HomeBrands = () => {
 export default HomeBrands
 
 const twClasses = twc({
-    section: "bg-tertiary py-9",
-    image_grid: "flex justify-center items-center gap-[6%] mix-blend-multiply"
+    section: "bg-tertiary lg:py-9 py-5",
+    image_grid: "items-center mix-blend-multiply"
 })

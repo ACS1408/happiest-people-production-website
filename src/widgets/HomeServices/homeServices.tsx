@@ -78,9 +78,9 @@ const services = [
 ];
 
 const twClasses = twc({
-  section: "bg-black py-32",
-  title_wrapper: "text-center mb-32",
-  title: "fs-title-tertiary md:text-5xl font-light text-white",
+  section: "bg-black xl:py-32 py-16",
+  title_wrapper: "text-center xl:mb-32 mb-16",
+  title: "fs-title-tertiary md:text-5xl font-light text-white max-lg:text-left",
   grid: "grid grid-cols-1 md:grid-cols-3 gap-16",
   card: "",
   icon_wrapper: "mb-6",

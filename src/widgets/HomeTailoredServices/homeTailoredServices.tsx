@@ -51,10 +51,10 @@ const HomeTailoredServices = () => {
 export default HomeTailoredServices;
 
 const twClasses = twc({
-  section: "bg-tertiary pt-32",
-  grid: "grid grid-cols-2 gap-20",
+  section: "bg-tertiary xl:pt-32 pt-16 max-xl:pb-16",
+  grid: "grid lg:grid-cols-2 lg:gap-20",
   image: "relative aspect-square w-full",
-  contents: "pt-20",
-  title: "fs-title-tertiary max-w-md leading-tight",
-  description: "mt-10 leading-relaxed ps-2 fs-para-secondary max-w-lg",
+  contents: "xl:pt-20 pt-8",
+  title: "fs-title-tertiary sm:max-w-md max-w-[300px] leading-tight",
+  description: "lg:mt-10 mt-6 leading-relaxed lg:ps-2 fs-para-secondary max-w-lg",
 });

@@ -19,7 +19,7 @@ const HomeWorks = () => {
       className={`home-works ${twClasses.section}`}
     >
       <Container>
-        <div className="flex items-center">
+        <div className="xl:flex xl:items-center">
           <h2 className={`home-works__title ${twClasses.title}`} ref={titleRef}>
             Our <em className="font-medium">Works</em>
           </h2>
@@ -70,10 +70,10 @@ const works = [
 ];
 
 const twClasses = twc({
-  section: "2xl:py-48 py-32 bg-white",
+  section: "2xl:py-48 xl:32 md:py-20 py-16 bg-white",
   title:
     "ff-figtree fs-title-tertiary font-light flex-[0_0_600px] max-w-[600px]",
-  description: "fs-para-secondary max-w-[638px] ms-auto",
-  grid: "grid grid-cols-2 gap-4 2xl:mt-32 mt-16",
-  view_all: "flex justify-center mt-32",
+  description: "fs-para-secondary max-w-[638px] xl:ms-auto mt-4 xl:mt-0",
+  grid: "grid md:grid-cols-2 md:gap-4 gap-10 2xl:mt-32 mt-16",
+  view_all: "flex justify-center xl:mt-32 mt-16",
 });

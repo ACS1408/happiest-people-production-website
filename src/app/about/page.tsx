@@ -21,7 +21,7 @@ const About = () => {
   }, []);
 
   return (
-    <main className="relative z-[2]" ref={mainRef}>
+    <main className="relative" ref={mainRef}>
       <SmoothScrollContext>
         <MainHeader />
         <AboutBanner />

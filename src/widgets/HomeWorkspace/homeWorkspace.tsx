@@ -87,9 +87,9 @@ const sliderImages = [
 ];
 
 const twClasses = twc({
-  section: "py-32 bg-white",
-  grid: "grid grid-cols-2 gap-3",
+  section: "lg:py-32 py-16 bg-white",
+  grid: "lg:grid lg:grid-cols-2 lg:gap-3",
   title: "fs-title-tertiary leading-tight",
-  description: "pt-40 fs-para-secondary max-w-md ms-auto",
-  slider: "mt-16",
+  description: "lg:pt-40 pt-6 fs-para-secondary max-w-md ms-auto",
+  slider: "lg:mt-16 mt-10",
 });

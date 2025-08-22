@@ -1,10 +1,18 @@
 "use client";
-import React, { useEffect, useRef } from "react";
+import React, { createContext, useContext, useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ReactLenis } from "lenis/react";
 
 gsap.registerPlugin(ScrollTrigger);
+
+type SmoothScrollContextType = {
+  lenis: any | null;
+};
+
+const SmoothScrollContextValue = createContext<SmoothScrollContextType>({ lenis: null });
+
+export const useSmoothScroll = () => useContext(SmoothScrollContextValue);
 
 const SmoothScrollContext = ({ children }: { children: React.ReactNode }) => {
   const lenisRef = useRef<any>(null);
@@ -34,10 +42,10 @@ const SmoothScrollContext = ({ children }: { children: React.ReactNode }) => {
   };
 
   return (
-    <>
+    <SmoothScrollContextValue.Provider value={{ lenis: lenisRef.current?.lenis }}>
       <ReactLenis root options={options} ref={lenisRef} />
       {children}
-    </>
+    </SmoothScrollContextValue.Provider>
   );
 };
 

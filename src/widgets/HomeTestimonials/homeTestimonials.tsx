@@ -41,8 +41,8 @@ const HomeTestimonials = () => {
 export default HomeTestimonials;
 
 const twClasses = twc({
-  section: "bg-black py-32",
-  grid: "grid grid-cols-3",
+  section: "bg-black xl:py-32 py-16",
+  grid: "xl:grid xl:grid-cols-3",
   circularText: "origin-center size-max will-change-transform",
-  slider: "col-span-2",
+  slider: "col-span-2 max-lg:mt-8",
 });

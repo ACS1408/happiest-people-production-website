@@ -45,8 +45,8 @@ export default TailoredServiceBanner;
 
 const twClasses = twc({
   section: "bg-gradient-to-r from-primary to-primary-100 py-12",
-  grid: "grid grid-cols-2 gap-10",
+  grid: "grid xl:grid-cols-2 gap-10",
   image: "relative aspect-[766/430] w-full",
   contents: "flex items-center",
-  title: "text-6xl leading-tight max-w-96",
+  title: "xl:text-6xl text-4xl leading-tight xl:max-w-96 max-w-64 max-lg:text-center max-lg:mx-auto",
 });
