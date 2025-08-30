@@ -1,15 +1,11 @@
-import React, { useRef } from "react";
+import React from "react";
 import Container from "@/components/Container";
 import Button from "@/components/Button";
 import ArrowRight from "@/icons/arrow-right.svg";
 import { twc } from "@/utils";
-import useTextSplitAnimation from "@/utils/useTextSplitAnimation";
 import ImageBlurLoader from "@/components/ImageBlurLoader/imageBlurLoader";
 
 const HomeBanner = () => {
-  const titleRef = useRef<HTMLHeadingElement>(null);
-  useTextSplitAnimation(titleRef, { stagger: 0, duration: 1.5 });
-
   return (
     <section
       data-widget="home-banner"
@@ -25,10 +21,7 @@ const HomeBanner = () => {
       </figure>
       <div className={`home-banner__contents ${twClasses.contents}`}>
         <Container>
-          <h1
-            className={`home-banner__contents--title ${twClasses.title}`}
-            ref={titleRef}
-          >
+          <h1 className={`home-banner__contents--title ${twClasses.title}`}>
             <span>Crafting</span>
             <br />
             <span>

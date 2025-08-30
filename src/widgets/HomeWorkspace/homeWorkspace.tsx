@@ -1,32 +1,18 @@
-import React, { useRef } from "react";
+import React from "react";
 import Container from "@/components/Container";
 import { twc } from "@/utils";
 import ParallaxImageSlider from "@/components/ParallaxImageSlider";
-import useTextSplitAnimation from "@/utils/useTextSplitAnimation";
 
 const HomeWorkspace = () => {
-  const labelRef = useRef<HTMLDivElement>(null);
-  const titleRef = useRef<HTMLHeadingElement>(null);
-  const descRef = useRef<HTMLParagraphElement>(null);
-  useTextSplitAnimation(labelRef, { stagger: 0, duration: 1.5 });
-  useTextSplitAnimation(titleRef, { stagger: 0, duration: 1.5 });
-  useTextSplitAnimation(descRef, { stagger: 0, duration: 1.5 });
-
   return (
     <section className={`home-workspace ${twClasses.section}`}>
       <Container>
         <div className={`home-workspace__grid ${twClasses.grid}`}>
           <div className={`home-workspace__left ${twClasses.left}`}>
-            <div
-              className={`home-workspace__label ${twClasses.tag}`}
-              ref={labelRef}
-            >
+            <div className={`home-workspace__label ${twClasses.tag}`}>
               Work space
             </div>
-            <h2
-              className={`home-workspace__title ${twClasses.title}`}
-              ref={titleRef}
-            >
+            <h2 className={`home-workspace__title ${twClasses.title}`}>
               We serve
               <br />
               <em className="font-medium">workspace</em>
@@ -35,7 +21,6 @@ const HomeWorkspace = () => {
           <div className={`home-workspace__right ${twClasses.right}`}>
             <p
               className={`home-workspace__description ${twClasses.description}`}
-              ref={descRef}
             >
               Dataravn empowers businesses with complete control over their SaaS
               backups, eliminating vendor lock-in and ensuring data security,

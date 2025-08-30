@@ -1,15 +1,11 @@
-import React, { useRef } from "react";
+import React from "react";
 import Display from "@/icons/tv-display.svg";
 import PlayIcon from "@/icons/play-video.svg";
 import CameraIcon from "@/icons/camera.svg";
 import { twc } from "@/utils";
 import Container from "@/components/Container";
-import useTextSplitAnimation from "@/utils/useTextSplitAnimation";
 
 const HomeServices = () => {
-  const titleRef = useRef<HTMLHeadingElement>(null);
-  useTextSplitAnimation(titleRef, { stagger: 0, duration: 1.5 });
-
   return (
     <section
       data-widget="home-services"
@@ -19,10 +15,7 @@ const HomeServices = () => {
         <div
           className={`home-services__title--wrapper ${twClasses.title_wrapper}`}
         >
-          <h2
-            className={`home-services__title ${twClasses.title}`}
-            ref={titleRef}
-          >
+          <h2 className={`home-services__title ${twClasses.title}`}>
             Our <em className="font-semibold">services</em>
           </h2>
         </div>

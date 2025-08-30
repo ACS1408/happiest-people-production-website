@@ -1,15 +1,9 @@
+import React from "react";
 import Container from "@/components/Container";
-import { twc } from "@/utils";
-import useTextSplitAnimation from "@/utils/useTextSplitAnimation";
 import Image from "next/image";
-import React, { useRef } from "react";
+import { twc } from "@/utils";
 
 const AboutWideTailored = () => {
-  const titleRef = useRef<HTMLHeadingElement>(null);
-  const descRef = useRef<HTMLParagraphElement>(null);
-  useTextSplitAnimation(titleRef, { stagger: 0, duration: 1.5 });
-  useTextSplitAnimation(descRef, { stagger: 0, duration: 1.5 });
-
   return (
     <section
       data-widget="about-wide-tailored"
@@ -25,17 +19,13 @@ const AboutWideTailored = () => {
           />
         </figure>
 
-        <h2
-          className={`about-wide-tailored__title ${twClasses.title}`}
-          ref={titleRef}
-        >
+        <h2 className={`about-wide-tailored__title ${twClasses.title}`}>
           wide <em className="font-medium">tailored</em>
         </h2>
 
         <div className={`about-wide-tailored__contents ${twClasses.contents}`}>
           <p
             className={`about-wide-tailored__description ${twClasses.description}`}
-            ref={descRef}
           >
             Happiest people production delivers cutting-edge digital solutions
             tailored to streamline{" "}

@@ -1,36 +1,24 @@
-import Button from "@/components/Button";
+import React from "react";
 import Container from "@/components/Container";
-import React, { useRef } from "react";
+import Button from "@/components/Button";
 import ChevronRight from "@/icons/chevron-right.svg";
 import ParallaxImageSlider from "@/components/ParallaxImageSlider";
-import useTextSplitAnimation from "@/utils/useTextSplitAnimation";
 
 const AboutCareers = () => {
-  const titleRef = useRef<HTMLHeadingElement>(null);
-  const descRef = useRef<HTMLParagraphElement>(null);
-  useTextSplitAnimation(titleRef, { stagger: 0, duration: 1.5 });
-  useTextSplitAnimation(descRef, { stagger: 0, duration: 1.5 });
-
   return (
     <section
       data-widget="about-careers"
       className={`about-careers ${twClasses.section}`}
     >
       <Container>
-        <h2
-          className={`about-careers__title ${twClasses.title}`}
-          ref={titleRef}
-        >
+        <h2 className={`about-careers__title ${twClasses.title}`}>
           We ready to
           <br />
           wide <em className="font-medium">together</em>
         </h2>
 
         <div className={`about-careers__contents ${twClasses.contents}`}>
-          <p
-            className={`about-careers__description ${twClasses.description}`}
-            ref={descRef}
-          >
+          <p className={`about-careers__description ${twClasses.description}`}>
             Dataravn empowers businesses with complete control over their SaaS
             backups, eliminating vendor lock-in and ensuring data security,
             compliance, and flexibility.

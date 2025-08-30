@@ -1,15 +1,9 @@
+import React from "react";
 import Container from "@/components/Container";
-import { twc } from "@/utils";
-import useTextSplitAnimation from "@/utils/useTextSplitAnimation";
 import Image from "next/image";
-import React, { useRef } from "react";
+import { twc } from "@/utils";
 
 const AboutQualityWorks = () => {
-  const titleRef = useRef<HTMLHeadingElement>(null);
-  const descRef = useRef<HTMLParagraphElement>(null);
-  useTextSplitAnimation(titleRef, { stagger: 0, duration: 1.5 });
-  useTextSplitAnimation(descRef, { stagger: 0, duration: 1.5 });
-
   return (
     <section
       data-widget="about-quality-works"
@@ -28,15 +22,11 @@ const AboutQualityWorks = () => {
           <div
             className={`about-quality-works__contents ${twClasses.contents}`}
           >
-            <h2
-              className={`about-quality-works__title ${twClasses.title}`}
-              ref={titleRef}
-            >
+            <h2 className={`about-quality-works__title ${twClasses.title}`}>
               We ensure <em className="font-semibold">quality works</em>
             </h2>
             <p
               className={`about-quality-works__description ${twClasses.description}`}
-              ref={descRef}
             >
               HPP empowers businesses with complete control over their SaaS
               backups, eliminating vendor lock-in

@@ -1,16 +1,11 @@
-import React, { useRef } from "react";
+import React from "react";
 import Container from "@/components/Container";
 import SlotCounter from "@/components/SlotCounter";
-import useTextSplitAnimation from "@/utils/useTextSplitAnimation";
 import useAboutBanner from "./useAboutBanner";
 
 const AboutBanner = () => {
   const { mainRef, buildingRef, crowRef, cloud1Ref, cloud2Ref, treeRef } =
     useAboutBanner();
-  const titleRef = useRef<HTMLHeadingElement>(null);
-  const labelRef = useRef<HTMLParagraphElement>(null);
-  useTextSplitAnimation(titleRef, { stagger: 0, duration: 1.5 });
-  useTextSplitAnimation(labelRef, { stagger: 0, duration: 1.5 });
 
   return (
     <section
@@ -18,10 +13,8 @@ const AboutBanner = () => {
       className={`about-banner ${twClasses.section}`}
     >
       <Container>
-        <div className={`about-banner__label ${twClasses.tag}`} ref={labelRef}>
-          Work space
-        </div>
-        <h2 className={`about-banner__title ${twClasses.title}`} ref={titleRef}>
+        <div className={`about-banner__label ${twClasses.tag}`}>Work space</div>
+        <h2 className={`about-banner__title ${twClasses.title}`}>
           We serve
           <br />
           <em className="font-medium">workspace</em>

@@ -1,17 +1,11 @@
-import React, { useRef } from "react";
+import React from "react";
 import Container from "@/components/Container";
 import Button from "@/components/Button";
 import Image from "next/image";
 import ChevronRight from "@/icons/chevron-right.svg";
 import { twc } from "@/utils";
-import useTextSplitAnimation from "@/utils/useTextSplitAnimation";
 
 const HomeClients = () => {
-  const titleRef = useRef<HTMLHeadingElement>(null);
-  const descRef = useRef<HTMLParagraphElement>(null);
-  useTextSplitAnimation(titleRef, { stagger: 0, duration: 1.5 });
-  useTextSplitAnimation(descRef, { stagger: 0, duration: 1.5 });
-
   return (
     <section
       data-widget="home-clients"
@@ -19,15 +13,11 @@ const HomeClients = () => {
     >
       <Container>
         <div className="lg:flex lg:items-center">
-          <h2
-            className={`home-clients__title ${twClasses.title}`}
-            ref={titleRef}
-          >
+          <h2 className={`home-clients__title ${twClasses.title}`}>
             Our <em className="font-medium">Clients</em>
           </h2>
           <p
             className={`home-clients__description max-lg:mt-4 ${twClasses.description}`}
-            ref={descRef}
           >
             We value our clients as partners and are committed to delivering
             exceptional results tailored to their unique goals.
