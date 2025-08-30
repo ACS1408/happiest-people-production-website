@@ -10,7 +10,7 @@ import ImageCard from "@/components/ImageCard";
 const HomeWorks = () => {
   const titleRef = useRef<HTMLHeadingElement>(null);
   const descRef = useRef<HTMLParagraphElement>(null);
-  useTextSplitAnimation(titleRef, { stagger: 0.03 });
+  useTextSplitAnimation(titleRef, { stagger: 0, duration: 1.5 });
   useTextSplitAnimation(descRef, { stagger: 0, duration: 1.5 });
 
   return (
@@ -75,5 +75,5 @@ const twClasses = twc({
     "ff-figtree fs-title-tertiary font-light flex-[0_0_600px] max-w-[600px]",
   description: "fs-para-secondary max-w-[638px] xl:ms-auto mt-4 xl:mt-0",
   grid: "grid md:grid-cols-2 md:gap-4 gap-10 2xl:mt-32 mt-16",
-  view_all: "flex justify-center xl:mt-32 mt-16",
+  view_all: "flex justify-center xl:mt-20 mt-12",
 });

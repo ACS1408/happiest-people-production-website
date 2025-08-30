@@ -7,7 +7,7 @@ import React, { useRef } from "react";
 const AboutWideTailored = () => {
   const titleRef = useRef<HTMLHeadingElement>(null);
   const descRef = useRef<HTMLParagraphElement>(null);
-  useTextSplitAnimation(titleRef, { stagger: 0.03 });
+  useTextSplitAnimation(titleRef, { stagger: 0, duration: 1.5 });
   useTextSplitAnimation(descRef, { stagger: 0, duration: 1.5 });
 
   return (

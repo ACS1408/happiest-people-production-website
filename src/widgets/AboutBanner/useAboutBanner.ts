@@ -45,11 +45,10 @@ const useAboutBanner = () => {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: mainRef.current,
-          start: "center center+=25",
-          end: "+=100%",
+          start: "top center-=100",
+          end: "top top",
           toggleActions: "play none none reverse",
           scrub: true,
-          pin: true,
           anticipatePin: 1,
         },
       });

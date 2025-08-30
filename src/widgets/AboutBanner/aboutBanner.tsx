@@ -9,7 +9,7 @@ const AboutBanner = () => {
     useAboutBanner();
   const titleRef = useRef<HTMLHeadingElement>(null);
   const labelRef = useRef<HTMLParagraphElement>(null);
-  useTextSplitAnimation(titleRef, { stagger: 0.03 });
+  useTextSplitAnimation(titleRef, { stagger: 0, duration: 1.5 });
   useTextSplitAnimation(labelRef, { stagger: 0, duration: 1.5 });
 
   return (

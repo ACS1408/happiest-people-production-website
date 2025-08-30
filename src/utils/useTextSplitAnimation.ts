@@ -59,14 +59,14 @@ const useTextSplitAnimation = (
           ease: options.ease || "power3.out",
           stagger: options.stagger ?? 0.035,
           force3D: true,
-          onComplete: () => split.revert(),
+          onComplete: () => split?.revert(),
         });
       },
     });
 
     return () => {
       tl.kill();
-      split.revert();
+      split?.revert();
     };
   }, [ref, options]);
 };

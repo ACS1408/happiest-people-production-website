@@ -6,7 +6,7 @@ import useTextSplitAnimation from "@/utils/useTextSplitAnimation";
 
 const TailoredServiceBanner = () => {
   const titleRef = useRef<HTMLHeadingElement>(null);
-  useTextSplitAnimation(titleRef, { stagger: 0.03 });
+  useTextSplitAnimation(titleRef, { stagger: 0, duration: 1.5 });
 
   return (
     <section
@@ -45,7 +45,7 @@ export default TailoredServiceBanner;
 
 const twClasses = twc({
   section: "bg-gradient-to-r from-primary to-primary-100 py-12",
-  grid: "grid xl:grid-cols-2 gap-10",
+  grid: "grid xl:grid-cols-2",
   image: "relative aspect-[766/430] w-full",
   contents: "flex items-center",
   title: "xl:text-6xl text-4xl leading-tight xl:max-w-96 max-w-64 max-lg:text-center max-lg:mx-auto",

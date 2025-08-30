@@ -171,6 +171,20 @@
     stroke: currentColor;
   }
 
+  .md\:seperator-r {
+    @apply md:relative;
+  }
+  .md\:seperator-r::before {
+    @apply md:content-[""] md:absolute md:top-1/2 md:left-0 md:-translate-y-1/2 md:w-0 md:h-3/4 md:border-r md:border-dotted md:border-white/30;
+  }
+  
+  .max-md\:seperator-r {
+    @apply max-md:relative;
+  }
+  .max-md\:seperator-r::before {
+    @apply max-md:content-[""] max-md:absolute max-md:top-1/2 max-md:left-0 max-md:-translate-y-1/2 max-md:w-0 max-md:h-3/4 max-md:border-r max-md:border-dotted max-md:border-white/30;
+  }
+
   .no-scrollbar::-webkit-scrollbar {
     display: none;
   }

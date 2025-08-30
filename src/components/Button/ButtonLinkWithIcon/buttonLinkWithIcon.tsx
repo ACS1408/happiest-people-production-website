@@ -28,18 +28,18 @@ const ButtonLinkWithIcon = ({
     switch (color) {
       case "white":
         return {
-          text: "text-white group-hover:text-primary",
-          icon: "text-white group-hover:text-primary",
+          text: "text-white group-hover:text-white",
+          icon: "text-white group-hover:text-white",
         };
       case "black":
         return {
-          text: "text-black group-hover:text-primary",
-          icon: "text-black group-hover:text-primary",
+          text: "text-black group-hover:text-black",
+          icon: "text-black group-hover:text-black",
         };
       default:
         return {
-          text: "text-black group-hover:text-primary",
-          icon: "text-black group-hover:text-primary",
+          text: "text-black group-hover:text-black",
+          icon: "text-black group-hover:text-black",
         };
     }
   };

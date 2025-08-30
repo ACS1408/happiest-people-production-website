@@ -8,7 +8,7 @@ import ImageBlurLoader from "@/components/ImageBlurLoader/imageBlurLoader";
 
 const HomeBanner = () => {
   const titleRef = useRef<HTMLHeadingElement>(null);
-  useTextSplitAnimation(titleRef, { stagger: 0.03 });
+  useTextSplitAnimation(titleRef, { stagger: 0, duration: 1.5 });
 
   return (
     <section
@@ -53,7 +53,8 @@ export default HomeBanner;
 
 const twClasses = twc({
   section: {
-    DEFAULT: "w-full h-svh min-h-[640px] relative",
+    DEFAULT:
+      "w-full lg:h-[calc(100svh_-89.51px)] h-[calc(100svh_-73.5px)] relative",
     before:
       "before:content-[''] before:bg-gradient-to-b before:from-black before:via-transparent before:to-black before:absolute before:inset-0 before:z-[9]",
   },

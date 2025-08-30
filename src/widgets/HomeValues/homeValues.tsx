@@ -8,8 +8,8 @@ import useTextSplitAnimation from "@/utils/useTextSplitAnimation";
 const HomeValues = () => {
   const labelRef = useRef<HTMLHeadingElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
-  useTextSplitAnimation(labelRef, { stagger: 0 });
-  useTextSplitAnimation(titleRef, { stagger: 0.03 });
+  useTextSplitAnimation(labelRef, { stagger: 0, duration: 1.5 });
+  useTextSplitAnimation(titleRef, { stagger: 0, duration: 1.5 });
 
   return (
     <section

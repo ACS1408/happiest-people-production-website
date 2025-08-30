@@ -7,7 +7,7 @@ import useTextSplitAnimation from "@/utils/useTextSplitAnimation";
 const HomeTailoredServices = () => {
   const titleRef = useRef<HTMLHeadingElement>(null);
   const descRef = useRef<HTMLParagraphElement>(null);
-  useTextSplitAnimation(titleRef, { stagger: 0.03 });
+  useTextSplitAnimation(titleRef, { stagger: 0, duration: 1.5 });
   useTextSplitAnimation(descRef, { stagger: 0, duration: 1.5 });
 
   return (
@@ -53,7 +53,7 @@ export default HomeTailoredServices;
 const twClasses = twc({
   section: "bg-tertiary xl:pt-32 pt-16 max-xl:pb-16",
   grid: "grid lg:grid-cols-2 lg:gap-20",
-  image: "relative aspect-square w-full",
+  image: "relative aspect-square w-full -ms-[5%]",
   contents: "xl:pt-20 pt-8",
   title: "fs-title-tertiary sm:max-w-md max-w-[300px] leading-tight",
   description: "lg:mt-10 mt-6 leading-relaxed lg:ps-2 fs-para-secondary max-w-lg",

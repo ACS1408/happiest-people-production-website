@@ -74,6 +74,6 @@ const HomeBrands = () => {
 export default HomeBrands
 
 const twClasses = twc({
-    section: "bg-tertiary lg:py-9 py-5",
+    section: "bg-tertiary lg:py-6 py-5",
     image_grid: "items-center mix-blend-multiply"
 })
