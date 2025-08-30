@@ -17,6 +17,7 @@ const HomeBanner = () => {
           fill
           alt="people working together new movie"
           className="object-cover"
+          lowQualityImageClassName="scale-105"
         />
       </figure>
       <div className={`home-banner__contents ${twClasses.contents}`}>

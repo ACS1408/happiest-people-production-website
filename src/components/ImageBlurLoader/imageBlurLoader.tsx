@@ -6,12 +6,14 @@ import { twc } from "@/utils";
 interface ImageBlurLoaderProps extends Omit<ImageProps, "src"> {
   src: string;
   alt: string;
+  lowQualityImageClassName?: string;
 }
 
 const ImageBlurLoader = ({
   src,
   alt,
   className,
+  lowQualityImageClassName,
   ...props
 }: ImageBlurLoaderProps) => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -27,7 +29,7 @@ const ImageBlurLoader = ({
         quality={10}
         className={`${twClasses.low_quality} ${
           isLoaded ? "opacity-0" : "opacity-100"
-        } ${className}`}
+        } ${className} ${lowQualityImageClassName}`}
       />
 
       {/* High quality image */}
@@ -38,7 +40,7 @@ const ImageBlurLoader = ({
         sizes="(max-width: 768px) 100vw, 50vw"
         className={`image ${twClasses.high_quality} ${className}`}
         quality={100}
-        onLoad={() => setIsLoaded(true)}
+        onLoad={() => setTimeout(() => setIsLoaded(true), 500)}
         {...props}
       />
     </>
@@ -48,6 +50,6 @@ const ImageBlurLoader = ({
 export default ImageBlurLoader;
 
 const twClasses = twc({
-  low_quality: "object-cover blur-2xl scale-105 transition-opacity duration-500",
-  high_quality: "object-cover transition-opacity duration-500",
+  low_quality: "object-cover blur-lg z-[2] transition-opacity duration-500",
+  high_quality: "object-cover",
 });
