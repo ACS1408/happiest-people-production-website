@@ -31,7 +31,7 @@ const HomeWorks = () => {
             text="View All"
             icon={<ChevronRight className="h-3 mt-px" />}
             variant="outlined-with-icon"
-            href="/all-works"
+            href="/works"
             color="black"
           />
         </div>

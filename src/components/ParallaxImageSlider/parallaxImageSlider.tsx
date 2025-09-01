@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useMemo } from "react";
 import Image from "next/image";
 import type { ImageType } from "@/types/typeUtils";
 import { twc } from "@/utils";
@@ -14,44 +14,50 @@ const ParallaxImageSlider: React.FC<ParallaxImageSlider> = ({
   images,
   ...props
 }) => {
-  const { main } = useParallaxSlider();
-  const [isLargeScreen, setIsLargeScreen] = useState(true);
+  const { main, isLargeScreen, cursorRef } = useParallaxSlider();
 
-  useEffect(() => {
-    const checkScreenSize = () => {
-      setIsLargeScreen(window.innerWidth >= 1200);
-    };
+  const ImageItem = React.memo(
+    ({ image }: { image: ImageType }) => {
+      // Memoize the class name to prevent recalculation on each render
+      const className = useMemo(
+        () =>
+          `parallax-image-slider__slide ${twClasses.slide} ${
+            twClasses.slide[`${image.ratio}`]
+          }`,
+        [image.ratio]
+      );
 
-    checkScreenSize();
-    window.addEventListener("resize", checkScreenSize);
-
-    return () => window.removeEventListener("resize", checkScreenSize);
-  }, []);
-
-  const renderImages = () =>
-    images?.map((image, i) => (
-      <div
-        className={`parallax-image-slider__slide ${twClasses.slide}`}
-        key={i}
-      >
-        <figure
-          className={`parallax-image-slider__image ${twClasses.image} aspect-video`}
-        >
-          <Image
-            src={image?.url}
-            fill
-            alt={image?.alt}
-            className="object-cover"
-          />
-        </figure>
-      </div>
-    ));
+      return (
+        <div className={className}>
+          <figure className={`parallax-image-slider__image ${twClasses.image}`}>
+            <Image
+              src={image.url}
+              fill
+              alt={image.alt}
+              className="object-cover"
+              loading="eager"
+              priority={true}
+            />
+          </figure>
+        </div>
+      );
+    },
+    (prevProps, nextProps) => {
+      // Custom comparison function for memo
+      return (
+        prevProps.image.url === nextProps.image.url &&
+        prevProps.image.ratio === nextProps.image.ratio
+      );
+    }
+  );
 
   if (!isLargeScreen) {
     return (
       <Container>
         <div className="grid min-[376px]:grid-cols-2 gap-3">
-          {renderImages()}
+          {images?.map((image, i) => (
+            <ImageItem key={i} image={image} />
+          ))}
         </div>
       </Container>
     );
@@ -60,35 +66,20 @@ const ParallaxImageSlider: React.FC<ParallaxImageSlider> = ({
   return (
     <div
       data-component="parallax-image-slider"
-      className={`parallax-image-slider ${twClasses.slider}`}
+      className={`parallax-image-slider relative ${twClasses.slider}`}
       ref={main}
       {...props}
     >
+      {isLargeScreen && (
+        <div ref={cursorRef} className={`scroll-cursor ${twClasses.cursor}`}>
+          <span>Scroll</span>
+        </div>
+      )}
       <div className={`parallax-image-slider__outer ${twClasses.outer}`}>
         <div className={`parallax-image-slider__wrapper ${twClasses.wrapper}`}>
-          {images &&
-            images?.length !== 0 &&
-            images?.map((image, i) => {
-              return (
-                <div
-                  className={`parallax-image-slider__slide ${twClasses.slide} ${
-                    twClasses.slide[`${image.ratio}`]
-                  }`}
-                  key={i}
-                >
-                  <figure
-                    className={`parallax-image-slider__image ${twClasses.image}`}
-                  >
-                    <Image
-                      src={image?.url}
-                      fill
-                      alt={image?.alt}
-                      className="object-cover"
-                    />
-                  </figure>
-                </div>
-              );
-            })}
+          {images?.map((image, i) => (
+            <ImageItem key={i} image={image} />
+          ))}
         </div>
       </div>
     </div>
@@ -98,7 +89,7 @@ const ParallaxImageSlider: React.FC<ParallaxImageSlider> = ({
 export default ParallaxImageSlider;
 
 const twClasses = twc({
-  slider: "",
+  slider: "cursor-none",
   outer: "overflow-auto no-scrollbar",
   wrapper: "flex gap-4",
   image: "relative xl:h-[calc(100vh_-_200px)]",
@@ -108,4 +99,6 @@ const twClasses = twc({
     ratio_2: "lg:flex-[0_0_25%] lg:max-w-[25%] flex-[0_0_50%] max-w-[50%]",
     ratio_3: "lg:flex-[0_0_30%] lg:max-w-[30%] flex-[0_0_50%] max-w-[50%]",
   },
+  cursor:
+    "absolute pointer-events-none z-50 w-24 h-24 rounded-full bg-primary flex items-center justify-center text-black font-medium",
 });
