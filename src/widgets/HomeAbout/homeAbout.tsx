@@ -116,9 +116,9 @@ const twClasses = twc({
   stats: "flex flex-wrap md:justify-between max-md:gap-y-8",
   stat: (index: number) =>
     `text-left md:flex-1 xl:px-16 lg:px-8 px-6 max-md:flex-[0_0_50%] max-md:max-w-[50%] ${
-      index !== 0 ? "md:seperator-r" : "pl-0"
+      index !== 0 ? "md:seperator-r" : "!pl-0"
     } ${
-      index % 2 === 1 ? "max-md:seperator-r" : "max-md:pl-0"
+      index % 2 === 1 ? "max-md:seperator-r" : "max-md:!pl-0"
     }`,
   stat_count:
     "ff-figtree text-4xl lg:text-5xl xl:text-6xl font-medium text-white mb-2",
