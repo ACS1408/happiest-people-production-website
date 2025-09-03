@@ -10,7 +10,9 @@ type SmoothScrollContextType = {
   lenis: any | null;
 };
 
-const SmoothScrollContextValue = createContext<SmoothScrollContextType>({ lenis: null });
+const SmoothScrollContextValue = createContext<SmoothScrollContextType>({
+  lenis: null,
+});
 
 export const useSmoothScroll = () => useContext(SmoothScrollContextValue);
 
@@ -23,6 +25,7 @@ const SmoothScrollContext = ({ children }: { children: React.ReactNode }) => {
     }
 
     gsap.ticker.add(update);
+    gsap.ticker.lagSmoothing(0);
 
     return () => gsap.ticker.remove(update);
   }, []);
@@ -42,7 +45,9 @@ const SmoothScrollContext = ({ children }: { children: React.ReactNode }) => {
   };
 
   return (
-    <SmoothScrollContextValue.Provider value={{ lenis: lenisRef.current?.lenis }}>
+    <SmoothScrollContextValue.Provider
+      value={{ lenis: lenisRef.current?.lenis }}
+    >
       <ReactLenis root options={options} ref={lenisRef} />
       {children}
     </SmoothScrollContextValue.Provider>

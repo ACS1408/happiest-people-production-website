@@ -85,7 +85,27 @@ const ContactBanner = () => {
   });
 
   useEffect(() => {
+    let observer: MutationObserver;
+    
     if (phoneInputRef.current) {
+      // Create a mutation observer to watch for the country list
+      observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+          if (mutation.addedNodes.length) {
+            const countryList = document.querySelector('.iti__country-list');
+            if (countryList && !countryList.hasAttribute('data-lenis-prevent')) {
+              countryList.setAttribute('data-lenis-prevent', '');
+            }
+          }
+        });
+      });
+
+      // Start observing the body for the dropdown
+      observer.observe(document.body, {
+        childList: true,
+        subtree: true
+      });
+
       intlTelInputRef.current = intlTelInput(phoneInputRef.current, {
         initialCountry: "in",
         separateDialCode: true,
@@ -94,6 +114,12 @@ const ContactBanner = () => {
         autoPlaceholder: "aggressive",
         nationalMode: true,
       });
+
+      // Add data-lenis-prevent to country list dropdown
+      const countryList = document.querySelector('.iti__country-list');
+      if (countryList) {
+        countryList.setAttribute('data-lenis-prevent', '');
+      }
 
       const handleInput = () => {
         if (intlTelInputRef.current && phoneInputRef.current) {
@@ -110,6 +136,7 @@ const ContactBanner = () => {
       if (intlTelInputRef.current) {
         intlTelInputRef.current.destroy();
       }
+      observer.disconnect();
     };
   }, []);
 
@@ -403,6 +430,7 @@ const ContactBanner = () => {
                 <div className="form-field">
                   <div className="floating-label-container select-field">
                     <Select
+                      instanceId="services-select"
                       id="services"
                       name="services"
                       value={formik.values.services}

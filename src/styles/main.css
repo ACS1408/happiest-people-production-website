@@ -92,6 +92,9 @@
   justify-content: space-between;
   width: 75px;
 }
+.iti__selected-country-primary:hover {
+  background-color: transparent !important;
+}
 .iti__selected-country-primary::after {
   content: "";
   position: absolute;

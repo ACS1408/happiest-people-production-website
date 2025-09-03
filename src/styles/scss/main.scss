@@ -91,6 +91,9 @@
     position: absolute;
     justify-content: space-between;
     width: 75px;
+    &:hover {
+      background-color: transparent !important;
+    }
     &::after {
       content: "";
       position: absolute;
