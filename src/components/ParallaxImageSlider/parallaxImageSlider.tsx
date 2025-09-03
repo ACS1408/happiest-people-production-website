@@ -16,40 +16,34 @@ const ParallaxImageSlider: React.FC<ParallaxImageSlider> = ({
 }) => {
   const { main, isLargeScreen, cursorRef } = useParallaxSlider();
 
-  const ImageItem = React.memo(
-    ({ image }: { image: ImageType }) => {
-      // Memoize the class name to prevent recalculation on each render
-      const className = useMemo(
-        () =>
-          `parallax-image-slider__slide ${twClasses.slide} ${
-            twClasses.slide[`${image.ratio}`]
-          }`,
-        [image.ratio]
-      );
+  const ImageItem = ({ image }: { image: ImageType }) => {
+    // Memoize the class name to prevent recalculation on each render
+    const className = useMemo(
+      () =>
+        `parallax-image-slider__slide ${twClasses.slide} ${
+          twClasses.slide[`${image.ratio}`]
+        }`,
+      [image.ratio]
+    );
 
-      return (
-        <div className={className}>
-          <figure className={`parallax-image-slider__image ${twClasses.image}`}>
-            <Image
-              src={image.url}
-              fill
-              alt={image.alt}
-              className="object-cover"
-              loading="eager"
-              priority={true}
-            />
-          </figure>
-        </div>
-      );
-    },
-    (prevProps, nextProps) => {
-      // Custom comparison function for memo
-      return (
-        prevProps.image.url === nextProps.image.url &&
-        prevProps.image.ratio === nextProps.image.ratio
-      );
-    }
-  );
+    return (
+      <div className={className}>
+        <figure className={`parallax-image-slider__image ${twClasses.image}`}>
+          <Image
+            src={image.url}
+            fill
+            alt={image.alt}
+            className="object-cover"
+            loading="eager"
+            priority={true}
+          />
+        </figure>
+      </div>
+    );
+  };
+
+  // Set display name for React DevTools
+  ImageItem.displayName = "ParallaxImageSliderItem";
 
   if (!isLargeScreen) {
     return (
