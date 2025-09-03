@@ -177,7 +177,7 @@
   .md\:seperator-r::before {
     @apply md:content-[""] md:absolute md:top-1/2 md:left-0 md:-translate-y-1/2 md:w-0 md:h-3/4 md:border-r md:border-dotted md:border-white/30;
   }
-  
+
   .max-md\:seperator-r {
     @apply max-md:relative;
   }
@@ -198,6 +198,107 @@
     padding-left: var(--container-padding) !important;
     padding-right: var(--container-padding) !important;
     max-width: var(--container-max-width) !important;
+  }
+
+  /* Contact Form Styles */
+  .form-field {
+    @apply relative;
+  }
+
+  /* Floating Label Styles */
+  .floating-label-container {
+    @apply relative;
+  }
+  .floating-input {
+    @apply w-full bg-transparent border-b-2 border-grey-100 py-4 outline-none transition-all duration-200 text-grey-900;
+  }
+  .floating-input:focus {
+    @apply border-grey-900;
+  }
+  .floating-input:focus + .floating-label,
+  .floating-input:not(:placeholder-shown) + .floating-label {
+    @apply transform -translate-y-[150%] scale-75 text-grey-900;
+  }
+  .floating-label {
+    @apply absolute left-0 top-1/2 -translate-y-1/2 text-gray-600 transition-all duration-200 pointer-events-none origin-left;
+  }
+  textarea + .floating-label {
+    @apply top-6;
+  }
+  .select-field .floating-label {
+    @apply transform -translate-y-[150%] scale-75 text-grey-900;
+  }
+  .phone-field .floating-label {
+    @apply left-22;
+  }
+  .floating-input:focus + .floating-label {
+    @apply text-grey-900;
+  }
+
+  /* React Select Floating Label Support */
+  .floating-label-container .react-select__control {
+    @apply border-0 border-b border-grey-100 rounded-none shadow-none bg-transparent;
+  }
+  .floating-label-container .react-select__control--is-focused {
+    @apply border-grey-900;
+  }
+  .floating-label-container .react-select__control--is-focused + .floating-label,
+  .floating-label-container .react-select__control--has-value + .floating-label {
+    @apply transform -translate-y-[150%] scale-75 text-grey-900;
+  }
+  .floating-label-container .react-select__control--has-value + .floating-label {
+    @apply text-grey-900;
+  }
+
+  /* International Telephone Input Floating Label Support */
+  .floating-label-container .iti {
+    @apply w-full;
+  }
+  .floating-label-container .iti__flag-container {
+    @apply cursor-pointer;
+  }
+  .floating-label-container .iti__selected-flag {
+    @apply bg-transparent border-0 outline-none;
+  }
+  .floating-label-container .iti__country-list {
+    @apply bg-white border border-grey-100 rounded-md shadow-lg max-h-48 overflow-y-auto;
+  }
+  .floating-label-container .iti__country {
+    @apply px-3 py-2 hover:bg-gray-50 cursor-pointer;
+  }
+  .floating-label-container .iti__country.iti__active {
+    @apply bg-grey-100;
+  }
+  .floating-label-container .iti__dial-code {
+    @apply text-grey;
+  }
+
+  /* Phone input floating label animation */
+  .floating-label-container .iti:focus-within + .floating-label,
+  .floating-label-container .iti:has(input:not(:placeholder-shown)) + .floating-label {
+    @apply transform -translate-y-[150%] scale-75 text-grey-900;
+  }
+
+  /* Alternative approach for phone input floating label */
+  .floating-label-container.phone-field:has(.iti input:not(:placeholder-shown)) .floating-label,
+  .floating-label-container.phone-field:has(.iti:focus-within) .floating-label {
+    @apply transform -translate-y-[150%] scale-75 text-grey-900;
+  }
+
+  /* Select field floating label support */
+  .floating-label-container.select-field:has(.react-select__control--has-value) .floating-label,
+  .floating-label-container.select-field:has(.react-select__control--is-focused) .floating-label {
+    @apply transform -translate-y-[150%] scale-75 text-grey-900;
+  }
+
+  .submit-button {
+    @apply bg-black text-white px-6 py-3 rounded-none flex items-center gap-2 hover:bg-grey-900 transition-colors duration-200 font-medium;
+  }
+  .submit-button:hover {
+    @apply transform scale-105;
+  }
+  .error-message {
+    @apply text-red-500 text-xs mt-1;
   }
 }
 

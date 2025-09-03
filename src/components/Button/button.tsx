@@ -1,6 +1,7 @@
 import React from "react";
 import ButtonOutlinedWithIcon from "./ButtonOutlinedWithIcon";
 import ButtonLinkWithIcon from "./ButtonLinkWithIcon";
+import ButtonFilledWithIcon from "./ButtonFilledWithIcon";
 
 type ButtonProps = {
   href?: string;
@@ -45,6 +46,20 @@ const Button = ({
     case "outlined-with-icon":
       return (
         <ButtonOutlinedWithIcon
+          href={href}
+          text={text}
+          icon={icon}
+          as={Component}
+          className={className}
+          textClass={textClass}
+          iconClass={iconClass}
+          color={color}
+          {...props}
+        />
+      );
+    case "filled-with-icon":
+      return (
+        <ButtonFilledWithIcon
           href={href}
           text={text}
           icon={icon}

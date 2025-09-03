@@ -39,3 +39,74 @@
     opacity: 1;
   }
 }
+
+/* International Telephone Input Styles */
+.iti {
+  width: 100%;
+  &__flag-container {
+    cursor: pointer;
+  }
+  &__arrow {
+    width: 6px !important;
+    height: 6px !important;
+    border: none !important;
+    transform: rotate(45deg);
+    border-right: 1px solid #7e8695 !important;
+    border-bottom: 1px solid #7e8695 !important;
+    margin-top: -6px;
+    transition: transform 0.2s ease;
+    &--up {
+      transform: rotate(-135deg);
+      margin-top: -2px;
+    }
+  }
+  &__country-list {
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 0.375rem;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    max-height: 12rem;
+    overflow-y: auto;
+  }
+  &__country {
+    padding-inline: 12px;
+    cursor: pointer;
+    &:hover {
+      background: #f0f0f0;
+    }
+    &.iti__active {
+      background: #f0f0f0;
+    }
+  }
+  &__selected-country {
+    position: relative;
+    background: transparent;
+    border: 0;
+    outline: none;
+    padding-right: 24px !important;
+  }
+  &__selected-country-primary {
+    padding-left: 0 !important;
+    padding-right: 10px !important;
+    position: absolute;
+    justify-content: space-between;
+    width: 75px;
+    &::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 1px;
+      height: 15px;
+      background-color: #7e8695;
+      opacity: 0.3;
+    }
+  }
+  &__dial-code {
+    color: #7e8695;
+  }
+  &__selected-dial-code {
+    margin-left: 25px !important;
+  }
+}

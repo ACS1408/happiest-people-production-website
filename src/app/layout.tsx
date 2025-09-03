@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Figtree, Manrope } from "next/font/google";
+import "intl-tel-input/build/css/intlTelInput.css";
 import "../styles/globals.css";
 import "../styles/main.css";
 
