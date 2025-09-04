@@ -1,5 +1,5 @@
-import { twc } from "@/utils";
 import React from "react";
+import { twc } from "@/utils";
 
 interface IconCardProps {
   icon: any;

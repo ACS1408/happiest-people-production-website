@@ -1,13 +1,14 @@
+"use client";
 import React from "react";
 import Container from "@/components/Container";
 import Image from "next/image";
 import BlockQuote from "@/icons/blockquotes.svg";
-import useInsightsSlider from "./useInsightsSlider";
+import useInsightsSlider from "./useAboutInsightsSlider";
+import { type InsightSlide } from "@/types/aboutInsights";
 import { twc } from "@/utils";
 
 const AboutInsights = () => {
-  const { rootRef, contentRef, slides, index, setSlideRef } =
-    useInsightsSlider();
+  const { rootRef, contentRef, index, setSlideRef } = useInsightsSlider(slides);
 
   return (
     <section
@@ -59,7 +60,7 @@ const AboutInsights = () => {
             <figure
               className={`about-insights__image--figure ${twClasses.image_figure}`}
             >
-              <div className="w-full h-full relative overflow-hidden">
+              <div className={`about-insights__slides ${twClasses.slides}`}>
                 {slides.map((s, i) => (
                   <div
                     key={i}
@@ -85,6 +86,29 @@ const AboutInsights = () => {
 
 export default AboutInsights;
 
+const slides: InsightSlide[] = [
+  {
+    image: "/images/mastermind.webp",
+    quote:
+      "Dataravn empowers businesses with complete control over their SaaS backups, eliminating vendor lock-in",
+    author: "Arun Kumar",
+    designation: "Managing Director",
+  },
+  {
+    image: "/images/workspace-1.webp",
+    quote:
+      "We deliver exceptional digital experiences through innovative solutions",
+    author: "John Smith",
+    designation: "Technical Director",
+  },
+  {
+    image: "/images/workspace-2.webp",
+    quote: "Our team's expertise drives transformative results for our clients",
+    author: "Sarah Johnson",
+    designation: "Creative Director",
+  },
+];
+
 const twClasses = twc({
   section: "py-32 bg-black",
   grid: "flex gap-12 items-center",
@@ -101,4 +125,5 @@ const twClasses = twc({
   author: "mt-16",
   author_name: "text-lg text-white",
   author_designation: "text-gray-400 text-md mt-2",
+  slides: "w-full h-full relative overflow-hidden",
 });

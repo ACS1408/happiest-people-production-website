@@ -1,7 +1,6 @@
 import React from "react";
 import Container from "@/components/Container";
 import Image from "next/image";
-
 import Facebook from "@/icons/facebook.svg";
 import Linkedin from "@/icons/linkedin.svg";
 import Instagram from "@/icons/instagram.svg";

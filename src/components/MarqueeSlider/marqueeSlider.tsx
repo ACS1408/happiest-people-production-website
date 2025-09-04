@@ -1,3 +1,4 @@
+"use client";
 import React, { useRef, useState } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
@@ -38,18 +39,16 @@ const MarqueeSlider = ({
 
       if (shouldMove) {
         // Create GSAP timeline for smooth infinite scrolling
-        timeline.current = gsap
-          .timeline({ repeat: -1 })
-          .fromTo(
-            content,
-            { x: 0 },
-            {
-              x: () => -contentWidth / 2,
-              duration: speed,
-              ease: "none",
-              repeat: -1
-            }
-          );
+        timeline.current = gsap.timeline({ repeat: -1 }).fromTo(
+          content,
+          { x: 0 },
+          {
+            x: () => -contentWidth / 2,
+            duration: speed,
+            ease: "none",
+            repeat: -1,
+          }
+        );
       } else {
         // Reset position if no animation needed
         gsap.set(content, { x: 0 });

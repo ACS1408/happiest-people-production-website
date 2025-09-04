@@ -1,71 +1,15 @@
 "use client";
-import React, { useState, useEffect, useRef } from "react";
+import React from "react";
 import Container from "@/components/Container/container";
 import Image from "next/image";
 import Link from "next/link";
-import { twc } from "@/utils";
+import useMainHeader from "./useMainHeader";
 import { usePathname } from "next/navigation";
-import gsap from "gsap";
+import { twc } from "@/utils";
 
 const MainHeader = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const menuRef = useRef<HTMLDivElement>(null);
+  const { isScrolled, isMenuOpen, setIsMenuOpen, menuRef } = useMainHeader();
   const pathname = usePathname();
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-      setIsScrolled(scrollPosition > 50);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 992) {
-        setIsMenuOpen(false);
-        if (menuRef.current) {
-          gsap.set(menuRef.current, { clearProps: "all" });
-        }
-        // Reset body overflow when resizing to desktop
-        document.body.style.overflow = '';
-      }
-    };
-
-    window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-      // Reset body overflow when component unmounts
-      document.body.style.overflow = '';
-    };
-  }, []);
-
-  useEffect(() => {
-    if (window.innerWidth < 992) {
-      // Toggle body scroll
-      document.body.style.overflow = isMenuOpen ? 'hidden' : '';
-      
-      // Animate menu
-      if (menuRef.current) {
-        if (isMenuOpen) {
-          gsap.to(menuRef.current, {
-            x: "0%",
-            duration: 0.5,
-            ease: "power3.out",
-          });
-        } else {
-          gsap.to(menuRef.current, {
-            x: "100%",
-            duration: 0.5,
-            ease: "power3.in",
-          });
-        }
-      }
-    }
-  }, [isMenuOpen]);
 
   return (
     <header

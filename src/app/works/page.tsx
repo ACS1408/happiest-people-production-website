@@ -1,29 +1,18 @@
-"use client";
-import React, { useEffect, useRef } from "react";
-import SmoothScrollContext from "@/components/SmoothScrollContext";
+import React from "react";
 import MainFooter from "@/widgets/MainFooter";
 import MainHeader from "@/widgets/MainHeader";
 import TailoredServiceBanner from "@/widgets/TailoredServiceBanner";
 import WorksList from "@/widgets/WorksList/worksList";
+import GlobalContextProvider from "@/components/GlobalContextProvider";
 
 const About = () => {
-  const mainRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    if (mainRef.current) {
-      mainRef.current.classList.add("page-loaded");
-    }
-  }, []);
-
   return (
-    <main className="relative" ref={mainRef}>
-      <SmoothScrollContext>
-        <MainHeader />
-        <WorksList />
-        <TailoredServiceBanner />
-        <MainFooter />
-      </SmoothScrollContext>
-    </main>
+    <GlobalContextProvider>
+      <MainHeader />
+      <WorksList />
+      <TailoredServiceBanner />
+      <MainFooter />
+    </GlobalContextProvider>
   );
 };
 

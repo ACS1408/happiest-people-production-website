@@ -1,7 +1,5 @@
-type ImageType = {
+export interface ImageType {
   url: string;
   alt: string;
   ratio?: string;
 };
-
-export type { ImageType };

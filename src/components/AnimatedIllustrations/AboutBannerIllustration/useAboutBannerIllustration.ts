@@ -5,7 +5,7 @@ import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const useAboutBanner = () => {
+const useAboutBannerIllustration = () => {
   const mainRef = useRef<HTMLElement>(null);
   const buildingRef = useRef<SVGGElement>(null);
   const crowRef = useRef<SVGPathElement>(null);
@@ -115,4 +115,4 @@ const useAboutBanner = () => {
   };
 };
 
-export default useAboutBanner;
+export default useAboutBannerIllustration;

@@ -1,5 +1,3 @@
-"use client";
-import { useEffect, useRef } from "react";
 import HomeAbout from "@/widgets/HomeAbout";
 import HomeBanner from "@/widgets/HomeBanner";
 import HomeBrands from "@/widgets/HomeBrands";
@@ -13,34 +11,24 @@ import HomeWorkspace from "@/widgets/HomeWorkspace";
 import MainFooter from "@/widgets/MainFooter";
 import MainHeader from "@/widgets/MainHeader";
 import TailoredServiceBanner from "@/widgets/TailoredServiceBanner";
-import SmoothScrollContext from "@/components/SmoothScrollContext";
+import GlobalContextProvider from "@/components/GlobalContextProvider";
 
 export default function Home() {
-  const mainRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    if (mainRef.current) {
-      mainRef.current.classList.add("page-loaded");
-    }
-  }, []);
-
   return (
-    <main className="relative" ref={mainRef}>
-      <SmoothScrollContext>
-        <MainHeader />
-        <HomeBanner />
-        <HomeBrands />
-        <HomeWorks />
-        <HomeAbout />
-        <HomeWorkspace />
-        <HomeTailoredServices />
-        <HomeServices />
-        <HomeClients />
-        <HomeValues />
-        <HomeTestimonials />
-        <TailoredServiceBanner />
-        <MainFooter />
-      </SmoothScrollContext>
-    </main>
+    <GlobalContextProvider>
+      <MainHeader />
+      <HomeBanner />
+      <HomeBrands />
+      <HomeWorks />
+      <HomeAbout />
+      <HomeWorkspace />
+      <HomeTailoredServices />
+      <HomeServices />
+      <HomeClients />
+      <HomeValues />
+      <HomeTestimonials />
+      <TailoredServiceBanner />
+      <MainFooter />
+    </GlobalContextProvider>
   );
 }

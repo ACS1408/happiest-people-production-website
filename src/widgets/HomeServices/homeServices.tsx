@@ -1,9 +1,9 @@
 import React from "react";
+import Container from "@/components/Container";
 import Display from "@/icons/tv-display.svg";
 import PlayIcon from "@/icons/play-video.svg";
 import CameraIcon from "@/icons/camera.svg";
 import { twc } from "@/utils";
-import Container from "@/components/Container";
 
 const HomeServices = () => {
   return (

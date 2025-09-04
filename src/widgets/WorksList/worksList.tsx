@@ -1,7 +1,7 @@
+import React from "react";
 import Container from "@/components/Container";
 import ImageCard from "@/components/ImageCard";
 import { twc } from "@/utils";
-import React from "react";
 
 const WorksList = () => {
   return (

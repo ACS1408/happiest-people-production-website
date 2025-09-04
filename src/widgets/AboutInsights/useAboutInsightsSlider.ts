@@ -1,38 +1,9 @@
 import { useRef, useState } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
+import { type InsightSlide } from "@/types/aboutInsights";
 
-interface InsightSlide {
-  image: string;
-  quote: string;
-  author: string;
-  designation: string;
-}
-
-const slides: InsightSlide[] = [
-  {
-    image: "/images/mastermind.webp",
-    quote:
-      "Dataravn empowers businesses with complete control over their SaaS backups, eliminating vendor lock-in",
-    author: "Arun Kumar",
-    designation: "Managing Director",
-  },
-  {
-    image: "/images/workspace-1.webp",
-    quote:
-      "We deliver exceptional digital experiences through innovative solutions",
-    author: "John Smith",
-    designation: "Technical Director",
-  },
-  {
-    image: "/images/workspace-2.webp",
-    quote: "Our team's expertise drives transformative results for our clients",
-    author: "Sarah Johnson",
-    designation: "Creative Director",
-  },
-];
-
-const useInsightsSlider = () => {
+const useInsightsSlider = (slides: InsightSlide[]) => {
   const [index, setIndex] = useState(0);
   const rootRef = useRef<HTMLDivElement | null>(null);
   const slideRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -144,7 +115,6 @@ const useInsightsSlider = () => {
   return {
     rootRef,
     contentRef,
-    slides,
     index,
     setSlideRef,
     goTo, // also expose if you want manual navigation

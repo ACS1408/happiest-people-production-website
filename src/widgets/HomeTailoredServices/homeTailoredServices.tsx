@@ -1,9 +1,10 @@
+"use client";
 import React from "react";
 import Container from "@/components/Container";
 import Image from "next/image";
-import { twc } from "@/utils";
 import AsteriskIcon from "@/icons/asterisk.svg";
 import useHomeTailoredServices from "./useHomeTailoredServices";
+import { twc } from "@/utils";
 
 const HomeTailoredServices = () => {
   const { asteriskRef } = useHomeTailoredServices();
@@ -26,11 +27,9 @@ const HomeTailoredServices = () => {
           <div
             className={`home-tailored-service__contents ${twClasses.contents}`}
           >
-            <h2
-              className={`home-tailored-service__title ${twClasses.title} flex flex-wrap items-center`}
-            >
+            <h2 className={`home-tailored-service__title ${twClasses.title}`}>
               We serve{" "}
-              <span className="asterisk bg-primary size-11 rounded-full flex justify-center items-center ms-4 mt-4">
+              <span className={`asterisk ${twClasses.asterisk}`}>
                 <AsteriskIcon ref={asteriskRef} className="size-5" />
               </span>
               wide{" "}
@@ -58,9 +57,12 @@ const twClasses = twc({
   grid: "grid lg:grid-cols-2 lg:gap-20",
   image: "relative aspect-square w-full -ms-[5%]",
   contents: "xl:pt-20 pt-8",
-  title: "fs-title-tertiary sm:max-w-md max-w-[300px] leading-tight",
+  title:
+    "fs-title-tertiary sm:max-w-md max-w-[300px] leading-tight flex flex-wrap items-center",
   description:
     "lg:mt-10 mt-6 leading-relaxed lg:ps-2 fs-para-secondary max-w-lg",
   title_em:
     "bg-gradient-to-r from-black to-primary text-transparent bg-clip-text font-semibold px-2",
+  asterisk:
+    "bg-primary size-11 rounded-full flex justify-center items-center ms-4 mt-4",
 });

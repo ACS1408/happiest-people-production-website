@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import Container from "@/components/Container";
 import ParallaxImageSlider from "@/components/ParallaxImageSlider";
@@ -6,6 +7,7 @@ import { twc } from "@/utils";
 
 const HomeWorkspace = () => {
   const { containerRef, descriptionRef } = useHomeWorkspace();
+
   return (
     <section
       className={`home-workspace ${twClasses.section}`}

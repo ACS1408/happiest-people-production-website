@@ -18,12 +18,14 @@ const AboutBeliveSystem = () => {
           <h2 className={`about-belive-system__title ${twClasses.title}`}>
             Our belive <em className="font-semibold">system</em>
           </h2>
-          <p className={`home-workspace__description ${twClasses.description}`}>
+          <p
+            className={`about-belive-system__description ${twClasses.description}`}
+          >
             Dataravn empowers businesses with complete control over their SaaS
             backups, eliminating vendor lock-in and ensuring
           </p>
         </div>
-        <div className="grid grid-cols-2 gap-6 max-w-4xl mx-auto">
+        <div className={`about-belive-system__cards ${twClasses.cards}`}>
           {cardData.map(({ icon, title, description }, index) => {
             return (
               <IconCard
@@ -62,4 +64,5 @@ const twClasses = twc({
   title_wrapper: "text-center mb-20",
   title: "fs-title-tertiary font-light text-black",
   description: "mt-10 fs-para-secondary max-w-3xl mx-auto",
+  cards: "grid grid-cols-2 gap-6 max-w-4xl mx-auto",
 });

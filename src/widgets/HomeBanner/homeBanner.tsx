@@ -2,8 +2,8 @@ import React from "react";
 import Container from "@/components/Container";
 import Button from "@/components/Button";
 import ArrowRight from "@/icons/arrow-right.svg";
-import { twc } from "@/utils";
 import ImageBlurLoader from "@/components/ImageBlurLoader/imageBlurLoader";
+import { twc } from "@/utils";
 
 const HomeBanner = () => {
   return (

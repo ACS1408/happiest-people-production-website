@@ -1,9 +1,9 @@
 "use client";
 import React, { useMemo } from "react";
 import Image from "next/image";
-import type { ImageType } from "@/types/typeUtils";
-import { twc } from "@/utils";
 import useParallaxSlider from "./useParallaxSlider";
+import { twc } from "@/utils";
+import { type ImageType } from "@/types/utils";
 import Container from "../Container";
 
 interface ParallaxImageSlider {
