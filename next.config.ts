@@ -4,13 +4,18 @@ const nextConfig: NextConfig = {
   /* config options here */
   turbopack: {
     rules: {
-      '*.svg': {
-        loaders: ['@svgr/webpack'],
-        as: '*.jsx',
+      "*.svg": {
+        loaders: ["@svgr/webpack"],
+        as: "*.jsx",
       },
     },
   },
-  webpack(config) {
+  productionBrowserSourceMaps: false,
+  webpack(config, { dev }) {
+    if (!dev) {
+      // prevents server-side sourcemaps
+      config.devtool = false;
+    }
     // Grab the existing rule that handles SVG imports
     const fileLoaderRule = config.module.rules.find((rule: any) =>
       rule.test?.test?.(".svg")
