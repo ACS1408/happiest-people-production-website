@@ -1,25 +1,30 @@
+"use client";
 import React from "react";
 import Container from "@/components/Container";
 import Button from "@/components/Button";
 import ArrowRight from "@/icons/arrow-right.svg";
-import ImageBlurLoader from "@/components/ImageBlurLoader/imageBlurLoader";
+import useHomeBanner from "./useHomeBanner";
 import { twc } from "@/utils";
 
 const HomeBanner = () => {
+  const { videoRef } = useHomeBanner();
+
   return (
     <section
       data-widget="home-banner"
       className={`home-banner ${twClasses.section} ${twClasses.section.before}`}
     >
-      <figure className={`home-banner__bg ${twClasses.background}`}>
-        <ImageBlurLoader
-          src="/images/banner-image.webp"
-          fill
-          alt="people working together new movie"
-          className="object-cover"
-          lowQualityImageClassName="scale-105"
+      <div className={`home-banner__bg ${twClasses.background}`}>
+        <video
+          ref={videoRef}
+          poster={"/images/banner-image.webp"}
+          className={`size-full object-cover`}
+          playsInline
+          loop
+          muted
+          autoPlay
         />
-      </figure>
+      </div>
       <div className={`home-banner__contents ${twClasses.contents}`}>
         <Container>
           <h1 className={`home-banner__contents--title ${twClasses.title}`}>
