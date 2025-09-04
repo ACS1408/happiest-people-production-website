@@ -1,11 +1,16 @@
 import React from "react";
 import Container from "@/components/Container";
-import { twc } from "@/utils";
 import ParallaxImageSlider from "@/components/ParallaxImageSlider";
+import useHomeWorkspace from "./useHomeWorkspace";
+import { twc } from "@/utils";
 
 const HomeWorkspace = () => {
+  const { containerRef, descriptionRef } = useHomeWorkspace();
   return (
-    <section className={`home-workspace ${twClasses.section}`}>
+    <section
+      className={`home-workspace ${twClasses.section}`}
+      ref={containerRef}
+    >
       <Container>
         <div className={`home-workspace__grid ${twClasses.grid}`}>
           <div className={`home-workspace__left ${twClasses.left}`}>
@@ -21,6 +26,7 @@ const HomeWorkspace = () => {
           <div className={`home-workspace__right ${twClasses.right}`}>
             <p
               className={`home-workspace__description ${twClasses.description}`}
+              ref={descriptionRef}
             >
               Dataravn empowers businesses with complete control over their SaaS
               backups, eliminating vendor lock-in and ensuring data security,
@@ -73,8 +79,9 @@ const sliderImages = [
 
 const twClasses = twc({
   section: "lg:py-32 py-16 bg-white",
-  grid: "lg:grid lg:grid-cols-2 lg:gap-3",
+  grid: "flex",
+  right: "flex-1",
   title: "fs-title-tertiary leading-tight",
-  description: "lg:pt-40 pt-6 fs-para-secondary max-w-md ms-auto",
-  slider: "lg:mt-16 mt-10",
+  description: "lg:pt-40 pt-6 fs-para-primary max-w-2xl ms-auto",
+  slider: "lg:mt-32 mt-20",
 });

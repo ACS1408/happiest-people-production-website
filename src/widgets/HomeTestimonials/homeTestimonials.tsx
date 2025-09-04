@@ -3,8 +3,8 @@ import React from "react";
 import Container from "@/components/Container";
 import CircularText from "@/components/CircularText";
 import TestimonialSlider from "@/components/TestimonialSlider";
-import { twc } from "@/utils";
 import useHomeTestimonials from "./useHomeTestimonials";
+import { twc } from "@/utils";
 
 const HomeTestimonials = () => {
   const { circularRef, iconRef } = useHomeTestimonials();

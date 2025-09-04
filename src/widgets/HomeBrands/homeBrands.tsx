@@ -62,7 +62,7 @@ const HomeBrands = () => {
                             width={brand.width}
                             height={brand.height}
                             alt={`${brand.name} logo`}
-                            className="lg:mx-8 mx-2"
+                            className="lg:mx-5 mx-2 h-12 object-contain"
                         />
                     ))}
                 </MarqueeSlider>
@@ -74,6 +74,6 @@ const HomeBrands = () => {
 export default HomeBrands
 
 const twClasses = twc({
-    section: "bg-tertiary lg:py-6 py-5",
+    section: "bg-primary-100 lg:py-6 py-5",
     image_grid: "items-center mix-blend-multiply"
 })
