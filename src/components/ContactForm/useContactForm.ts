@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import intlTelInput from "intl-tel-input";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { type FormData, type ServiceOption } from "@/types/contactForm";
+import type { FormData, ServiceOption } from "@/types/contactForm";
 
 const useContactForm = () => {
   const phoneInputRef = useRef<HTMLInputElement>(null);
@@ -21,7 +21,7 @@ const useContactForm = () => {
     fullName: "",
     email: "",
     phone: "",
-    services: serviceOptions[0],
+    services: serviceOptions[0].value,
     message: "",
   };
 
@@ -34,33 +34,57 @@ const useContactForm = () => {
       .required("Email is required"),
     phone: Yup.string()
       .required("Phone number is required")
-      .test("phone", "Invalid phone number", function (value) {
-        if (!value) return false;
-        if (intlTelInputRef.current) {
-          return intlTelInputRef.current.isValidNumber();
+      .test(
+        "custom-phone-validation",
+        "Invalid phone number",
+        function (value) {
+          if (!value) return false;
+          // Only digits allowed
+          if (!/^\d+$/.test(value)) return false;
+          // Check minimum length (e.g., 10 digits)
+          if (value.length < 10) return false;
+          return true;
         }
-        return true;
-      }),
-    services: Yup.object().nullable().required("Please select a service"),
-    message: Yup.string()
-      .min(10, "Message must be at least 10 characters")
-      .required("Message is required"),
+      ),
+    services: Yup.string().test(
+      "service",
+      "Please select a service",
+      (value) => {
+        return !!value && value !== "";
+      }
+    ),
+    message: Yup.string().required("Message is required"),
   });
 
   const formik = useFormik({
     initialValues,
     validationSchema,
     onSubmit: (values, { setSubmitting, resetForm }) => {
-      // Handle form submission here
-      console.log("Form submitted:", values);
+      const formattedPhoneNumber = `${
+        intlTelInputRef.current?.getSelectedCountryData()?.dialCodePlus
+      }-${values.phone}`;
+      const selectedService = serviceOptions?.find(
+        (option) => option.value === values.services
+      )?.label;
+
+      // Payload to be sent to the server or API}
+      const formData = {
+        ...values,
+        phone: formattedPhoneNumber,
+        services: selectedService,
+      };
+      console.log("Form submitted:", formData);
 
       // Simulate API call
       setTimeout(() => {
         setSubmitting(false);
         resetForm();
-        // Reset the phone input
+        // Reset the phone input and phone value
         if (intlTelInputRef.current) {
           intlTelInputRef.current.setCountry("in");
+        }
+        if (phoneInputRef.current) {
+          phoneInputRef.current.value = "";
         }
         // You can add success message here
       }, 1000);
@@ -68,10 +92,10 @@ const useContactForm = () => {
   });
 
   useEffect(() => {
-    let observer: MutationObserver;
+  let observer: MutationObserver | undefined;
 
+    // Mutation observer for phone country list
     if (phoneInputRef.current) {
-      // Create a mutation observer to watch for the country list
       observer = new MutationObserver((mutations) => {
         mutations.forEach((mutation) => {
           if (mutation.addedNodes.length) {
@@ -86,7 +110,6 @@ const useContactForm = () => {
         });
       });
 
-      // Start observing the body for the dropdown
       observer.observe(document.body, {
         childList: true,
         subtree: true,
@@ -101,7 +124,6 @@ const useContactForm = () => {
         nationalMode: true,
       });
 
-      // Add data-lenis-prevent to country list dropdown
       const countryList = document.querySelector(".iti__country-list");
       if (countryList) {
         countryList.setAttribute("data-lenis-prevent", "");
@@ -118,11 +140,24 @@ const useContactForm = () => {
       phoneInputRef.current.addEventListener("countrychange", handleInput);
     }
 
+    // Mutation observer for react-select dropdown menu
+    const selectObserver = new MutationObserver(() => {
+      const selectMenu = document.querySelector("#react-select-services-listbox");
+      if (selectMenu && !selectMenu.hasAttribute("data-lenis-prevent")) {
+        selectMenu.setAttribute("data-lenis-prevent", "");
+      }
+    });
+    selectObserver.observe(document.body, {
+      childList: true,
+      subtree: true,
+    });
+
     return () => {
       if (intlTelInputRef.current) {
         intlTelInputRef.current.destroy();
       }
-      observer.disconnect();
+      if (observer) observer.disconnect();
+      selectObserver.disconnect();
     };
   }, []);
   return { formik, phoneInputRef, serviceOptions };

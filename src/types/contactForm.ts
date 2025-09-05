@@ -2,7 +2,7 @@ export interface FormData {
   fullName: string;
   email: string;
   phone: string;
-  services: { value: string; label: string } | null;
+  services: string;
   message: string;
 }
 

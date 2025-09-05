@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Button from "@/components/Button";
 import Select from "react-select";
 import ChevronRight from "@/icons/chevron-right.svg";
-import useContactForm from "@/widgets/ContactBanner/useContactForm";
+import useContactForm from "@/components/ContactForm/useContactForm";
 
 const ContactForm = () => {
   const { formik, phoneInputRef, serviceOptions } = useContactForm();
@@ -26,7 +26,7 @@ const ContactForm = () => {
                   ? "border-red-500"
                   : ""
               }`}
-              placeholder=" "
+              placeholder=""
             />
             <label htmlFor="fullName" className="floating-label">
               Full name
@@ -52,7 +52,7 @@ const ContactForm = () => {
                   ? "border-red-500"
                   : ""
               }`}
-              placeholder=" "
+              placeholder=""
             />
             <label htmlFor="email" className="floating-label">
               Email
@@ -71,13 +71,23 @@ const ContactForm = () => {
               type="tel"
               id="phone"
               name="phone"
-              onBlur={() => formik.setFieldTouched("phone", true)}
+              onBlur={() => {
+                formik.setFieldTouched("phone", true);
+                if (phoneInputRef.current) {
+                  formik.setFieldValue("phone", phoneInputRef.current.value);
+                }
+              }}
+              onInput={() => {
+                if (phoneInputRef.current) {
+                  formik.setFieldValue("phone", phoneInputRef.current.value);
+                }
+              }}
               className={`floating-input !pl-22 ${
                 formik.errors.phone && formik.touched.phone
                   ? "border-red-500"
                   : ""
               }`}
-              placeholder=" "
+              placeholder=""
             />
             <label htmlFor="phone" className="floating-label">
               Phone number
@@ -92,13 +102,22 @@ const ContactForm = () => {
         <div className="form-field">
           <div className="floating-label-container select-field">
             <Select
-              instanceId="services-select"
+              instanceId="services"
               id="services"
               name="services"
-              value={formik.values.services}
-              onChange={(option) => formik.setFieldValue("services", option)}
+              value={
+                serviceOptions?.find(
+                  (option) => option.value === formik.values.services
+                ) || null
+              }
+              onChange={(option) =>
+                formik.setFieldValue("services", option?.value)
+              }
               onBlur={() => formik.setFieldTouched("services", true)}
-              options={serviceOptions}
+              options={serviceOptions?.map((option) => ({
+                value: option.value,
+                label: option.label,
+              }))}
               placeholder=""
               styles={customSelectStyles}
               isSearchable={false}
@@ -131,7 +150,7 @@ const ContactForm = () => {
                   ? "border-red-500"
                   : ""
               }`}
-              placeholder=" "
+              placeholder=""
             />
             <label htmlFor="message" className="floating-label">
               Message

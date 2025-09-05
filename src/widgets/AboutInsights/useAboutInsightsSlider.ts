@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { type InsightSlide } from "@/types/aboutInsights";
+import type { InsightSlide } from "@/types/aboutInsights";
 
 const useInsightsSlider = (slides: InsightSlide[]) => {
   const [index, setIndex] = useState(0);

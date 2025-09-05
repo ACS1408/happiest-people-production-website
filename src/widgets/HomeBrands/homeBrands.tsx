@@ -3,7 +3,7 @@ import Container from "@/components/Container";
 import Image from "next/image";
 import MarqueeSlider from "@/components/MarqueeSlider";
 import { twc } from "@/utils";
-import { type BrandLogo } from "@/types/homeBrands";
+import type { BrandLogo } from "@/types/homeBrands";
 
 const HomeBrands = () => {
   return (

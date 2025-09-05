@@ -4,7 +4,7 @@ import Container from "@/components/Container";
 import Image from "next/image";
 import BlockQuote from "@/icons/blockquotes.svg";
 import useInsightsSlider from "./useAboutInsightsSlider";
-import { type InsightSlide } from "@/types/aboutInsights";
+import type { InsightSlide } from "@/types/aboutInsights";
 import { twc } from "@/utils";
 
 const AboutInsights = () => {

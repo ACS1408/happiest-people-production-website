@@ -3,7 +3,7 @@ import React, { useMemo } from "react";
 import Image from "next/image";
 import useParallaxSlider from "./useParallaxSlider";
 import { twc } from "@/utils";
-import { type ImageType } from "@/types/utils";
+import type { ImageType } from "@/types/utils";
 import Container from "../Container";
 
 interface ParallaxImageSlider {
