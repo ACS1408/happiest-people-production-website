@@ -6,6 +6,7 @@ import TailoredServiceBanner from "@/widgets/TailoredServiceBanner";
 import GlobalContextProvider from "@/components/GlobalContextProvider";
 import CareerLifeAtHPP from "@/widgets/CareerLifeAtHPP";
 import CurrentOpenings from "@/widgets/CurrentOpenings/currentOpenings";
+import CareersApplication from "@/widgets/CareersApplication";
 
 const ContactUs = () => {
   return (
@@ -14,6 +15,7 @@ const ContactUs = () => {
       <CareersBanner />
       <CareerLifeAtHPP />
       <CurrentOpenings />
+      <CareersApplication />
       <TailoredServiceBanner />
       <MainFooter />
     </GlobalContextProvider>

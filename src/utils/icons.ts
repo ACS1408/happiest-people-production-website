@@ -17,6 +17,7 @@ import Settings from "@/icons/settings.svg";
 import Growth from "@/icons/growth.svg";
 import Eco from "@/icons/eco.svg";
 import Remuneration from "@/icons/remuneration.svg";
+import PaperClip from "@/icons/paper-clip.svg";
 
 const Icons = {
   ChevronRight,
@@ -38,6 +39,7 @@ const Icons = {
   Growth,
   Eco,
   Remuneration,
+  PaperClip,
 };
 
 export default Icons;
