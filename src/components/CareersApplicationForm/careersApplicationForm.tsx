@@ -31,6 +31,7 @@ const CareersApplicationForm = () => {
                     ? "border-red-500"
                     : ""
                 }`}
+                placeholder=""
               />
               <label htmlFor="firstName" className="floating-label">
                 Full name
@@ -56,6 +57,7 @@ const CareersApplicationForm = () => {
                     ? "border-red-500"
                     : ""
                 }`}
+                placeholder=""
               />
               <label htmlFor="lastName" className="floating-label">
                 Last name
@@ -81,6 +83,7 @@ const CareersApplicationForm = () => {
                     ? "border-red-500"
                     : ""
                 }`}
+                placeholder=""
               />
               <label htmlFor="email" className="floating-label">
                 Email
@@ -115,6 +118,7 @@ const CareersApplicationForm = () => {
                     ? "border-red-500"
                     : ""
                 }`}
+                placeholder=""
               />
               <label htmlFor="phone" className="floating-label">
                 Phone number
@@ -140,6 +144,7 @@ const CareersApplicationForm = () => {
                     ? "border-red-500"
                     : ""
                 }`}
+                placeholder=""
               />
               <label htmlFor="place" className="floating-label">
                 Place
@@ -170,6 +175,7 @@ const CareersApplicationForm = () => {
                   value: option.value,
                   label: option.label,
                 }))}
+                placeholder=""
                 styles={customSelectStyles}
                 isSearchable={false}
                 className={`${

@@ -26,6 +26,7 @@ const ContactForm = () => {
                   ? "border-red-500"
                   : ""
               }`}
+              placeholder=""
             />
             <label htmlFor="fullName" className="floating-label">
               Full name
@@ -51,6 +52,7 @@ const ContactForm = () => {
                   ? "border-red-500"
                   : ""
               }`}
+              placeholder=""
             />
             <label htmlFor="email" className="floating-label">
               Email
@@ -85,6 +87,7 @@ const ContactForm = () => {
                   ? "border-red-500"
                   : ""
               }`}
+              placeholder=""
             />
             <label htmlFor="phone" className="floating-label">
               Phone number
@@ -115,6 +118,7 @@ const ContactForm = () => {
                 value: option.value,
                 label: option.label,
               }))}
+              placeholder=""
               styles={customSelectStyles}
               isSearchable={false}
               className={`${
@@ -146,6 +150,7 @@ const ContactForm = () => {
                   ? "border-red-500"
                   : ""
               }`}
+              placeholder=""
             />
             <label htmlFor="message" className="floating-label">
               Message
