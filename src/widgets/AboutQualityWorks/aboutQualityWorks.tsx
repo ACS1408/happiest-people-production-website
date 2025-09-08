@@ -23,7 +23,7 @@ const AboutQualityWorks = () => {
             className={`about-quality-works__contents ${twClasses.contents}`}
           >
             <h2 className={`about-quality-works__title ${twClasses.title}`}>
-              We ensure <em className="font-semibold">quality works</em>
+              We ensure quality <em className="font-medium">works</em>
             </h2>
             <p
               className={`about-quality-works__description ${twClasses.description}`}
@@ -45,6 +45,6 @@ const twClasses = twc({
   grid: "grid grid-cols-2 gap-20",
   image: "relative aspect-square w-full",
   contents: "pt-20",
-  title: "fs-title-tertiary max-w-md leading-tight",
+  title: "fs-title-tertiary ff-figtree max-w-md leading-tight font-light",
   description: "mt-10 leading-relaxed ps-2 fs-para-secondary max-w-lg",
 });

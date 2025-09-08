@@ -2,9 +2,9 @@
 import React from "react";
 import Container from "@/components/Container";
 import Image from "next/image";
-import BlockQuote from "@/icons/blockquotes.svg";
 import useInsightsSlider from "./useAboutInsightsSlider";
 import type { InsightSlide } from "@/types/aboutInsights";
+import Icons from "@/utils/icons";
 import { twc } from "@/utils";
 
 const AboutInsights = () => {
@@ -30,7 +30,7 @@ const AboutInsights = () => {
               className={`about-insights__content ${twClasses.content}`}
               ref={contentRef}
             >
-              <BlockQuote className="h-8 text-white/70 shrink-0" />
+              <Icons.BlockQuote className="h-8 text-white/70 shrink-0" />
               <div
                 className={`about-insights__content--right ${twClasses.content_right}`}
               >
@@ -116,7 +116,7 @@ const twClasses = twc({
   content: "flex gap-8 mt-12",
   image_wrapper: "flex-[0_0_40%] max-w-[40%]",
   title:
-    "fs-title-tertiary lg:text-6xl xl:text-7xl font-light text-white leading-tight",
+    "fs-title-tertiary ff-figtree lg:text-6xl xl:text-7xl font-light text-white leading-tight",
   title_em:
     "bg-gradient-to-r from-white to-primary text-transparent bg-clip-text font-semibold pe-2",
   description: "text-gray-400 fs-para-secondary leading-relaxed max-w-md",

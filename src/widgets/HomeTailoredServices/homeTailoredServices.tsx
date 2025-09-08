@@ -2,8 +2,8 @@
 import React from "react";
 import Container from "@/components/Container";
 import Image from "next/image";
-import AsteriskIcon from "@/icons/asterisk.svg";
 import useHomeTailoredServices from "./useHomeTailoredServices";
+import Icons from "@/utils/icons";
 import { twc } from "@/utils";
 
 const HomeTailoredServices = () => {
@@ -30,7 +30,7 @@ const HomeTailoredServices = () => {
             <h2 className={`home-tailored-service__title ${twClasses.title}`}>
               We serve{" "}
               <span className={`asterisk ${twClasses.asterisk}`}>
-                <AsteriskIcon ref={asteriskRef} className="size-5" />
+                <Icons.AsteriskIcon ref={asteriskRef} className="size-5" />
               </span>
               wide{" "}
               <em className={`font-semibold ${twClasses.title_em}`}>
@@ -58,7 +58,7 @@ const twClasses = twc({
   image: "relative aspect-square w-full -ms-[5%]",
   contents: "xl:pt-20 pt-8",
   title:
-    "fs-title-tertiary sm:max-w-md max-w-[300px] leading-tight flex flex-wrap items-center",
+    "fs-title-tertiary ff-figtree sm:max-w-md max-w-[300px] leading-tight font-light flex flex-wrap items-center",
   description:
     "lg:mt-10 mt-6 leading-relaxed lg:ps-2 fs-para-secondary max-w-lg",
   title_em:

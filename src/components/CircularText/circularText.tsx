@@ -1,6 +1,5 @@
-"use client";
 import React, { useEffect, useState } from "react";
-import DoubleQuotes from "@/icons/double-quotes.svg";
+import Icons from "@/utils/icons";
 
 interface CircularTextProps {
   textArray: string[];
@@ -80,7 +79,7 @@ const CircularText: React.FC<CircularTextProps> = ({
       </svg>
 
       <div ref={iconRef} className="z-20 [&>*]:will-change-transform">
-        {icon || <DoubleQuotes className="h-32" />}
+        {icon || <Icons.DoubleQuotes className="h-32" />}
       </div>
     </div>
   );

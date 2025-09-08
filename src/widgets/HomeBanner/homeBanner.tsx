@@ -2,8 +2,8 @@
 import React from "react";
 import Container from "@/components/Container";
 import Button from "@/components/Button";
-import ArrowRight from "@/icons/arrow-right.svg";
 import useHomeBanner from "./useHomeBanner";
+import Icons from "@/utils/icons";
 import { twc } from "@/utils";
 
 const HomeBanner = () => {
@@ -37,7 +37,7 @@ const HomeBanner = () => {
           <Button
             href="/contact-us"
             text="Contact Us"
-            icon={<ArrowRight className="h-3 pt-px" />}
+            icon={<Icons.ArrowRight className="h-3 pt-px" />}
             variant="link-with-icon"
             className={`home-banner__contents--button ${twClasses.button}`}
             color="white"

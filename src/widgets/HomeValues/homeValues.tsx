@@ -1,7 +1,6 @@
 import React from "react";
-import Star from "@/icons/star.svg";
-import Settings from "@/icons/settings.svg";
 import Container from "@/components/Container";
+import Icons from "@/utils/icons";
 import { twc } from "@/utils";
 
 const HomeValues = () => {
@@ -29,7 +28,7 @@ const HomeValues = () => {
             <div
               className={`home-values__item  ${twClasses.value_item} ${twClasses.value_item_with_border}`}
             >
-              <Star className={`home-values__icon ${twClasses.icon}`} />
+              <Icons.Star className={`home-values__icon ${twClasses.icon}`} />
               <div className={`home-values__text ${twClasses.value_text}`}>
                 <h3
                   className={`home-values__text--title ${twClasses.value_title}`}
@@ -45,7 +44,9 @@ const HomeValues = () => {
             </div>
 
             <div className={`home-values__item ${twClasses.value_item}`}>
-              <Settings className={`home-values__icon ${twClasses.icon}`} />
+              <Icons.Settings
+                className={`home-values__icon ${twClasses.icon}`}
+              />
               <div className={`home-values__text ${twClasses.value_text}`}>
                 <h3
                   className={`home-values__text--title ${twClasses.value_title}`}
@@ -74,7 +75,7 @@ const twClasses = twc({
   grid: "grid gap-12 lg:grid-cols-2 lg:gap-16",
   left: "space-y-4",
   tag: "font-medium text-md tracking-wide",
-  title: "font-light fs-title-quaternary leading-tight",
+  title: "font-light ff-figtree fs-title-quaternary leading-tight",
   right: "lg:space-y-10 space-y-8",
   value_item_with_border: "flex gap-6 lg:pb-10 pb-8 border-b border-black/20",
   value_item: "flex lg:gap-12 gap-6",

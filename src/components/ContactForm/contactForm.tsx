@@ -1,8 +1,8 @@
 import React from "react";
 import Button from "@/components/Button";
 import Select from "react-select";
-import ChevronRight from "@/icons/chevron-right.svg";
 import useContactForm from "@/components/ContactForm/useContactForm";
+import Icons from "@/utils/icons";
 
 const ContactForm = () => {
   const { formik, phoneInputRef, serviceOptions } = useContactForm();
@@ -167,7 +167,7 @@ const ContactForm = () => {
         as="button"
         type="submit"
         text={formik.isSubmitting ? "Submitting..." : "Submit"}
-        icon={<ChevronRight className="h-3 mt-px" />}
+        icon={<Icons.ChevronRight className="h-3 mt-px" />}
         variant="filled-with-icon"
         color="black"
         className="lg:mt-16 mt-12"

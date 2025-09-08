@@ -59,7 +59,7 @@ const stats = [
 const twClasses = {
   section: "pt-12 pb-32 bg-white mt-[122.6px]",
   tag: "",
-  title: "fs-title-tertiary leading-tight",
+  title: "fs-title-tertiary ff-figtree leading-tight font-light",
   contents: "max-w-[768px] ms-auto",
   description: "fs-para-secondary mt-20",
   stats: "flex items-center mt-10",

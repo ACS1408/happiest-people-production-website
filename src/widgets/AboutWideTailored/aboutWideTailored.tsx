@@ -42,6 +42,6 @@ export default AboutWideTailored;
 const twClasses = twc({
   section: "py-32 bg-tertiary",
   image: "max-w-[768px]",
-  title: "mt-16 fs-title-tertiary",
+  title: "mt-16 fs-title-tertiary ff-figtree font-light",
   description: "mt-10 fs-para-primary max-w-[475px] ms-auto",
 });

@@ -1,10 +1,10 @@
 import Button from "@/components/Button";
 import React from "react";
-import ArrowRight from "@/icons/arrow-right.svg";
-import { twc } from "@/utils";
 import Image from "next/image";
 import Container from "@/components/Container";
 import SlotCounter from "@/components/SlotCounter";
+import Icons from "@/utils/icons";
+import { twc } from "@/utils";
 
 const HomeAbout = () => {
   return (
@@ -44,7 +44,7 @@ const HomeAbout = () => {
             <Button
               href="/about-us"
               text="About Us"
-              icon={<ArrowRight className="h-3 mt-px" />}
+              icon={<Icons.ArrowRight className="h-3 mt-px" />}
               variant="link-with-icon"
               className={`home-about__button ${twClasses.button}`}
               color="white"
@@ -105,7 +105,7 @@ const twClasses = twc({
   tag: "inline-block bg-gray-900 text-white px-3.5 py-1.5 rounded-full text-sm font-medium mb-8",
   grid: "grid xl:grid-cols-2 gap-12 items-center mb-20",
   left: "space-y-8",
-  title: "fs-title-secondary lg:text-6xl xl:text-7xl font-light leading-tight",
+  title: "fs-title-secondary ff-figtree lg:text-6xl xl:text-7xl font-light leading-tight",
   title_em:
     "bg-gradient-to-r from-white to-primary text-transparent bg-clip-text font-semibold pe-2",
   description: "text-gray-400 text-lg leading-relaxed max-w-md",
@@ -117,9 +117,7 @@ const twClasses = twc({
   stat: (index: number) =>
     `text-left md:flex-1 xl:px-16 lg:px-8 px-6 max-md:flex-[0_0_50%] max-md:max-w-[50%] ${
       index !== 0 ? "md:seperator-r" : "!pl-0"
-    } ${
-      index % 2 === 1 ? "max-md:seperator-r" : "max-md:!pl-0"
-    }`,
+    } ${index % 2 === 1 ? "max-md:seperator-r" : "max-md:!pl-0"}`,
   stat_count:
     "ff-figtree text-4xl lg:text-5xl xl:text-6xl font-medium text-white mb-2",
   stat_label: "text-gray-400 text-sm lg:text-base",

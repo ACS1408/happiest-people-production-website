@@ -35,5 +35,5 @@ export default ContactBanner;
 
 const twClasses = twc({
   section: "lg:pt-12 lg:pb-32 pt-8 pb-16 bg-white mt-[122.6px]",
-  title: "text-4xl leading-tight",
+  title: "text-4xl ff-figtree leading-tight font-light",
 });

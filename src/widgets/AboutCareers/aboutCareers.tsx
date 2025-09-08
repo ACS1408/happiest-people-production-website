@@ -1,8 +1,9 @@
 import React from "react";
 import Container from "@/components/Container";
 import Button from "@/components/Button";
-import ChevronRight from "@/icons/chevron-right.svg";
 import ParallaxImageSlider from "@/components/ParallaxImageSlider";
+import Icons from "@/utils/icons";
+import { twc } from "@/utils";
 
 const AboutCareers = () => {
   return (
@@ -27,7 +28,7 @@ const AboutCareers = () => {
           <div className="mt-16 w-max">
             <Button
               text="Careers"
-              icon={<ChevronRight className="h-3 mt-px" />}
+              icon={<Icons.ChevronRight className="h-3 mt-px" />}
               variant="outlined-with-icon"
               href="/careers"
               color="white"
@@ -78,11 +79,11 @@ const sliderImages = [
   },
 ];
 
-const twClasses = {
+const twClasses = twc({
   section: "py-32 bg-black",
   tag: "",
-  title: "fs-title-tertiary leading-tight text-white",
+  title: "fs-title-tertiary ff-figtree leading-tight text-white font-light",
   contents: "max-w-[576px] ms-auto",
   description: "fs-para-secondary mt-20 text-white",
   slider: "mt-16",
-};
+});

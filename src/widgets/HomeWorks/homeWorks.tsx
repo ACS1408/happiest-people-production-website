@@ -1,9 +1,9 @@
 import React from "react";
 import Container from "@/components/Container";
 import Button from "@/components/Button";
-import ChevronRight from "@/icons/chevron-right.svg";
-import { twc } from "@/utils";
 import ImageCard from "@/components/ImageCard";
+import Icons from "@/utils/icons";
+import { twc } from "@/utils";
 
 const HomeWorks = () => {
   return (
@@ -29,7 +29,7 @@ const HomeWorks = () => {
         <div className={`home-works__view-all ${twClasses.view_all}`}>
           <Button
             text="View All"
-            icon={<ChevronRight className="h-3 mt-px" />}
+            icon={<Icons.ChevronRight className="h-3 mt-px" />}
             variant="outlined-with-icon"
             href="/works"
             color="black"

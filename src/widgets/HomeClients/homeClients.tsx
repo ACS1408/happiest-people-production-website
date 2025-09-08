@@ -2,7 +2,7 @@ import React from "react";
 import Container from "@/components/Container";
 import Button from "@/components/Button";
 import Image from "next/image";
-import ChevronRight from "@/icons/chevron-right.svg";
+import Icons from "@/utils/icons";
 import { twc } from "@/utils";
 
 const HomeClients = () => {
@@ -43,7 +43,7 @@ const HomeClients = () => {
         <div className={`home-clients__view-all ${twClasses.view_all}`}>
           <Button
             text="View All"
-            icon={<ChevronRight className="h-3 mt-px" />}
+            icon={<Icons.ChevronRight className="h-3 mt-px" />}
             variant="outlined-with-icon"
             href="/all-works"
             color="black"

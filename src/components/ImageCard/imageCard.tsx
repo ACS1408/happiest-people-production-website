@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import Button from "../Button";
-import ChevronRight from "@/icons/chevron-right.svg";
+import Icons from "@/utils/icons";
 import { twc } from "@/utils";
 
 interface ImageCardProps {
@@ -28,7 +28,7 @@ const ImageCard = ({ image, title }: ImageCardProps) => {
       <h3 className={`image-card__title ${twClasses.title}`}>{title}</h3>
       <Button
         text="Watch Now"
-        icon={<ChevronRight className="h-3 mt-px" />}
+        icon={<Icons.ChevronRight className="h-3 mt-px" />}
         variant="link-with-icon"
         className={`image-card__action ${twClasses.action}`}
         as="div"

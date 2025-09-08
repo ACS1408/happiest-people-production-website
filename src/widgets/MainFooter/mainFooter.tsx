@@ -1,11 +1,8 @@
 import React from "react";
 import Container from "@/components/Container";
 import Image from "next/image";
-import Facebook from "@/icons/facebook.svg";
-import Linkedin from "@/icons/linkedin.svg";
-import Instagram from "@/icons/instagram.svg";
-import Behance from "@/icons/behance.svg";
 import Link from "next/link";
+import Icons from "@/utils/icons";
 import { twc } from "@/utils";
 
 const MainFooter = () => {
@@ -80,22 +77,22 @@ export default MainFooter;
 const socials = [
   {
     id: "facebook_01",
-    icon: Facebook,
+    icon: Icons.Facebook,
     url: "https://www.facebook.com",
   },
   {
     id: "linkedin_02",
-    icon: Linkedin,
+    icon: Icons.Linkedin,
     url: "https://www.linkedin.com",
   },
   {
     id: "instagram_03",
-    icon: Instagram,
+    icon: Icons.Instagram,
     url: "https://www.instagram.com",
   },
   {
     id: "behance_04",
-    icon: Behance,
+    icon: Icons.Behance,
     url: "https://www.behance.com",
   },
 ];

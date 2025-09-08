@@ -2,7 +2,7 @@ import React from "react";
 import Container from "@/components/Container";
 import Button from "@/components/Button";
 import Image from "next/image";
-import ChevronRight from "@/icons/chevron-right.svg";
+import Icons from "@/utils/icons";
 import { twc } from "@/utils";
 
 const ContactAddress = () => {
@@ -38,7 +38,7 @@ const ContactAddress = () => {
 
               <Button
                 text="Get Direction"
-                icon={<ChevronRight className="h-3 mt-px" />}
+                icon={<Icons.ChevronRight className="h-3 mt-px" />}
                 variant="outlined-with-icon"
                 color="white"
                 className="mt-8 w-max rounded-full"

@@ -27,7 +27,7 @@ const TailoredServiceBanner = () => {
             <h2
               className={`home-tailored-service-banner__title ${twClasses.title}`}
             >
-              We serve a wide <em className="font-semibold">tailored</em>
+              We serve a wide <em className="font-medium">tailored</em>
             </h2>
           </div>
         </div>
@@ -44,5 +44,5 @@ const twClasses = twc({
   image: "relative aspect-[766/430] w-full",
   contents: "flex items-center",
   title:
-    "xl:text-6xl text-4xl leading-tight xl:max-w-96 max-w-64 max-lg:text-center max-lg:mx-auto",
+    "xl:text-6xl text-4xl leading-tight font-light ff-figtree xl:max-w-96 max-w-64 max-lg:text-center max-lg:mx-auto",
 });

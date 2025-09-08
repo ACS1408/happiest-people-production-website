@@ -83,7 +83,7 @@ const twClasses = twc({
   section: "lg:py-32 py-16 bg-white",
   grid: "flex",
   right: "flex-1",
-  title: "fs-title-tertiary leading-tight",
+  title: "fs-title-tertiary ff-figtree leading-tight font-light",
   description: "lg:pt-40 pt-6 fs-para-primary max-w-2xl ms-auto",
   slider: "lg:mt-32 mt-20",
 });
