@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Button from "@/components/Button";
 import Select from "react-select";
 import ChevronRight from "@/icons/chevron-right.svg";
@@ -137,7 +137,7 @@ const ContactForm = () => {
         </div>
 
         {/* Message Field - Single Column */}
-        <div className="form-field col-span-2">
+        <div className="form-field md:col-span-2">
           <div className="floating-label-container">
             <textarea
               id="message"
@@ -170,7 +170,7 @@ const ContactForm = () => {
         icon={<ChevronRight className="h-3 mt-px" />}
         variant="filled-with-icon"
         color="black"
-        className="mt-16"
+        className="lg:mt-16 mt-12"
       />
     </form>
   );

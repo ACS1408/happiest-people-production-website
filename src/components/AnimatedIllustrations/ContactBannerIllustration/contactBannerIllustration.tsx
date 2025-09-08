@@ -9,6 +9,7 @@ const ContactBannerIllustration = () => {
         viewBox="0 0 475 474"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
+        className="w-full h-auto"
       >
         <circle
           opacity="0.58"
