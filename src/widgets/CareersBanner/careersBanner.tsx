@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import Container from "@/components/Container";
 import Button from "@/components/Button";
@@ -6,6 +7,20 @@ import Icons from "@/utils/icons";
 import { twc } from "@/utils";
 
 const CareersBanner = () => {
+  // Lenis scroll handler
+  const handleScrollToOpenings = () => {
+    const section = document.querySelector(
+      '[data-widget="careers-current-openings"]'
+    );
+    // @ts-ignore
+    if (section && window.lenis) {
+      // @ts-ignore
+      window.lenis.scrollTo(section, { offset: -40, duration: 1 });
+    } else if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <section
       data-widget="careers-banner"
@@ -24,6 +39,7 @@ const CareersBanner = () => {
             icon={<Icons.ChevronRight className="h-3 mt-px" />}
             variant="outlined-with-icon"
             color="black"
+            onClick={handleScrollToOpenings}
           />
         </div>
         <figure className="careers-banner__image relative aspect-[1559/842] -mt-32">
