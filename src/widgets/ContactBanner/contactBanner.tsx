@@ -13,8 +13,10 @@ const ContactBanner = () => {
     >
       <Container>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
-          {/* Left Column - Title */}
-          <ContactBannerIllustration />
+          {/* Left Column - Image */}
+          <div className="max-w-md">
+            <ContactBannerIllustration />
+          </div>
 
           {/* Right Column - Contact Form */}
           <div className="bg-white">
