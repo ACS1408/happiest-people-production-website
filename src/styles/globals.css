@@ -210,7 +210,7 @@
     @apply relative;
   }
   .floating-input {
-    @apply w-full bg-transparent border-b-2 border-grey-100 py-4 outline-none transition-all duration-200 text-grey-900;
+    @apply w-full bg-transparent border-b-2 border-grey-100 py-4 outline-none transition-all duration-200 text-[currentColor];
   }
   .floating-input:focus {
     @apply border-grey-900;
@@ -220,7 +220,7 @@
     @apply transform -translate-y-[150%] scale-75 text-grey-900;
   }
   .floating-label {
-    @apply absolute left-0 top-1/2 -translate-y-1/2 text-gray-600 transition-all duration-200 pointer-events-none origin-left;
+    @apply absolute left-0 top-1/2 -translate-y-1/2 text-[currentColor] transition-all duration-200 pointer-events-none origin-left;
   }
   textarea + .floating-label {
     @apply top-6;

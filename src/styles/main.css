@@ -111,6 +111,13 @@
 }
 .iti__selected-dial-code {
   margin-left: 25px !important;
+  color: currentColor;
+}
+.iti__dropdown-content {
+  color: #000;
+}
+.iti__search-input {
+  height: 40px;
 }
 
 /*# sourceMappingURL=main.css.map */

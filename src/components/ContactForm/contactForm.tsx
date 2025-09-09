@@ -21,14 +21,14 @@ const ContactForm = () => {
               value={formik.values.fullName}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
-              className={`floating-input ${
+              className={`floating-input text-grey-900 ${
                 formik.errors.fullName && formik.touched.fullName
                   ? "border-red-500"
                   : ""
               }`}
               placeholder=""
             />
-            <label htmlFor="fullName" className="floating-label">
+            <label htmlFor="fullName" className="floating-label text-gray-600">
               Full name
             </label>
           </div>
@@ -47,14 +47,14 @@ const ContactForm = () => {
               value={formik.values.email}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
-              className={`floating-input ${
+              className={`floating-input text-grey-900 ${
                 formik.errors.email && formik.touched.email
                   ? "border-red-500"
                   : ""
               }`}
               placeholder=""
             />
-            <label htmlFor="email" className="floating-label">
+            <label htmlFor="email" className="floating-label text-gray-600">
               Email
             </label>
           </div>
@@ -65,7 +65,7 @@ const ContactForm = () => {
 
         {/* Phone Number Field */}
         <div className="form-field">
-          <div className="floating-label-container phone-field">
+          <div className="floating-label-container phone-field text-black">
             <input
               ref={phoneInputRef}
               type="tel"
@@ -82,14 +82,14 @@ const ContactForm = () => {
                   formik.setFieldValue("phone", phoneInputRef.current.value);
                 }
               }}
-              className={`floating-input !pl-22 ${
+              className={`floating-input text-grey-900 !pl-22 ${
                 formik.errors.phone && formik.touched.phone
                   ? "border-red-500"
                   : ""
               }`}
               placeholder=""
             />
-            <label htmlFor="phone" className="floating-label">
+            <label htmlFor="phone" className="floating-label text-gray-600">
               Phone number
             </label>
           </div>
@@ -127,7 +127,7 @@ const ContactForm = () => {
                   : ""
               }`}
             />
-            <label htmlFor="services" className="floating-label">
+            <label htmlFor="services" className="floating-label text-gray-600">
               Services
             </label>
           </div>
@@ -145,14 +145,14 @@ const ContactForm = () => {
               value={formik.values.message}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
-              className={`floating-input min-h-[80px] resize-none ${
+              className={`floating-input text-grey-900 min-h-[80px] resize-none ${
                 formik.errors.message && formik.touched.message
                   ? "border-red-500"
                   : ""
               }`}
               placeholder=""
             />
-            <label htmlFor="message" className="floating-label">
+            <label htmlFor="message" className="floating-label text-gray-600">
               Message
             </label>
           </div>
@@ -201,6 +201,7 @@ const customSelectStyles = {
   singleValue: (provided: any) => ({
     ...provided,
     fontSize: "16px",
+    color: "#000"
   }),
   input: (provided: any) => ({
     ...provided,

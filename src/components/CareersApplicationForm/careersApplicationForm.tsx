@@ -1,8 +1,8 @@
 import React from "react";
 import Button from "../Button";
 import Icons from "@/utils/icons";
-import useCareersApplicationForm from "@/widgets/CareersApplication/useCareersApplicationForm";
 import Select from "react-select";
+import useCareersApplicationForm from "./useCareersApplicationForm";
 
 const CareersApplicationForm = () => {
   const { formik, phoneInputRef, departmentOptions } =
@@ -26,14 +26,14 @@ const CareersApplicationForm = () => {
                 value={formik.values.firstName}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                className={`floating-input ${
+                className={`floating-input text-white ${
                   formik.errors.firstName && formik.touched.firstName
                     ? "border-red-500"
                     : ""
                 }`}
                 placeholder=""
               />
-              <label htmlFor="firstName" className="floating-label">
+              <label htmlFor="firstName" className="floating-label text-gray-300">
                 Full name
               </label>
             </div>
@@ -52,14 +52,14 @@ const CareersApplicationForm = () => {
                 value={formik.values.lastName}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                className={`floating-input ${
+                className={`floating-input text-white ${
                   formik.errors.lastName && formik.touched.lastName
                     ? "border-red-500"
                     : ""
                 }`}
                 placeholder=""
               />
-              <label htmlFor="lastName" className="floating-label">
+              <label htmlFor="lastName" className="floating-label text-gray-300">
                 Last name
               </label>
             </div>
@@ -78,14 +78,14 @@ const CareersApplicationForm = () => {
                 value={formik.values.email}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                className={`floating-input ${
+                className={`floating-input text-white ${
                   formik.errors.email && formik.touched.email
                     ? "border-red-500"
                     : ""
                 }`}
                 placeholder=""
               />
-              <label htmlFor="email" className="floating-label">
+              <label htmlFor="email" className="floating-label text-gray-300">
                 Email
               </label>
             </div>
@@ -96,7 +96,7 @@ const CareersApplicationForm = () => {
 
           {/* Phone Number Field */}
           <div className="form-field">
-            <div className="floating-label-container phone-field">
+            <div className="floating-label-container phone-field text-white">
               <input
                 ref={phoneInputRef}
                 type="tel"
@@ -113,14 +113,14 @@ const CareersApplicationForm = () => {
                     formik.setFieldValue("phone", phoneInputRef.current.value);
                   }
                 }}
-                className={`floating-input !pl-22 ${
+                className={`floating-input text-white !pl-22 ${
                   formik.errors.phone && formik.touched.phone
                     ? "border-red-500"
                     : ""
                 }`}
                 placeholder=""
               />
-              <label htmlFor="phone" className="floating-label">
+              <label htmlFor="phone" className="floating-label text-gray-300">
                 Phone number
               </label>
             </div>
@@ -139,14 +139,14 @@ const CareersApplicationForm = () => {
                 value={formik.values.place}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                className={`floating-input ${
+                className={`floating-input text-white ${
                   formik.errors.place && formik.touched.place
                     ? "border-red-500"
                     : ""
                 }`}
                 placeholder=""
               />
-              <label htmlFor="place" className="floating-label">
+              <label htmlFor="place" className="floating-label text-gray-300">
                 Place
               </label>
             </div>
@@ -184,7 +184,7 @@ const CareersApplicationForm = () => {
                     : ""
                 }`}
               />
-              <label htmlFor="department" className="floating-label">
+              <label htmlFor="department" className="floating-label text-gray-300">
                 Department
               </label>
             </div>
@@ -206,7 +206,7 @@ const CareersApplicationForm = () => {
                   formik.setFieldValue("resume", file);
                 }}
                 onBlur={formik.handleBlur}
-                className={`floating-input file-input hidden`}
+                className={`floating-input text-white file-input hidden`}
               />
               <label
                 htmlFor="resume"
@@ -271,6 +271,7 @@ const customSelectStyles = {
   singleValue: (provided: any) => ({
     ...provided,
     fontSize: "16px",
+    color: "#fff",
   }),
   input: (provided: any) => ({
     ...provided,

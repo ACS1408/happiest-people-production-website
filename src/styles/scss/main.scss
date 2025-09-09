@@ -111,5 +111,12 @@
   }
   &__selected-dial-code {
     margin-left: 25px !important;
+    color: currentColor;
+  }
+  &__dropdown-content {
+    color: #000;
+  }
+  &__search-input {
+    height: 40px;
   }
 }
