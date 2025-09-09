@@ -1,6 +1,5 @@
 import React, { useRef, useState } from "react";
 import type { CareersAccordionSettings } from "@/types/careersAccordion";
-import Link from "next/link";
 import Icons from "@/utils/icons";
 import Button from "../Button";
 
