@@ -33,7 +33,7 @@ const CareersApplicationForm = () => {
                 }`}
                 placeholder=""
               />
-              <label htmlFor="firstName" className="floating-label text-gray-300">
+              <label htmlFor="firstName" className="floating-label text-gray-400">
                 Full name
               </label>
             </div>
@@ -59,7 +59,7 @@ const CareersApplicationForm = () => {
                 }`}
                 placeholder=""
               />
-              <label htmlFor="lastName" className="floating-label text-gray-300">
+              <label htmlFor="lastName" className="floating-label text-gray-400">
                 Last name
               </label>
             </div>
@@ -85,7 +85,7 @@ const CareersApplicationForm = () => {
                 }`}
                 placeholder=""
               />
-              <label htmlFor="email" className="floating-label text-gray-300">
+              <label htmlFor="email" className="floating-label text-gray-400">
                 Email
               </label>
             </div>
@@ -120,7 +120,7 @@ const CareersApplicationForm = () => {
                 }`}
                 placeholder=""
               />
-              <label htmlFor="phone" className="floating-label text-gray-300">
+              <label htmlFor="phone" className="floating-label text-gray-400">
                 Phone number
               </label>
             </div>
@@ -146,7 +146,7 @@ const CareersApplicationForm = () => {
                 }`}
                 placeholder=""
               />
-              <label htmlFor="place" className="floating-label text-gray-300">
+              <label htmlFor="place" className="floating-label text-gray-400">
                 Place
               </label>
             </div>
@@ -184,7 +184,7 @@ const CareersApplicationForm = () => {
                     : ""
                 }`}
               />
-              <label htmlFor="department" className="floating-label text-gray-300">
+              <label htmlFor="department" className="floating-label text-gray-400">
                 Department
               </label>
             </div>
