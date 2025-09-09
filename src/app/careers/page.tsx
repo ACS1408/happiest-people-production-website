@@ -7,12 +7,14 @@ import GlobalContextProvider from "@/components/GlobalContextProvider";
 import CareerLifeAtHPP from "@/widgets/CareerLifeAtHPP";
 import CurrentOpenings from "@/widgets/CurrentOpenings/currentOpenings";
 import CareersApplication from "@/widgets/CareersApplication";
+import CareersTailored from "@/widgets/CareersTailored";
 
 const ContactUs = () => {
   return (
     <GlobalContextProvider>
       <MainHeader />
       <CareersBanner />
+      <CareersTailored />
       <CareerLifeAtHPP />
       <CurrentOpenings />
       <CareersApplication />

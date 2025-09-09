@@ -148,7 +148,7 @@ const tocPreviews: TocPreview[] = [
     title: "Careers",
     path: "/careers",
     image: "/images/careers-banner.webp",
-    status: { desktop: "in-progress", responsive: "pending" },
+    status: { desktop: "completed", responsive: "in-progress" },
     description: "Join our team and explore career opportunities.",
   },
   {
