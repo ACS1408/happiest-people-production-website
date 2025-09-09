@@ -21,7 +21,6 @@ const CareersTailored = () => {
                 alt="Person working"
                 fill
                 className="object-cover"
-                priority
               />
             </div>
             {/* Bottom right cell */}
@@ -33,21 +32,26 @@ const CareersTailored = () => {
                 alt="Person thinking"
                 fill
                 className="object-cover"
-                priority
               />
             </div>
           </div>
           {/* Text content */}
-          <div className={`${twClasses.text_content}`}>
+          <div
+            className={`careers-tailored__text-content ${twClasses.text_content}`}
+          >
             <h2 className={`careers-tailored__title ${twClasses.title}`}>
               Tailores
               <br />
               <span className="font-medium">
                 for{" "}
                 <span
-                  className={`${twClasses.title_emphasize_wrap} ${twClasses.title_emphasize_wrap.after}`}
+                  className={`careers-tailored__title--em-wrap ${twClasses.title_emphasize_wrap} ${twClasses.title_emphasize_wrap.after}`}
                 >
-                  <em className={`${twClasses.title_emphasize}`}>you</em>
+                  <em
+                    className={`careers-tailored__title--em ${twClasses.title_emphasize}`}
+                  >
+                    you
+                  </em>
                 </span>
                 .
               </span>
@@ -58,14 +62,14 @@ const CareersTailored = () => {
               HPP empowers businesses with complete control over their SaaS
             </p>
             {/* Bottom right image */}
-            <div className="w-max ms-auto mt-36">
+            <div
+              className={`careers-tailored__img-cell ${twClasses.img_cell_3}`}
+            >
               <Image
                 src="/images/careers-tailored-3.webp"
                 alt="Person on phone"
-                width={140}
-                height={140}
-                className={twClasses.img}
-                priority
+                fill
+                className="object-cover"
               />
             </div>
           </div>
@@ -81,8 +85,11 @@ const twClasses = twc({
   section: "lg:py-32 py-16 bg-tertiary",
   wrapper: "relative grid grid-cols-2 gap-10",
   img_grid: "grid w-max h-max",
-  img_cell_1: "row-start-1 col-start-1 w-[150px] h-[150px] aspect-square relative",
-  img_cell_2: "row-start-2 col-start-2 w-[300px] h-[300px] aspect-square relative",
+  img_cell_1:
+    "row-start-1 col-start-1 w-[150px] h-[150px] aspect-square relative",
+  img_cell_2:
+    "row-start-2 col-start-2 w-[300px] h-[300px] aspect-square relative",
+  img_cell_3: "w-[140px] ms-auto mt-36 aspect-square relative",
   title:
     "ff-figtree font-light fs-title-quaternary leading-tight text-black mb-4",
   title_emphasize_wrap: {
