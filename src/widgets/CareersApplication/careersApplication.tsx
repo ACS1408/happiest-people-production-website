@@ -14,7 +14,7 @@ const CareersApplication = () => {
         <div className="grid grid-cols-2">
           <div className="careers-application__left">
             <h2 className="careers-application__title fs-title-quaternary leading-tight ff-figtree font-light text-white max-w-md">
-              Let's make <em className="font-medium">together</em>
+              Let&apos;s make <em className="font-medium">together</em>
             </h2>
             <p className="careers-application__description text-gray-400 text-lg leading-relaxed max-w-2xs mt-8">
               Thank you for your interest in HPP. We look forward to learning
