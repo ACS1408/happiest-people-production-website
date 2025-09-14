@@ -65,7 +65,7 @@ const twClasses = {
   stats: "flex items-center mt-10",
   stat: (hasBorder: boolean) =>
     `text-center lg:text-left px-8 lg:px-16 ${
-      hasBorder ? "border-l border-gray-300" : "pl-0"
+      hasBorder ? "border-l border-gray-300" : "!pl-0"
     }`,
   stat_count:
     "ff-figtree text-4xl lg:text-5xl xl:text-6xl font-medium text-black mb-2",
