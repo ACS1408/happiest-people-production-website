@@ -83,15 +83,15 @@ export default CareersTailored;
 
 const twClasses = twc({
   section: "lg:py-32 py-16 bg-tertiary",
-  wrapper: "relative grid grid-cols-2 gap-10",
-  img_grid: "grid w-max h-max",
+  wrapper: "relative xl:grid grid-cols-2 gap-10",
+  img_grid: "grid w-max h-max max-xl:mb-12",
   img_cell_1:
-    "row-start-1 col-start-1 w-[150px] h-[150px] aspect-square relative",
+    "row-start-1 col-start-1 size-[150px] max-sm:size-[100px] aspect-square relative",
   img_cell_2:
-    "row-start-2 col-start-2 w-[300px] h-[300px] aspect-square relative",
-  img_cell_3: "w-[140px] ms-auto mt-36 aspect-square relative",
+    "row-start-2 col-start-2 size-[300px] max-sm:size-[200px] aspect-square relative",
+  img_cell_3: "w-[140px] max-sm:w-[100px] ms-auto xl:mt-36 mt-12 aspect-square relative",
   title:
-    "ff-figtree font-light fs-title-quaternary leading-tight text-black mb-4",
+    "ff-figtree font-light fs-title-quaternary leading-tight text-black mb-4 max-xl:text-center",
   title_emphasize_wrap: {
     DEFAULT: "relative",
     after:
@@ -99,5 +99,5 @@ const twClasses = twc({
   },
   title_emphasize: "relative z-[2]",
   text_content: "pt-5",
-  description: "fs-para-secondary text-black max-w-sm mt-8",
+  description: "fs-para-secondary text-black max-w-sm mt-8 max-xl:mx-auto max-xl:text-center",
 });

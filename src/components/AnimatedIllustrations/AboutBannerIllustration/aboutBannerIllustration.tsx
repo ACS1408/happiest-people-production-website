@@ -154,7 +154,6 @@ const AboutBannerIllustration = () => {
         <g
           mask="url(#mask1_967_14078)"
           ref={buildingRef}
-          style={{ visibility: "hidden" }}
         >
           <mask
             id="mask2_967_14078"

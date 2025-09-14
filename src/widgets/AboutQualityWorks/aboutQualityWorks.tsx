@@ -41,10 +41,11 @@ const AboutQualityWorks = () => {
 export default AboutQualityWorks;
 
 const twClasses = twc({
-  section: "bg-tertiary pt-32",
-  grid: "grid grid-cols-2 gap-20",
-  image: "relative aspect-square w-full",
-  contents: "pt-20",
+  section: "bg-tertiary lg:pt-32 pt-16 xl:pb-0 lg:pb-32 pb-16",
+  grid: "xl:grid xl:grid-cols-2 xl:gap-20 gap-16 lg:flex",
+  image:
+    "relative aspect-square w-full max-xl:flex-[0_0_40%] max-xl:max-w-[40%] max-sm:flex-[0_0_70%] max-sm:max-w-[70%]",
+  contents: "lg:pt-20 pt-10",
   title: "fs-title-tertiary ff-figtree max-w-md leading-tight font-light",
   description: "mt-10 leading-relaxed ps-2 fs-para-secondary max-w-lg",
 });

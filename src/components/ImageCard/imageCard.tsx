@@ -1,8 +1,10 @@
+"use client";
 import Image from "next/image";
-import React from "react";
+import React, { useState, useCallback } from "react";
 import Button from "../Button";
 import Icons from "@/utils/icons";
 import { twc } from "@/utils";
+import VideoModal from "../VideoModal";
 
 interface ImageCardProps {
   image: {
@@ -10,13 +12,29 @@ interface ImageCardProps {
     alt: string;
   };
   title: string;
+  videoId?: string; // Optional YouTube video ID
 }
 
-const ImageCard = ({ image, title }: ImageCardProps) => {
+const ImageCard = ({ image, title, videoId }: ImageCardProps) => {
+  const [open, setOpen] = useState(false);
+  const hasVideo = !!videoId;
+
+  const openVideo = useCallback(() => {
+    if (hasVideo) setOpen(true);
+  }, [hasVideo]);
+  const closeVideo = useCallback(() => setOpen(false), []);
+
   return (
-    <div data-component="image-card" className={`image-card ${twClasses.card}`}>
+    <div
+      data-component="image-card"
+      className={`image-card ${twClasses.card} ${hasVideo ? "group" : ""}`}
+    >
       <figure
         className={`image-card__image--wrapper ${twClasses.image_wrapper}`}
+        onClick={(e: React.MouseEvent) => {
+          e.stopPropagation();
+          openVideo();
+        }}
       >
         <Image
           src={image.url}
@@ -26,14 +44,30 @@ const ImageCard = ({ image, title }: ImageCardProps) => {
         />
       </figure>
       <h3 className={`image-card__title ${twClasses.title}`}>{title}</h3>
-      <Button
-        text="Watch Now"
-        icon={<Icons.ChevronRight className="h-3 mt-px" />}
-        variant="link-with-icon"
-        className={`image-card__action ${twClasses.action}`}
-        as="div"
-        color="black"
-      />
+      {hasVideo && (
+        <Button
+          text="Watch Now"
+          icon={<Icons.ChevronRight className="h-3 mt-px" />}
+          variant="link-with-icon"
+          className={`image-card__action ${twClasses.action}`}
+          as="button"
+          type="button"
+          onClick={(e: React.MouseEvent) => {
+            e.stopPropagation();
+            openVideo();
+          }}
+          color="black"
+        />
+      )}
+      {hasVideo && (
+        <VideoModal
+          videoId={videoId!}
+          open={open}
+          onClose={closeVideo}
+          title={title}
+          animationDurationMs={300}
+        />
+      )}
     </div>
   );
 };

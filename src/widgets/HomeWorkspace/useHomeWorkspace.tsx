@@ -12,31 +12,36 @@ const useHomeWorkspace = () => {
 
   useGSAP(() => {
     if (!descriptionRef.current) return;
-
-    // Split text into chars
-    const split = new SplitText(descriptionRef.current, {
-      type: "words,chars",
-      charsClass: "char inline-block",
-      wordsClass: "word inline-block whitespace-nowrap mr-[0.1em]",
+    let split: any = null;
+    ScrollTrigger.matchMedia({
+      "(min-width: 1200px)": function () {
+        // Split text into chars
+        split = new SplitText(descriptionRef.current, {
+          type: "words,chars",
+          charsClass: "char inline-block",
+          wordsClass: "word inline-block whitespace-nowrap mr-[0.1em]",
+        });
+    
+        gsap.set(split.chars, { opacity: 0.2 });
+    
+        gsap.to(split.chars, {
+          opacity: 1,
+          ease: "power3.out",
+          stagger: 0.2,
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top center",
+            end: "top top",
+            scrub: true,
+            toggleActions: "play none none reverse",
+          },
+        });
+      }
     });
 
-    gsap.set(split.chars, { opacity: 0.2 });
-
-    gsap.to(split.chars, {
-      opacity: 1,
-      ease: "power3.out",
-      stagger: 0.2,
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: "top center",
-        end: "top top",
-        scrub: true,
-        toggleActions: "play none none reverse",
-      },
-    });
 
     return () => {
-      split.revert(); // cleanup on unmount
+      split?.revert(); // cleanup on unmount
     };
   }, []);
 

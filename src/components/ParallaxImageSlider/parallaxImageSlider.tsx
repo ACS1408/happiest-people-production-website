@@ -86,12 +86,12 @@ const twClasses = twc({
   slider: "cursor-none",
   outer: "overflow-auto no-scrollbar",
   wrapper: "flex gap-4",
-  image: "relative xl:h-[calc(100vh_-_200px)]",
+  image: "relative xl:h-[calc(100vh_-_200px)] xl:max-h-[600px] max-xl:aspect-square",
   slide: {
     DEFAULT: "overflow-hidden",
-    ratio_1: "flex-[0_0_50%] max-w-[50%]",
-    ratio_2: "lg:flex-[0_0_25%] lg:max-w-[25%] flex-[0_0_50%] max-w-[50%]",
-    ratio_3: "lg:flex-[0_0_30%] lg:max-w-[30%] flex-[0_0_50%] max-w-[50%]",
+    ratio_1: "xl:flex-[0_0_50%] xl:max-w-[50%]",
+    ratio_2: "xl:flex-[0_0_25%] xl:max-w-[25%]",
+    ratio_3: "xl:flex-[0_0_30%] xl:max-w-[30%]",
   },
   cursor:
     "absolute pointer-events-none z-50 w-24 h-24 rounded-full bg-primary flex items-center justify-center text-black font-medium",

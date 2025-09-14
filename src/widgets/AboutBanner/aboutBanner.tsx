@@ -57,11 +57,11 @@ const stats = [
 ];
 
 const twClasses = {
-  section: "pt-12 pb-32 bg-white mt-[122.6px]",
+  section: "pt-12 lg:pb-32 pb-16 bg-white mt-[122.6px]",
   tag: "",
   title: "fs-title-tertiary ff-figtree leading-tight font-light",
   contents: "max-w-[768px] ms-auto",
-  description: "fs-para-secondary mt-20",
+  description: "fs-para-secondary lg:mt-20 mt-10",
   stats: "flex items-center mt-10",
   stat: (hasBorder: boolean) =>
     `text-center lg:text-left px-8 lg:px-16 ${

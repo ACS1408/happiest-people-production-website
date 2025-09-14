@@ -42,7 +42,7 @@ const CareersBanner = () => {
             onClick={handleScrollToOpenings}
           />
         </div>
-        <figure className="careers-banner__image relative aspect-[1559/842] -mt-32">
+        <figure className="careers-banner__image relative aspect-[1559/842] -mt-32 xl:block hidden">
           <Image
             src="/images/careers-banner.webp"
             alt="Career Banner"
@@ -52,6 +52,15 @@ const CareersBanner = () => {
           />
         </figure>
       </Container>
+      <figure className="careers-banner__image relative aspect-[1559/842] xl:hidden">
+        <Image
+          src="/images/careers-banner.webp"
+          alt="Career Banner"
+          fill
+          className="object-contain"
+          quality={100}
+        />
+      </figure>
     </section>
   );
 };
@@ -59,5 +68,5 @@ const CareersBanner = () => {
 export default CareersBanner;
 
 const twClasses = twc({
-  section: "lg:pt-12 lg:pb-32 pt-8 pb-16 bg-white mt-[122.6px]",
+  section: "lg:pt-12 xl:pb-32 pt-8 pb-0 bg-white mt-[122.6px]",
 });

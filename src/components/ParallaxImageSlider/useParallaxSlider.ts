@@ -18,11 +18,7 @@ const CURSOR_ANIMATION_CONFIG = {
 const useParallaxSlider = () => {
   const main = useRef(null);
 
-  const [isLargeScreen, setIsLargeScreen] = useState(() =>
-    typeof window !== "undefined"
-      ? window.innerWidth >= SCREEN_BREAKPOINT
-      : true
-  );
+  const [isLargeScreen, setIsLargeScreen] = useState(true);
   const cursorRef = useRef<HTMLDivElement>(null);
   const cursorStateRef = useRef({
     mouseX: 0,

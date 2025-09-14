@@ -30,7 +30,7 @@ const AboutInsights = () => {
               className={`about-insights__content ${twClasses.content}`}
               ref={contentRef}
             >
-              <Icons.BlockQuote className="h-8 text-white/70 shrink-0" />
+              <Icons.BlockQuote className="lg:h-8 h-4 text-white/70 shrink-0" />
               <div
                 className={`about-insights__content--right ${twClasses.content_right}`}
               >
@@ -110,11 +110,11 @@ const slides: InsightSlide[] = [
 ];
 
 const twClasses = twc({
-  section: "py-32 bg-black",
-  grid: "flex gap-12 items-center",
+  section: "lg:py-32 py-16 bg-black",
+  grid: "flex flex-wrap gap-12 items-center",
   left: "flex-1",
-  content: "flex gap-8 mt-12",
-  image_wrapper: "flex-[0_0_40%] max-w-[40%]",
+  content: "flex lg:gap-8 gap-6 mt-12",
+  image_wrapper: "lg:flex-[0_0_40%] lg:max-w-[40%] flex-[0_0_100%] max-w-full",
   title:
     "fs-title-tertiary ff-figtree lg:text-6xl xl:text-7xl font-light text-white leading-tight",
   title_em:
@@ -122,7 +122,7 @@ const twClasses = twc({
   description: "text-gray-400 fs-para-secondary leading-relaxed max-w-md",
   image_figure: "relative aspect-[467/589]",
   content_right: "",
-  author: "mt-16",
+  author: "lg:mt-16 mt-10",
   author_name: "text-lg text-white",
   author_designation: "text-gray-400 text-md mt-2",
   slides: "w-full h-full relative overflow-hidden",

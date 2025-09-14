@@ -61,28 +61,28 @@ const MainHeader = () => {
           >
             <Link
               href="/about"
-              className={`main-header__navigation--link ${twClasses.nav_link} ${twClasses.nav_link.after} ${twClasses.nav_link.hover}`}
+              className={`main-header__navigation--link ${twClasses.nav_link} ${twClasses.nav_link.hover}`}
               onClick={() => setIsMenuOpen(false)}
             >
               About Us
             </Link>
             <Link
               href="/testimonials"
-              className={`main-header__navigation--link ${twClasses.nav_link} ${twClasses.nav_link.after} ${twClasses.nav_link.hover}`}
+              className={`main-header__navigation--link ${twClasses.nav_link} ${twClasses.nav_link.hover}`}
               onClick={() => setIsMenuOpen(false)}
             >
               Testimonials
             </Link>
             <Link
               href="/careers"
-              className={`main-header__navigation--link ${twClasses.nav_link} ${twClasses.nav_link.after} ${twClasses.nav_link.hover}`}
+              className={`main-header__navigation--link ${twClasses.nav_link} ${twClasses.nav_link.hover}`}
               onClick={() => setIsMenuOpen(false)}
             >
               Careers
             </Link>
             <Link
               href="/contact-us"
-              className={`main-header__navigation--link ${twClasses.nav_link} ${twClasses.nav_link.after} ${twClasses.nav_link.hover}`}
+              className={`main-header__navigation--link ${twClasses.nav_link} ${twClasses.nav_link.hover}`}
               onClick={() => setIsMenuOpen(false)}
             >
               Contact Us
@@ -112,8 +112,6 @@ const twClasses = twc({
   nav_link: {
     DEFAULT:
       "relative max-lg:block max-lg:text-black max-lg:w-full max-lg:py-4 max-lg:px-8 max-lg:text-lg max-lg:hover:bg-gray-50 transition-colors duration-200",
-    after:
-      "after:content-[''] after:absolute after:bottom-[-8px] after:left-1/2 after:-translate-x-1/2 after:w-4 after:h-1 after:rounded-2xl after:bg-primary after:scale-x-0 after:transition-transform after:duration-300 max-lg:after:hidden",
-    hover: "hover:after:scale-x-100 max-lg:hover:after:scale-x-0",
+    hover: "hover:lg:text-primary",
   },
 });

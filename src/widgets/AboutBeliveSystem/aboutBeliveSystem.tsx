@@ -59,9 +59,9 @@ const cardData = [
 ];
 
 const twClasses = twc({
-  section: "py-32 bg-white",
-  title_wrapper: "text-center mb-20",
+  section: "lg:py-32 py-16 bg-white",
+  title_wrapper: "text-center lg:mb-20 mb-16",
   title: "fs-title-tertiary ff-figtree font-light text-black",
   description: "mt-10 fs-para-secondary max-w-3xl mx-auto",
-  cards: "grid grid-cols-2 gap-6 max-w-4xl mx-auto",
+  cards: "grid lg:grid-cols-2 gap-6 max-w-4xl mx-auto",
 });

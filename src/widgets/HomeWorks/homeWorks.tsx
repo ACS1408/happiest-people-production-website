@@ -22,8 +22,8 @@ const HomeWorks = () => {
           </p>
         </div>
         <div className={`home-works__list ${twClasses.grid}`}>
-          {works.map(({ title, image }, index) => {
-            return <ImageCard key={index} image={image} title={title} />;
+          {works.map((work, index) => {
+            return <ImageCard key={index} {...work} />;
           })}
         </div>
         <div className={`home-works__view-all ${twClasses.view_all}`}>
@@ -49,6 +49,7 @@ const works = [
       url: "/images/work-1.webp",
       alt: "work-1",
     },
+    videoId: "YPF9hUm4trM",
   },
   {
     title: "Shoot for AKG headset world 1 brand",
@@ -56,6 +57,7 @@ const works = [
       url: "/images/work-2.webp",
       alt: "work-2",
     },
+    videoId: "YPF9hUm4trM",
   },
 ];
 

@@ -28,7 +28,7 @@ const CareersAccordion: React.FC<CareersAccordionSettings> = ({
               <span className="flex-1 text-left font-normal tracking-tight leading-tight">
                 {section.title}
               </span>
-              <span className="flex-1 flex items-center gap-2 text-[#222] text-[1.0625rem] font-normal">
+              <span className="flex-1 sm:flex items-center gap-2 text-[#222] text-[1.0625rem] font-normal hidden">
                 <span className="w-[6px] h-[6px] rounded-full bg-[#222] inline-block" />
                 <span className="">{section.type}</span>
               </span>
@@ -55,9 +55,13 @@ const CareersAccordion: React.FC<CareersAccordionSettings> = ({
               }}
             >
               <div className="ff-manrope text-lg font-light text-[#222]">
+                <span className="sm:hidden flex items-center gap-2 text-[#222] text-[1.0625rem] font-normal mb-4">
+                  <span className="w-[6px] h-[6px] rounded-full bg-[#222] inline-block" />
+                  <span className="">{section.type}</span>
+                </span>
                 {section.richText}
               </div>
-              <div className="w-max mt-4 px-4 ms-auto">
+              <div className="w-max mt-4 px-1">
                 <Button
                   href=""
                   text={applyLabel}

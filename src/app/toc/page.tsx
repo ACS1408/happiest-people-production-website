@@ -134,7 +134,7 @@ const tocPreviews: TocPreview[] = [
     title: "About Us",
     path: "/about",
     image: "/images/about-banner.svg",
-    status: { desktop: "completed", responsive: "pending" },
+    status: { desktop: "completed", responsive: "completed" },
     description: "Learn more about our story, values, and team.",
   },
   {
@@ -148,7 +148,7 @@ const tocPreviews: TocPreview[] = [
     title: "Careers",
     path: "/careers",
     image: "/images/careers-banner.webp",
-    status: { desktop: "completed", responsive: "in-progress" },
+    status: { desktop: "completed", responsive: "completed" },
     description: "Join our team and explore career opportunities.",
   },
   {

@@ -13,7 +13,7 @@
 
   --title-primary-2xl: 7.125rem; /* 114px */
   --title-secondary-2xl: 6.25rem; /* 100px */
-  --title-tertiary-2xl: 5rem; /* 80px */
+  --title-tertiary-2xl: 4.6875rem; /* 75px */
   --title-quaternary-2xl: 3.75rem; /* 60px */
   --subtitle-2xl: 1.875rem; /* 30px */
   --para-primary-2xl: 1.875rem; /* 30px */
@@ -299,6 +299,62 @@
   }
   .error-message {
     @apply text-red-500 text-xs mt-1;
+  }
+
+  /* Video Modal Animations */
+  .video-modal-root {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    z-index: 1025;
+  }
+  .video-modal-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+    opacity: 0;
+    transition: opacity 200ms;
+  }
+  .video-modal-content {
+    position: relative;
+    width: 100%;
+    max-width: 64rem;
+    aspect-ratio: 16/9;
+    background: #000;
+    border-radius: 0.5rem;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+    opacity: 0;
+    transform: scale(0.95);
+    transition:
+      opacity 200ms,
+      transform 200ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .video-modal-overlay[data-state="enter"] {
+    opacity: 0;
+  }
+  .video-modal-overlay[data-state="open"] {
+    opacity: 1;
+  }
+  .video-modal-overlay[data-state="exit"] {
+    opacity: 0;
+  }
+  .video-modal-content[data-state="enter"] {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  .video-modal-content[data-state="open"] {
+    opacity: 1;
+    transform: scale(1);
+  }
+  .video-modal-content[data-state="exit"] {
+    opacity: 0;
+    transform: scale(0.95);
   }
 }
 
