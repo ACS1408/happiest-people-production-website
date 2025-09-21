@@ -60,20 +60,33 @@ const VideoModal: React.FC<VideoModalProps> = ({
     const el = containerRef.current;
     if (render) {
       if (!document.body.contains(el)) document.body.appendChild(el);
-      document.body.style.overflow = "hidden"; // prevent scroll during render
+      // Prefer Lenis stop if available to prevent scroll; fallback to body overflow
+      if (typeof window !== 'undefined' && (window as any).lenis) {
+        try { (window as any).lenis.stop?.(); } catch {}
+      } else {
+        document.body.style.overflow = "hidden"; // prevent scroll during render
+      }
       // focus after a tick once element visible
       const ft = setTimeout(() => closeBtnRef.current?.focus(), 30);
       return () => clearTimeout(ft);
     } else {
       if (document.body.contains(el)) document.body.removeChild(el);
-      document.body.style.overflow = "";
+      if (typeof window !== 'undefined' && (window as any).lenis) {
+        try { (window as any).lenis.start?.(); } catch {}
+      } else {
+        document.body.style.overflow = "";
+      }
     }
   }, [render]);
 
   // When exit animation begins release scroll immediately
   useEffect(() => {
     if (animState === 'exit') {
-      document.body.style.overflow = '';
+      if (typeof window !== 'undefined' && (window as any).lenis) {
+        try { (window as any).lenis.start?.(); } catch {}
+      } else {
+        document.body.style.overflow = '';
+      }
     }
   }, [animState]);
 

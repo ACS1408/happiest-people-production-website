@@ -12,10 +12,8 @@ const CareersBanner = () => {
     const section = document.querySelector(
       '[data-widget="careers-current-openings"]'
     );
-    // @ts-expect-error lenis is a global instance injected elsewhere
     if (section && window.lenis) {
-      // @ts-expect-error lenis scroll method is not typed in window
-      window.lenis.scrollTo(section, { offset: -40, duration: 1 });
+      window.lenis?.scrollTo?.(section, { offset: -40, duration: 1 });
     } else if (section) {
       section.scrollIntoView({ behavior: "smooth" });
     }

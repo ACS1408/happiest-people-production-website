@@ -19,6 +19,7 @@ export const useSmoothScroll = () => useContext(SmoothScrollContextValue);
 const SmoothScrollContext = ({ children }: { children: React.ReactNode }) => {
   const lenisRef = useRef<any>(null);
 
+  // Drive Lenis with GSAP's ticker for perfect sync with ScrollTrigger
   useEffect(() => {
     function update(time: number) {
       lenisRef.current?.lenis?.raf(time * 1000);
@@ -28,6 +29,33 @@ const SmoothScrollContext = ({ children }: { children: React.ReactNode }) => {
     gsap.ticker.lagSmoothing(0);
 
     return () => gsap.ticker.remove(update);
+  }, []);
+
+  // Expose lenis globally and sync ScrollTrigger updates (wait until ref is ready)
+  useEffect(() => {
+    let cancelled = false;
+    let detach: (() => void) | null = null;
+
+    const tryAttach = () => {
+      if (cancelled) return;
+      const instance = lenisRef.current?.lenis;
+      if (instance) {
+        window.lenis = instance;
+        const onScroll = () => ScrollTrigger.update();
+        instance.on?.("scroll", onScroll);
+        detach = () => instance.off?.("scroll", onScroll);
+      } else {
+        requestAnimationFrame(tryAttach);
+      }
+    };
+
+    tryAttach();
+
+    return () => {
+      cancelled = true;
+      detach?.();
+      if (window.lenis) window.lenis = undefined;
+    };
   }, []);
 
   const options = {
@@ -48,8 +76,9 @@ const SmoothScrollContext = ({ children }: { children: React.ReactNode }) => {
     <SmoothScrollContextValue.Provider
       value={{ lenis: lenisRef.current?.lenis }}
     >
-      <ReactLenis root options={options} ref={lenisRef} />
-      {children}
+      <ReactLenis root options={options} ref={lenisRef}>
+        {children}
+      </ReactLenis>
     </SmoothScrollContextValue.Provider>
   );
 };

@@ -6,14 +6,23 @@ const useMainHeader = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
+  // Use rAF-driven scroll state to reduce jank and align with smooth scroll
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-      setIsScrolled(scrollPosition > 50);
+    let ticking = false;
+    const onScroll = () => {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(() => {
+          setIsScrolled(window.scrollY > 50);
+          ticking = false;
+        });
+      }
     };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    // Initialize once on mount
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll as any);
   }, []);
 
   useEffect(() => {
@@ -23,23 +32,36 @@ const useMainHeader = () => {
         if (menuRef.current) {
           gsap.set(menuRef.current, { clearProps: "all" });
         }
-        // Reset body overflow when resizing to desktop
-        document.body.style.overflow = "";
+        // Ensure scrolling is enabled on desktop; prefer Lenis control if available
+        if (window.lenis) {
+          window.lenis?.start?.();
+        } else {
+          document.body.style.overflow = "";
+        }
       }
     };
 
     window.addEventListener("resize", handleResize);
     return () => {
       window.removeEventListener("resize", handleResize);
-      // Reset body overflow when component unmounts
-      document.body.style.overflow = "";
+      // Reset on unmount
+      if (window.lenis) {
+        window.lenis?.start?.();
+      } else {
+        document.body.style.overflow = "";
+      }
     };
   }, []);
 
   useEffect(() => {
     if (window.innerWidth < 992) {
-      // Toggle body scroll
-      document.body.style.overflow = isMenuOpen ? "hidden" : "";
+      // Toggle scroll via Lenis when available; fallback to body overflow
+      if (window.lenis) {
+        if (isMenuOpen) window.lenis?.stop?.();
+        else window.lenis?.start?.();
+      } else {
+        document.body.style.overflow = isMenuOpen ? "hidden" : "";
+      }
 
       // Animate menu
       if (menuRef.current) {
