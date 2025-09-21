@@ -7,7 +7,7 @@ import Icons from "@/utils/icons";
 import { twc } from "@/utils";
 
 const HomeBanner = () => {
-  const { videoRef } = useHomeBanner();
+  const { videoRef, titleRef } = useHomeBanner();
 
   return (
     <section
@@ -27,7 +27,10 @@ const HomeBanner = () => {
       </div>
       <div className={`home-banner__contents ${twClasses.contents}`}>
         <Container>
-          <h1 className={`home-banner__contents--title ${twClasses.title}`}>
+          <h1
+            ref={titleRef}
+            className={`home-banner__contents--title ${twClasses.title}`}
+          >
             <span>Crafting</span>
             <br />
             <span>
