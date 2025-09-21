@@ -7,6 +7,7 @@ const HomeValues = () => {
   return (
     <section
       data-widget="home-values"
+      data-invert-cursor="true"
       className={`home-values ${twClasses.section}`}
     >
       <Container>

@@ -7,6 +7,7 @@ const TailoredServiceBanner = () => {
   return (
     <section
       data-widget="home-tailored-service-banner"
+      data-invert-cursor="true"
       className={`home-tailored-service-banner ${twClasses.section}`}
     >
       <Container>

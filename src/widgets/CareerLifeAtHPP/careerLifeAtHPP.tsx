@@ -7,6 +7,7 @@ const CareerLifeAtHPP = () => {
   return (
     <section
       data-widget="careers-life-at-hpp"
+      data-invert-cursor="true"
       className={`careers-life-at-hpp ${twClasses.section}`}
     >
       <Container>

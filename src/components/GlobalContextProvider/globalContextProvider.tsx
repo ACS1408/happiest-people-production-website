@@ -1,6 +1,7 @@
 import React from "react";
 import SmoothScrollContext from "./SmoothScrollContext";
 import PageLayoutContext from "./PageLayoutContext";
+import CustomCursor from "../CustomCursor";
 
 interface GlobalContextProps {
   children: React.ReactNode;
@@ -9,7 +10,10 @@ interface GlobalContextProps {
 const GlobalContextProvider = ({ children }: GlobalContextProps) => {
   return (
     <PageLayoutContext>
-      <SmoothScrollContext>{children}</SmoothScrollContext>
+      <SmoothScrollContext>
+        <CustomCursor />
+        {children}
+      </SmoothScrollContext>
     </PageLayoutContext>
   );
 };

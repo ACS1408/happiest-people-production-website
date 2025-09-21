@@ -37,7 +37,7 @@ const AboutCareers = () => {
         </div>
       </Container>
 
-      <div className={`about-careers__slider ${twClasses.slider}`}>
+      <div data-cursor-text="Scroll" className={`about-careers__slider ${twClasses.slider}`}>
         <ParallaxImageSlider images={sliderImages} />
       </div>
     </section>

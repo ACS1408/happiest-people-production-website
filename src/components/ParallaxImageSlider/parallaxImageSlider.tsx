@@ -14,7 +14,7 @@ const ParallaxImageSlider: React.FC<ParallaxImageSlider> = ({
   images,
   ...props
 }) => {
-  const { main, isLargeScreen, cursorRef } = useParallaxSlider();
+  const { main, isLargeScreen } = useParallaxSlider();
 
   const ImageItem = ({ image }: { image: ImageType }) => {
     // Memoize the class name to prevent recalculation on each render
@@ -60,15 +60,11 @@ const ParallaxImageSlider: React.FC<ParallaxImageSlider> = ({
   return (
     <div
       data-component="parallax-image-slider"
+      data-cursor-text="Scroll"
       className={`parallax-image-slider relative ${twClasses.slider}`}
       ref={main}
       {...props}
     >
-      {isLargeScreen && (
-        <div ref={cursorRef} className={`scroll-cursor ${twClasses.cursor}`}>
-          <span>Scroll</span>
-        </div>
-      )}
       <div className={`parallax-image-slider__outer ${twClasses.outer}`}>
         <div className={`parallax-image-slider__wrapper ${twClasses.wrapper}`}>
           {images?.map((image, i) => (
@@ -86,7 +82,8 @@ const twClasses = twc({
   slider: "cursor-none",
   outer: "overflow-auto no-scrollbar",
   wrapper: "flex gap-4",
-  image: "relative xl:h-[calc(100vh_-_200px)] xl:max-h-[600px] max-xl:aspect-square",
+  image:
+    "relative xl:h-[calc(100vh_-_200px)] xl:max-h-[600px] max-xl:aspect-square",
   slide: {
     DEFAULT: "overflow-hidden",
     ratio_1: "xl:flex-[0_0_50%] xl:max-w-[50%]",

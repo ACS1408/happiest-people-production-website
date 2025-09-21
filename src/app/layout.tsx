@@ -5,12 +5,12 @@ import "../styles/globals.css";
 import "../styles/main.css";
 
 const figtree = Figtree({
-  variable: '--font-figtree',
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700'],
+  variable: "--font-figtree",
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
   style: ["normal", "italic"],
-  display: 'swap',
-})
+  display: "swap",
+});
 
 const manrope = Manrope({
   variable: "--font-manrope",
@@ -31,9 +31,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${manrope.variable} ${figtree.variable} antialiased`}
-      >
+      <body className={`${manrope.variable} ${figtree.variable} antialiased`}>
         {children}
       </body>
     </html>
