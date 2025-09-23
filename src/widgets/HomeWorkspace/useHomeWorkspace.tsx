@@ -30,8 +30,8 @@ const useHomeWorkspace = () => {
           stagger: 0.2,
           scrollTrigger: {
             trigger: containerRef.current,
-            start: "top center",
-            end: "top top",
+            start: "top center-=15%",
+            end: "top top-=15%",
             scrub: true,
             toggleActions: "play none none reverse",
           },

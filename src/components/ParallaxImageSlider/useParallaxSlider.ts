@@ -58,15 +58,14 @@ const useParallaxSlider = () => {
         `.parallax-image-slider__image img`
       );
 
-      const sliderWidth =
-        parallax_image_slider_slide[0]?.clientWidth *
-          parallax_image_slider_slide?.length +
-        16 * parallax_image_slider_slide?.length -
-        1;
-      const containerWidth = parallax_image_slider_outer[0].closest(
-        ".parallax-image-slider"
-      ).clientWidth;
-      console.log(sliderWidth, containerWidth);
+      // Compute dynamic end distance for ScrollTrigger (re-evaluated on refresh)
+      const getScrollEnd = () => {
+        const firstSlideWidth =
+          (parallax_image_slider_slide as any)?.[0]?.clientWidth || 0;
+        const slidesLen = (parallax_image_slider_slide as any)?.length || 0;
+        const total = (firstSlideWidth * slidesLen) / 2;
+        return `+=${total}px`;
+      };
 
       ScrollTrigger.matchMedia({
         "(min-width: 1200px)": function () {
@@ -80,14 +79,11 @@ const useParallaxSlider = () => {
             scrollTrigger: {
               trigger: main.current,
               start: "center center+=38",
-              end: `+=${
-                (parallax_image_slider_slide[0]?.clientWidth *
-                  parallax_image_slider_slide?.length) /
-                2
-              }px`,
+              end: getScrollEnd, // dynamic end; recalculated on refresh
               scrub: 0.8,
               pin: true,
               anticipatePin: 1,
+              invalidateOnRefresh: true,
             },
           });
           tl.to(parallax_image_slider_wrapper, {
@@ -104,6 +100,39 @@ const useParallaxSlider = () => {
       });
     }, main);
     return () => ctx.revert();
+  }, []);
+
+  // Observe layout height changes (e.g., banner reveal) and refresh ScrollTrigger to fix pin position
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    let rafId: number | null = null;
+    const debouncedRefresh = () => {
+      if (rafId) cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => {
+        ScrollTrigger.refresh();
+      });
+    };
+
+    const observer = new ResizeObserver(debouncedRefresh);
+    try {
+      // Observe both the body and the slider's nearest container for robust updates
+      observer.observe(document.body);
+      const parentEl = (main.current as unknown as Element | null)
+        ?.parentElement;
+      if (parentEl) observer.observe(parentEl);
+    } catch (_) {
+      // no-op if observation fails
+    }
+
+    // Also run a refresh once after mount to catch any async content/layout shifts
+    const timeoutId = window.setTimeout(() => ScrollTrigger.refresh(), 0);
+
+    return () => {
+      window.clearTimeout(timeoutId);
+      if (rafId) cancelAnimationFrame(rafId);
+      observer.disconnect();
+    };
   }, []);
 
   return {

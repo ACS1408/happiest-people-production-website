@@ -22,7 +22,7 @@ const HomeBrands = () => {
               width={brand.width}
               height={brand.height}
               alt={`${brand.name} logo`}
-              className="lg:mx-5 mx-2 h-12 object-contain"
+              className="home-brands__image lg:mx-5 mx-2 h-12 object-contain"
             />
           ))}
         </MarqueeSlider>

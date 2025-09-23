@@ -55,8 +55,7 @@ export default HomeBanner;
 
 const twClasses = twc({
   section: {
-    DEFAULT:
-      "w-full lg:h-[calc(100svh_-89.51px)] h-[calc(100svh_-73.5px)] relative",
+    DEFAULT: "w-full relative",
     before:
       "before:content-[''] before:bg-gradient-to-b before:from-black before:via-transparent before:to-black before:absolute before:inset-0 before:z-[9]",
   },

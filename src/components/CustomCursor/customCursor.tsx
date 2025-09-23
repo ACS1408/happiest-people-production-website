@@ -16,6 +16,7 @@ const CustomCursor: React.FC = () => {
   const dotRef = useRef<HTMLSpanElement | null>(null);
   const textRef = useRef<HTMLSpanElement | null>(null);
   const lastPosRef = useRef<{ x: number; y: number } | null>(null);
+  const isVisibleRef = useRef<boolean>(false);
 
   useGSAP(() => {
     // Guard SSR
@@ -25,11 +26,17 @@ const CustomCursor: React.FC = () => {
     const cursor = cursorRef.current;
 
     if (isTouch || !cursor) {
+      cursor ? (cursor.style.display = "none") : null;
       return;
     }
 
-    // Center the element on the pointer and hint GPU compositing for crisper edges
-    gsap.set(cursor, { xPercent: -50, yPercent: -50, force3D: true });
+    // Center the element on the pointer, hint GPU compositing, and keep hidden initially
+    gsap.set(cursor, {
+      xPercent: -50,
+      yPercent: -50,
+      force3D: true,
+      opacity: 0,
+    });
 
     // Smooth trailing for x/y using quickTo (adds subtle delay)
     const xTo = gsap.quickTo(cursor, "x", {
@@ -183,17 +190,23 @@ const CustomCursor: React.FC = () => {
     };
 
     const leaveHandler = () => {
-      gsap.to(cursor, { duration: 1, opacity: 0 });
+      gsap.to(cursor, { duration: 1, opacity: 0, overwrite: "auto" });
+      isVisibleRef.current = false;
     };
 
-    const enterHandler = (e?: MouseEvent) => {
-      gsap.to(cursor, { duration: 0.3, opacity: 1 });
-      if (e) {
+    // Show cursor on first movement (initially) and after any mouseleave
+    const mousemoveHandler = (e: MouseEvent) => {
+      if (!isVisibleRef.current) {
+        // Set position immediately to avoid jump from top-left, then reveal via updateAtPoint
+        isVisibleRef.current = true;
         const x = e.clientX;
         const y = e.clientY;
         lastPosRef.current = { x, y };
+        gsap.set(cursor, { x, y });
         updateAtPoint(x, y, e.target);
+        return;
       }
+      moveHandler(e);
     };
 
     const scrollHandler = () => {
@@ -204,18 +217,16 @@ const CustomCursor: React.FC = () => {
 
     const resizeHandler = scrollHandler;
 
-    window.addEventListener("mousemove", moveHandler);
+    window.addEventListener("mousemove", mousemoveHandler);
     document.addEventListener("mouseleave", leaveHandler);
-    document.addEventListener("mouseenter", enterHandler as EventListener);
     window.addEventListener("scroll", scrollHandler, { passive: true });
     window.addEventListener("wheel", scrollHandler, { passive: true });
     window.addEventListener("touchmove", scrollHandler, { passive: true });
     window.addEventListener("resize", resizeHandler);
 
     return () => {
-      window.removeEventListener("mousemove", moveHandler);
+      window.removeEventListener("mousemove", mousemoveHandler);
       document.removeEventListener("mouseleave", leaveHandler);
-      document.removeEventListener("mouseenter", enterHandler as EventListener);
       window.removeEventListener("scroll", scrollHandler);
       window.removeEventListener("wheel", scrollHandler);
       window.removeEventListener("touchmove", scrollHandler);
@@ -228,7 +239,7 @@ const CustomCursor: React.FC = () => {
   return (
     <div
       ref={cursorRef}
-      className="fixed left-0 top-0 z-[2000] h-4 w-4 select-none pointer-events-none flex items-center justify-center"
+      className="custom-cursor fixed left-0 top-0 z-[2000] h-4 w-4 select-none pointer-events-none flex items-center justify-center"
       style={{
         willChange: "transform, opacity",
         transform: "translateZ(0)",
