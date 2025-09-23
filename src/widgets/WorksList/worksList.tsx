@@ -13,15 +13,11 @@ const WorksList = () => {
         <h2 className={`works-list__title ${twClasses.title}`}>
           Our <em className="font-medium">Works</em>
         </h2>
-        <ul className={`works-list__items ${twClasses.grid}`}>
-          {works.map(({ title, image }, index) => {
-            return (
-              <li className={`works-list__item`} key={index}>
-                <ImageCard image={image} title={title} />
-              </li>
-            );
+        <div className={`works-list__items ${twClasses.grid}`}>
+          {works.map((work, index) => {
+            return <ImageCard key={index} {...work} />;
           })}
-        </ul>
+        </div>
       </Container>
     </section>
   );
@@ -36,6 +32,7 @@ const works = [
       url: "/images/work-1.webp",
       alt: "work-1",
     },
+    videoId: "YPF9hUm4trM",
   },
   {
     title: "Shoot for AKG headset world 1 brand",
@@ -43,6 +40,7 @@ const works = [
       url: "/images/work-2.webp",
       alt: "work-2",
     },
+    videoId: "YPF9hUm4trM",
   },
   {
     title: "Shoot for world best head phones nirvana",
@@ -50,6 +48,7 @@ const works = [
       url: "/images/work-3.webp",
       alt: "work-3",
     },
+    videoId: "YPF9hUm4trM",
   },
   {
     title: "Shoot for world best head phones nirvana",
@@ -57,6 +56,7 @@ const works = [
       url: "/images/work-4.webp",
       alt: "work-4",
     },
+    videoId: "YPF9hUm4trM",
   },
   {
     title: "Shoot for world best head phones nirvana",
@@ -64,6 +64,7 @@ const works = [
       url: "/images/work-5.webp",
       alt: "work-5",
     },
+    videoId: "YPF9hUm4trM",
   },
   {
     title: "Shoot for world best head phones nirvana",
@@ -71,6 +72,7 @@ const works = [
       url: "/images/work-6.webp",
       alt: "work-6",
     },
+    videoId: "YPF9hUm4trM",
   },
 ];
 
