@@ -39,6 +39,9 @@ const ContactAddress = () => {
               <Button
                 text="Get Direction"
                 icon={<Icons.ChevronRight className="h-3 mt-px" />}
+                href="https://maps.app.goo.gl/Y28CxsP2r28H2UM8A"
+                target="_blank"
+                rel="noopener noreferrer"
                 variant="outlined-with-icon"
                 color="white"
                 className="mt-8 w-max rounded-full"
