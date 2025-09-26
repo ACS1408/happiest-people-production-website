@@ -22,6 +22,8 @@ Modern marketing / creative production site built with Next.js 15 App Router, Re
 12. Contributing
 13. Roadmap / Future Improvements
 14. License
+15. Works CMS (Lightweight)
+16. Authentication (Admin CMS)
 
 ---
 
@@ -90,6 +92,23 @@ Clean workspace (removes artifacts & dependencies):
 yarn purge
 ```
 
+## Admin Toast Notifications
+
+User actions in the admin Works CMS (create draft, edit draft, reorder, publish, delete, login, logout, image upload) surface feedback using `react-hot-toast`.
+
+Implementation details:
+- Global provider: `src/components/ToasterProvider.tsx` injected in `src/app/layout.tsx`.
+- Import the `toast` helper via `import { toast } from '@/components/ToasterProvider';` inside any client component.
+- Success styles use teal; error styles use red. Duration defaults to 3500ms.
+
+Common patterns:
+```ts
+toast.success('Draft added');
+toast.error('Upload failed');
+toast('Custom neutral message');
+```
+
+If you add new admin modules, just call `toast.*` in client components—no extra setup required.
 ## 4. Scripts
 
 | Script | Description |
@@ -218,6 +237,105 @@ Internal/Private project (no public contributions yet). For internal contributor
 ## 14. License
 
 Proprietary / All Rights Reserved (update if a formal license is adopted).
+
+## 15. Works CMS (Lightweight JSON-Based)
+
+A minimal in-repo CMS was added for managing the Works/Portfolio section.
+
+Location:
+- Data file: `src/data/works.json`
+- Store helpers: `src/lib/worksStore.ts`
+- API route: `src/app/api/works/route.ts` (CRUD + reorder)
+- Admin UI: `http://localhost:3000/admin/works`
+
+Data Shape (TypeScript):
+```ts
+interface Work {
+	id: string;
+	title: string;
+	image: { url: string; alt: string };
+	videoId?: string;
+	createdAt: string;
+	updatedAt: string;
+	published: boolean;
+	order: number;
+}
+```
+
+API Endpoints (all under `/api/works`):
+- GET `/api/works` -> `{ data: Work[] }` (all)
+- GET `/api/works?published=true` -> published only
+- POST (create) body: `{ title, image: {url,alt}, videoId?, published? }`
+- POST (reorder) body: `{ reorder: true, ids: string[] }`
+- PUT (update) body: `{ id, ...partialFields }`
+- DELETE `/api/works?id=<id>`
+
+Revalidation / Caching:
+- Route is `dynamic = 'force-dynamic'` so changes reflect immediately.
+- Widgets (`HomeWorks`, `WorksList`) read from the store server-side at render.
+
+Admin UI Features:
+- Create, edit, delete works
+- Toggle published
+- Optional YouTube video: field accepts full URL or raw 11‑char ID; only the canonical ID is stored in JSON
+- Drag & drop reordering (dnd-kit). Unsaved order activates a prominent Save Order button.
+
+Limitations / TODO Before Production:
+- Consider multi-user concurrency (JSON file is single-writer)
+- Validation improvements & image picker integration (current form trusts basic required fields)
+- Swap JSON file for a database (PlanetScale / Postgres / SQLite) if multi-user / concurrent edits expected
+- Add optimistic UI + toast notifications
+- Keyboard reordering support (add `KeyboardSensor` in dnd-kit)
+## 16. Authentication (Admin CMS)
+
+Lightweight custom auth protects the `/admin` area and write API routes using signed JWT cookies.
+
+Components:
+- `middleware.ts`: Guards `/admin/*` (except `/admin/login`) and non-GET `/api/` routes (except `/api/auth/*`).
+- `src/lib/auth.ts`: Utility (sign / verify HS256 JWT, cookie options).
+- `POST /api/auth/login`: Validates credentials against environment variables and issues cookie.
+- `POST /api/auth/logout`: Clears auth cookie.
+- `src/app/admin/login/page.tsx`: Login form.
+
+Environment Variables (required):
+```
+CMS_USERNAME=your_admin_user
+CMS_PASSWORD=super_secret_password
+CMS_AUTH_SECRET=at_least_32_chars_random_secret
+```
+
+Cookie:
+- Name: `hpp_admin_auth`
+- HttpOnly, SameSite=Lax, 2 hour expiry
+
+Flow:
+1. User visits `/admin/works` → redirected to `/admin/login` if no valid cookie.
+2. Login form POSTs `{ username, password }` to `/api/auth/login`.
+3. On success, JWT cookie set; user redirected back to works CMS.
+4. Publish / create / reorder / upload requests require valid token (middleware returns 401 otherwise).
+5. Logout triggers `/api/auth/logout` → cookie cleared → redirect to login.
+
+Security Notes:
+- This is minimal—no rate limiting, no password hashing (credentials live only in env), no refresh tokens.
+- Rotate `CMS_AUTH_SECRET` to invalidate all sessions.
+- For production hardening consider: argon2 hashed credentials in a KV/DB, lockouts on repeated failure, CSRF token on form.
+
+Extensibility Ideas:
+- Replace with NextAuth / Auth.js provider if OAuth or multi-user needed.
+- Add roles (extend JWT payload with `permissions`).
+- Persist sessions in Redis for server-side revocation.
+
+Testing:
+- Missing env vars → login route returns 500.
+- Wrong credentials → 401 JSON error `{ error: "Invalid credentials" }`.
+- Expired token → middleware forces re-login.
+
+To disable auth in local prototype work, temporarily comment out the guard in `middleware.ts` (not recommended for shared branches).
+
+
+Backup Tip:
+- Commit `src/data/works.json` after editorial changes so history tracks content evolution.
+
 
 ---
 

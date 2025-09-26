@@ -155,6 +155,7 @@ const SlotCounter = ({ target, duration = 2 }: SlotCounterProps) => {
             );
           });
         }, containerRef);
+        console.log("ctx", ctx);
         // Note: We intentionally do not revert here so the final numbers remain visible.
       },
     });

@@ -4,13 +4,13 @@ import Button from "@/components/Button";
 import ImageCard from "@/components/ImageCard";
 import Icons from "@/utils/icons";
 import { twc } from "@/utils";
+import { getPublishedWorks } from "@/lib/worksStore";
 
-const HomeWorks = () => {
+const HomeWorks = async () => {
+  // fetch first two published works
+  const works = getPublishedWorks().slice(0, 2);
   return (
-    <section
-      data-widget="home-works"
-      className={`home-works ${twClasses.section}`}
-    >
+    <section data-widget="home-works" className={`home-works ${twClasses.section}`}>
       <Container>
         <div className="xl:flex xl:items-center">
           <h2 className={`home-works__title ${twClasses.title}`}>
@@ -22,9 +22,9 @@ const HomeWorks = () => {
           </p>
         </div>
         <div className={`home-works__list ${twClasses.grid}`}>
-          {works.map((work, index) => {
-            return <ImageCard key={index} {...work} />;
-          })}
+          {works.map((work) => (
+            <ImageCard key={work.id} title={work.title} image={work.image} videoId={work.videoId} />
+          ))}
         </div>
         <div className={`home-works__view-all ${twClasses.view_all}`}>
           <Button
@@ -41,25 +41,6 @@ const HomeWorks = () => {
 };
 
 export default HomeWorks;
-
-const works = [
-  {
-    title: "Shoot for world best head phones nirvana",
-    image: {
-      url: "/images/work-1.webp",
-      alt: "work-1",
-    },
-    videoId: "YPF9hUm4trM",
-  },
-  {
-    title: "Shoot for AKG headset world 1 brand",
-    image: {
-      url: "/images/work-2.webp",
-      alt: "work-2",
-    },
-    videoId: "YPF9hUm4trM",
-  },
-];
 
 const twClasses = twc({
   section: "2xl:py-48 xl:32 md:py-20 py-16 bg-white",

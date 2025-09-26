@@ -48,9 +48,6 @@ const useParallaxSlider = () => {
       const parallax_image_slider_wrapper = selector(
         `.parallax-image-slider__wrapper`
       );
-      const parallax_image_slider_outer = selector(
-        `.parallax-image-slider__outer`
-      );
       const parallax_image_slider_slide = selector(
         `.parallax-image-slider__slide`
       );
@@ -121,8 +118,9 @@ const useParallaxSlider = () => {
       const parentEl = (main.current as unknown as Element | null)
         ?.parentElement;
       if (parentEl) observer.observe(parentEl);
-    } catch (_) {
+    } catch (e) {
       // no-op if observation fails
+      console.log(e)
     }
 
     // Also run a refresh once after mount to catch any async content/layout shifts
