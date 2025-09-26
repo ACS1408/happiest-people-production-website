@@ -67,11 +67,11 @@ const MainHeader = () => {
               About Us
             </Link>
             <Link
-              href="/testimonials"
+              href="/works"
               className={`main-header__navigation--link ${twClasses.nav_link} ${twClasses.nav_link.hover}`}
               onClick={() => setIsMenuOpen(false)}
             >
-              Testimonials
+              Works
             </Link>
             <Link
               href="/careers"
