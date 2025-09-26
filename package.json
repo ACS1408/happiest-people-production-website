@@ -16,6 +16,7 @@
     "@dnd-kit/modifiers": "^9.0.0",
     "@dnd-kit/sortable": "^10.0.0",
     "@gsap/react": "^2.1.2",
+    "mongoose": "^8.8.0",
     "formik": "^2.4.6",
     "gsap": "^3.13.0",
     "hls.js": "^1.6.11",

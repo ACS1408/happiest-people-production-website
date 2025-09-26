@@ -2,11 +2,11 @@ import React from "react";
 import Container from "@/components/Container";
 import ImageCard from "@/components/ImageCard";
 import { twc } from "@/utils";
-import { getPublishedWorks } from "@/lib/worksStore";
+import { getPublishedWorks } from "@/lib/repositories/workRepository";
 
 // Server component: directly reads from the JSON store (no caching)
 const WorksList = async () => {
-  const works = getPublishedWorks();
+  const works = await getPublishedWorks();
   return (
     <section data-widget="works-list" className={`works-list ${twClasses.section}`}>
       <Container>

@@ -238,54 +238,63 @@ Internal/Private project (no public contributions yet). For internal contributor
 
 Proprietary / All Rights Reserved (update if a formal license is adopted).
 
-## 15. Works CMS (Lightweight JSON-Based)
+## 15. Works CMS (MongoDB + Mongoose)
 
-A minimal in-repo CMS was added for managing the Works/Portfolio section.
+The Works/Portfolio CMS now persists data in MongoDB instead of an in-repo JSON file.
 
-Location:
-- Data file: `src/data/works.json`
-- Store helpers: `src/lib/worksStore.ts`
-- API route: `src/app/api/works/route.ts` (CRUD + reorder)
-- Admin UI: `http://localhost:3000/admin/works`
+Architecture:
+- Persistence: MongoDB (cluster) accessed via Mongoose.
+- Connection helper: `src/lib/mongoose/connection.ts` (singleton w/ dev hot-reload cache).
+- Model: `src/lib/mongoose/models/Work.ts` (schema + virtual `id`).
+- Repository layer: `src/lib/repositories/workRepository.ts` (CRUD + reorder abstraction).
+- API route: `src/app/api/works/route.ts` (uses repository, unchanged external contract).
+- Admin UI: `http://localhost:3000/admin/works` (no UX changes required).
 
-Data Shape (TypeScript):
+Environment Variables (required):
+```
+MONGODB_URI=mongodb+srv://<user>:<pass>@cluster-host/?retryWrites=true&w=majority
+MONGODB_DB=hpp
+```
+
+Data Shape (TypeScript) unchanged:
 ```ts
 interface Work {
-	id: string;
-	title: string;
-	image: { url: string; alt: string };
-	videoId?: string;
-	createdAt: string;
-	updatedAt: string;
-	published: boolean;
-	order: number;
+  id: string;
+  title: string;
+  image: { url: string; alt: string };
+  videoId?: string;
+  createdAt: string; // ISO
+  updatedAt: string; // ISO
+  published: boolean;
+  order: number; // manual ordering
 }
 ```
 
-API Endpoints (all under `/api/works`):
-- GET `/api/works` -> `{ data: Work[] }` (all)
-- GET `/api/works?published=true` -> published only
-- POST (create) body: `{ title, image: {url,alt}, videoId?, published? }`
-- POST (reorder) body: `{ reorder: true, ids: string[] }`
-- PUT (update) body: `{ id, ...partialFields }`
+API Endpoints (still under `/api/works`):
+- GET `/api/works` -> `{ data: Work[] }`
+- GET `/api/works?published=true`
+- POST (create) `{ title, image, videoId?, published?, order? }`
+- POST (reorder) `{ reorder: true, ids: string[] }`
+- PUT (update) `{ id, ...partial }`
 - DELETE `/api/works?id=<id>`
 
-Revalidation / Caching:
-- Route is `dynamic = 'force-dynamic'` so changes reflect immediately.
-- Widgets (`HomeWorks`, `WorksList`) read from the store server-side at render.
+Behavioral Notes:
+- Ordering: If `order` not supplied on create, repository assigns `last.order + 1`.
+- Reorder uses MongoDB bulkWrite for efficiency.
+- `dynamic = 'force-dynamic'` ensures fresh reads.
+- Widgets (`HomeWorks`, `WorksList`) now await repository functions directly (server components).
 
-Admin UI Features:
-- Create, edit, delete works
-- Toggle published
-- Optional YouTube video: field accepts full URL or raw 11‑char ID; only the canonical ID is stored in JSON
-- Drag & drop reordering (dnd-kit). Unsaved order activates a prominent Save Order button.
+Migration Notes:
+- Legacy JSON file `src/data/works.json` and `src/lib/worksStore.ts` removed.
+- No seeding script is bundled (populate manually via Admin UI or Mongo shell/import tools).
+- Ensure indices: an index on `order` is defined implicitly via schema property + query pattern.
 
-Limitations / TODO Before Production:
-- Consider multi-user concurrency (JSON file is single-writer)
-- Validation improvements & image picker integration (current form trusts basic required fields)
-- Swap JSON file for a database (PlanetScale / Postgres / SQLite) if multi-user / concurrent edits expected
-- Add optimistic UI + toast notifications
-- Keyboard reordering support (add `KeyboardSensor` in dnd-kit)
+Manual Seeding (example pseudo-steps, optional): Use MongoDB Compass or `mongosh` to insert documents matching shape above.
+
+Future Enhancements:
+- Add validation layer (Zod) before persistence.
+- Add optimistic UI + toasts in Admin area.
+- Consider unique compound index on `{ published: 1, order: 1 }` if filtering frequently.
 ## 16. Authentication (Admin CMS)
 
 Lightweight custom auth protects the `/admin` area and write API routes using signed JWT cookies.

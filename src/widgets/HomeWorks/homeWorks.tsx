@@ -4,11 +4,11 @@ import Button from "@/components/Button";
 import ImageCard from "@/components/ImageCard";
 import Icons from "@/utils/icons";
 import { twc } from "@/utils";
-import { getPublishedWorks } from "@/lib/worksStore";
+import { getPublishedWorks } from "@/lib/repositories/workRepository";
 
 const HomeWorks = async () => {
   // fetch first two published works
-  const works = getPublishedWorks().slice(0, 2);
+  const works = (await getPublishedWorks()).slice(0, 2);
   return (
     <section data-widget="home-works" className={`home-works ${twClasses.section}`}>
       <Container>
