@@ -13,8 +13,7 @@ const useHomeBanner = () => {
     const videoEl = videoRef.current;
     gsap.registerPlugin(ScrollTrigger, SplitText);
 
-    const hlsUrl =
-      "https://happiest-people-productions.s3.ap-south-1.amazonaws.com/banner-video/banner-video.m3u8";
+    const hlsUrl = "/videos/banner-video/banner-video.m3u8";
     const mp4Url = "/videos/banner-video.mp4";
 
     let hls: Hls | null = null;
