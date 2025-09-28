@@ -36,6 +36,18 @@ const AdminWorksDashboard = () => {
     drafts,
     works,
   } = useAdminWorksdashboard();
+  // Fire-and-forget stale draft cleanup on mount (age threshold default 10m)
+  React.useEffect(() => {
+    fetch('/api/admin/work-drafts/cleanup?ageMinutes=0', { method: 'POST' })
+      .then(r => r.ok ? r.json() : null)
+      .then(data => {
+        if (data?.deleted) {
+          // eslint-disable-next-line no-console
+          console.log('Cleaned stale draft images:', data.deleted);
+        }
+      })
+      .catch(() => { /* silent */ });
+  }, []);
   return (
     <>
       <AdminHeader />

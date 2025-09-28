@@ -1,7 +1,25 @@
 import type { NextConfig } from "next";
 
+const CDN_HOST = process.env.AWS_S3_PUBLIC_BASE_URL ? new URL(process.env.AWS_S3_PUBLIC_BASE_URL).host : undefined;
+const S3_BUCKET = process.env.AWS_S3_BUCKET;
+const S3_REGION = process.env.AWS_S3_REGION;
+
+const remotePatterns = [] as { protocol: 'https'; hostname: string; port?: string; pathname?: string }[];
+
+// If a custom public base URL (CDN / CloudFront) is defined, allow that host
+if (CDN_HOST) {
+  remotePatterns.push({ protocol: 'https', hostname: CDN_HOST, pathname: '/work-images/**' });
+}
+
+// Allow direct S3 bucket host for work images (if accessing without CDN)
+if (S3_BUCKET && S3_REGION) {
+  remotePatterns.push({ protocol: 'https', hostname: `${S3_BUCKET}.s3.${S3_REGION}.amazonaws.com`, pathname: '/work-images/**' });
+}
+
 const nextConfig: NextConfig = {
-  /* config options here */
+  images: {
+    remotePatterns,
+  },
   turbopack: {
     rules: {
       "*.svg": {

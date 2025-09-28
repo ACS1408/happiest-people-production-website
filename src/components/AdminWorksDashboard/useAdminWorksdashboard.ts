@@ -111,6 +111,9 @@ const useAdminWorksdashboard = () => {
       setDrafts([]);
       setForm(emptyForm);
       fetchWorks();
+      // After publishing, trigger asynchronous cleanup of any additional stale drafts
+      fetch('/api/admin/work-drafts/cleanup?ageMinutes=0', { method: 'POST' })
+        .catch(() => {/* ignore */});
     } catch (e: any) {
       console.log("Error publishing works: ", e.message);
     } finally {

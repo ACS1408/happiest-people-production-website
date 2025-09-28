@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Spinner from "./spinner";
+import useFetchSignedWorkImages from "@/hooks/useFetchSignedWorkImages";
 
 const ImageUploader = ({
   value,
@@ -35,6 +36,7 @@ const ImageUploader = ({
       if (file.size > 4 * 1024 * 1024) throw new Error("Max 4MB file size");
       const formData = new FormData();
       formData.append("file", file);
+      formData.append("type", "work-image");
       const res = await fetch("/api/uploads", {
         method: "POST",
         body: formData,
@@ -61,6 +63,8 @@ const ImageUploader = ({
   };
 
   const containerClickable = !value && !uploading; // disable auto-open when value exists or uploading
+
+  const { signedSrc, imgError, setImgError } = useFetchSignedWorkImages(value);
 
   return (
     <div className="flex flex-col gap-2">
@@ -133,11 +137,23 @@ const ImageUploader = ({
           <div className="w-full flex flex-col items-center gap-3">
             <div className="relative w-full max-w-[260px] aspect-[16/9] rounded-lg overflow-hidden ring-1 ring-neutral-200">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={value}
-                alt="Uploaded image preview"
-                className="object-cover w-full h-full"
-              />
+              {signedSrc ? (
+                <img
+                  src={signedSrc}
+                  alt="Uploaded image preview"
+                  className="object-cover w-full h-full"
+                  onError={() => setImgError("load error")}
+                />
+              ) : (
+                <div className="w-full h-full flex items-center justify-center text-[10px] text-neutral-500">
+                  IMG…
+                </div>
+              )}
+              {imgError && (
+                <div className="absolute inset-0 bg-neutral-900/50 flex items-center justify-center text-[10px] text-white text-center p-1">
+                  {imgError}
+                </div>
+              )}
             </div>
             <div className="flex gap-2 flex-wrap justify-center">
               <button

@@ -5,6 +5,7 @@ import { CSS } from "@dnd-kit/utilities";
 import Image from "next/image";
 import IconButton from "./iconButton";
 import Icons from "@/utils/icons";
+import useFetchSignedWorkImages from "@/hooks/useFetchSignedWorkImages";
 
 interface SortableRowProps {
   id: string;
@@ -27,6 +28,11 @@ const SortableRow = ({ id, work, onEdit, onDelete }: SortableRowProps) => {
     transition,
     background: isDragging ? "rgba(0,0,0,0.04)" : undefined,
   };
+
+  const { signedSrc, imgError, setImgError } = useFetchSignedWorkImages(
+    work.image.url
+  );
+
   return (
     <tr
       ref={setNodeRef}
@@ -45,12 +51,24 @@ const SortableRow = ({ id, work, onEdit, onDelete }: SortableRowProps) => {
       </td>
       <td className="p-3">
         <div className="relative w-24 aspect-[16/9] rounded-md overflow-hidden bg-neutral-200">
-          <Image
-            src={work.image.url}
-            alt={work.image.alt}
-            fill
-            className="object-cover"
-          />
+          {signedSrc ? (
+            <Image
+              src={signedSrc}
+              alt={work.image.alt}
+              fill
+              className="object-cover"
+              onError={() => setImgError("load error")}
+            />
+          ) : (
+            <div className="w-full h-full flex items-center justify-center text-[10px] text-neutral-500">
+              IMG…
+            </div>
+          )}
+          {imgError && (
+            <div className="absolute inset-0 bg-neutral-900/50 flex items-center justify-center text-[10px] text-white text-center p-1">
+              {imgError}
+            </div>
+          )}
         </div>
       </td>
       <td className="p-3">

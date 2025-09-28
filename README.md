@@ -64,6 +64,60 @@ Hardening ideas:
 - Rate-limit signing (e.g., store timestamps per admin user/IP).
 - Shorter expiry (15–30s) + one-time tokens persisted server-side.
 
+### AWS S3 (Works Images)
+
+Admin Works dashboard image uploads now use the same `/api/uploads` endpoint with a `FormData` field `type=work-image`.
+
+Behavior:
+- Stored under prefix: `work-images/`
+- Key format: `work-images/<slug-of-original-name>-<timestamp>-<rand><ext>`
+- ACL: `public-read` (so marketing site pages can render directly without signing)
+- Metadata includes `uploadType=work-image`
+
+Resume uploads remain private; work images are intentionally public for performance & simplicity. If you need private image objects (e.g., staged content), change ACL logic or introduce a draft prefix.
+
+IAM Policy Additions:
+Ensure your IAM policy includes:
+```
+"s3:PutObject",
+"s3:GetObject"
+```
+on `arn:aws:s3:::<bucket>/work-images/*` (and the existing career-resumes prefix).
+
+Optional Enhancements:
+- Image optimization pipeline (Sharp in an edge function or an image CDN).
+- Automatic WebP/AVIF variant generation.
+- Size validations server-side mirroring client 4MB guard.
+- Lifecycle expiration for old unpublished images.
+
+#### Draft Workflow (Local -> S3 on Publish)
+
+Work images now follow a draft staging pattern:
+
+1. When uploading via the Admin Works dashboard, images are stored locally under `public/uploads/work-drafts/` (no S3 call yet). The upload response returns a URL like `/uploads/work-drafts/<slug>-<timestamp>-<rand>.<ext>`.
+2. Draft entries reference this local path until you click Publish (via the bulk publish action or an update that sets `published: true`).
+3. On publish (POST create with `published: true` or PUT update transitioning to published), the API detects the draft path, uploads the file to S3 under `work-images/` with public-read ACL, replaces the URL, and removes the local draft file.
+4. Already published works bypass migration if the image URL is not a draft path.
+
+Advantages:
+- Faster initial uploads (local write only).
+- Avoids orphaned S3 objects for discarded drafts.
+- Keeps S3 clean with only published assets.
+
+Operational Notes:
+- Local draft files are deleted after successful migration; failures abort the publish request.
+- If a publish fails part-way, the draft file remains; reattempt publish to retry migration.
+- Consider a periodic cleanup task for very old draft files that were never published.
+
+Security / IAM:
+- Draft storage is on the app server filesystem; ensure instances are secured and not world-readable beyond HTTP serving of `/uploads/work-drafts/`.
+- S3 policy only needs work-images prefix, not work-drafts (since drafts never reach S3).
+
+Future Enhancements:
+- Add a background queue for migration to keep publish request latency low (currently synchronous).
+- Generate responsive variants (e.g., 640/1280 widths) during migration.
+- Hash-based deduplication: reuse existing identical image key if binary hash matches.
+
 ---
 
 ## 1. Overview
