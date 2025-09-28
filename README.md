@@ -25,98 +25,117 @@ Modern marketing / creative production site built with Next.js 15 App Router, Re
 15. Works CMS (Lightweight)
 16. Authentication (Admin CMS)
 
-### AWS S3 (Career Application Resumes - Mandatory)
+### File Storage & Media Security
 
-Resume uploads use Amazon S3 through the `/api/uploads` endpoint. S3 configuration is now **required**; if the required env vars are missing the endpoint returns an error (no local filesystem fallback). This enforces consistent, secure resume handling and avoids leaked artifacts in repo or server disks.
+This project uses a split strategy:
 
-Env vars (add to `.env.local`):
+| Asset Type | Draft Storage | Published Storage | Access Method |
+|------------|---------------|-------------------|---------------|
+| Career Application Resumes | (No draft state) Direct S3 upload | S3 (private) `career-resumes/` | Signed download endpoint |
+| Work Images (Draft) | OS temp dir (`$TMPDIR/hpp-work-drafts`) served via API | S3 (private) `work-images/` (after publish) | Signed image endpoint + client hook |
+
+#### Environment Variables (S3)
 ```
 AWS_S3_REGION=us-east-1
 AWS_S3_BUCKET=your-bucket
 AWS_S3_ACCESS_KEY_ID=AKIA...
 AWS_S3_SECRET_ACCESS_KEY=xxxxxxxx
-# Optional custom CDN domain (omit to default to bucket URL)
+# Optional: custom CDN / edge domain (used for constructing stored URLs)
 AWS_S3_PUBLIC_BASE_URL=https://cdn.example.com
 ```
 
-Upload response shape:
-```
-{ "url": "https://<bucket-or-cdn>/career-resumes/<key>", "key": "career-resumes/<key>", "name": "originalName.ext", "size": 12345, "storage": "s3" }
-```
+If these are missing, only draft work image uploads (temp storage) succeed; resume uploads (which require S3) will fail.
 
-Private Objects Note: Objects are stored with `ACL: private`. The `url` returned is a reference pattern; direct download will 403 unless you (a) generate a presigned URL, (b) serve via CloudFront signed URLs/cookies, or (c) relax bucket/object permissions. Recommended next enhancement: add a signed download API route issuing short-lived presigned URLs.
+#### Resume Uploads
+Endpoint: `POST /api/uploads` with multipart form data (field `file`).
+Returns JSON with `url`, `key`, `size`, and `storage: "s3"`.
+Objects are private. Direct URL access 403s; a presigned URL is required.
 
-Frontend form still POSTs `FormData` with field `file` to `/api/uploads` and then stores the returned `url` in the application record.
+Signed download: `GET /api/admin/resumes/sign?key=career-resumes/<object>` → `{ url }` (valid 60s).
 
-#### Signed Resume Downloads
-
-Private resumes are now accessed via a presigned URL endpoint instead of direct S3 links:
-
-`GET /api/admin/resumes/sign?key=career-resumes/<object>` → `{ url: <temporarySignedUrl> }`
-
-- Auth protected (same admin cookie).
-- URL validity: 60 seconds.
-- The Admin Applications table requests this endpoint on click and then triggers a download.
-- If you need longer validity or different content-disposition headers, adjust the presigner configuration.
-
-Hardening ideas:
-- Log access attempts (append to an audit collection).
-- Rate-limit signing (e.g., store timestamps per admin user/IP).
-- Shorter expiry (15–30s) + one-time tokens persisted server-side.
-
-### AWS S3 (Works Images)
-
-Admin Works dashboard image uploads now use the same `/api/uploads` endpoint with a `FormData` field `type=work-image`.
-
+#### Work Image Drafts
+Draft upload: `POST /api/uploads` with `type=work-image`.
 Behavior:
-- Stored under prefix: `work-images/`
-- Key format: `work-images/<slug-of-original-name>-<timestamp>-<rand><ext>`
-- ACL: `public-read` (so marketing site pages can render directly without signing)
-- Metadata includes `uploadType=work-image`
+- Written to temp directory (never inside `public/`).
+- Temp filename pattern: `<slug>-<timestamp>-<rand>.<ext>`.
+- Returned URL: `/api/admin/work-drafts/image?file=<filename>` (served directly by an API route; no signing needed while in draft).
 
-Resume uploads remain private; work images are intentionally public for performance & simplicity. If you need private image objects (e.g., staged content), change ACL logic or introduce a draft prefix.
+#### Publishing Work Images
+When a draft is published (create or update with `published: true`), migration flow:
+1. Detect draft URL (`/api/admin/work-drafts/image?file=...`).
+2. Read file from temp dir.
+3. Upload to S3 under `work-images/` with private access.
+4. Delete temp file.
+5. Persist S3 URL in the work record.
 
-IAM Policy Additions:
-Ensure your IAM policy includes:
+#### Signed Work Image Access
+Endpoint: `GET /api/admin/works/images/sign?key=work-images/<object>` → `{ url }` (60s presigned GET).
+
+Client hook `useFetchSignedWorkImages(url)`:
+- Detects draft temp URLs → uses as-is.
+- Detects S3 stored URLs containing `work-images/` → calls signing endpoint.
+- Caches single signed URL per mount (does not refresh automatically—future enhancement: auto-refresh before expiry if needed for long sessions).
+
+#### Temp Draft Cleanup
+API: `POST /api/admin/work-drafts/cleanup?ageMinutes=10&dryRun=true|false`
+- Auth required.
+- Deletes temp draft files older than threshold (default 10 minutes).
+- Response: `{ deleted, kept, files: [...] }`.
+Note: If you reverted or removed this route, re-add or adjust docs accordingly; current codebase may reflect either state—ensure alignment before deployment.
+
+#### Security Notes
+- No objects are publicly readable; all published media require signing unless later fronted by a controlled CDN.
+- Draft images are transient and never exposed via a predictable public path.
+- Ensure IAM policy includes at minimum:
 ```
-"s3:PutObject",
-"s3:GetObject"
+{
+	"Version": "2012-10-17",
+	"Statement": [
+		{
+			"Sid": "ListCareerAndWorkPrefixes",
+			"Effect": "Allow",
+			"Action": "s3:ListBucket",
+			"Resource": "arn:aws:s3:::happiest-people-production",
+			"Condition": {
+				"StringLike": {
+					"s3:prefix": [
+						"career-resumes/*",
+						"career-resumes/",
+						"work-images/*",
+						"work-images/"
+					]
+				}
+			}
+		},
+		{
+			"Sid": "CareerResumesRW",
+			"Effect": "Allow",
+			"Action": [
+				"s3:PutObject",
+				"s3:GetObject",
+				"s3:GetObjectVersion"
+			],
+			"Resource": "arn:aws:s3:::happiest-people-production/career-resumes/*"
+		},
+		{
+			"Sid": "WorkImagesRW",
+			"Effect": "Allow",
+			"Action": [
+				"s3:PutObject",
+				"s3:GetObject",
+				"s3:GetObjectVersion"
+			],
+			"Resource": "arn:aws:s3:::happiest-people-production/work-images/*"
+		}
+	]
+}
 ```
-on `arn:aws:s3:::<bucket>/work-images/*` (and the existing career-resumes prefix).
+for `career-resumes/*` and `work-images/*` prefixes.
 
-Optional Enhancements:
-- Image optimization pipeline (Sharp in an edge function or an image CDN).
-- Automatic WebP/AVIF variant generation.
-- Size validations server-side mirroring client 4MB guard.
-- Lifecycle expiration for old unpublished images.
-
-#### Draft Workflow (Local -> S3 on Publish)
-
-Work images now follow a draft staging pattern:
-
-1. When uploading via the Admin Works dashboard, images are stored locally under `public/uploads/work-drafts/` (no S3 call yet). The upload response returns a URL like `/uploads/work-drafts/<slug>-<timestamp>-<rand>.<ext>`.
-2. Draft entries reference this local path until you click Publish (via the bulk publish action or an update that sets `published: true`).
-3. On publish (POST create with `published: true` or PUT update transitioning to published), the API detects the draft path, uploads the file to S3 under `work-images/` with public-read ACL, replaces the URL, and removes the local draft file.
-4. Already published works bypass migration if the image URL is not a draft path.
-
-Advantages:
-- Faster initial uploads (local write only).
-- Avoids orphaned S3 objects for discarded drafts.
-- Keeps S3 clean with only published assets.
-
-Operational Notes:
-- Local draft files are deleted after successful migration; failures abort the publish request.
-- If a publish fails part-way, the draft file remains; reattempt publish to retry migration.
-- Consider a periodic cleanup task for very old draft files that were never published.
-
-Security / IAM:
-- Draft storage is on the app server filesystem; ensure instances are secured and not world-readable beyond HTTP serving of `/uploads/work-drafts/`.
-- S3 policy only needs work-images prefix, not work-drafts (since drafts never reach S3).
-
-Future Enhancements:
-- Add a background queue for migration to keep publish request latency low (currently synchronous).
-- Generate responsive variants (e.g., 640/1280 widths) during migration.
-- Hash-based deduplication: reuse existing identical image key if binary hash matches.
+#### Operational Caveats
+- Temp storage is ephemeral: a cold start may discard un-published drafts (re-upload if lost).
+- Publishing depends on the temp file still existing; if it disappeared, publish returns a migration error.
+- Consider adding monitoring around draft migration failures.
 
 ---
 
@@ -220,10 +239,14 @@ If you add new admin modules, just call `toast.*` in client components—no extr
 src/
 	app/                # App Router entrypoints (layouts + route segments)
 	components/         # Reusable building blocks (UI + logic)
-	widgets/            # Page-level composite sections (domain-specific)
-	utils/              # Utility helpers (icons registry, class helpers)
-	types/              # TypeScript definition modules
+	data/               # Static data & JSON seeds (e.g. works.json)
+	hooks/              # Reusable custom React hooks (UI/util logic)
+	icons/              # Source SVG icon assets (SVGR → React components)
+	lib/                # Server/runtime utilities (auth, db, s3, repositories)
 	styles/             # SCSS sources + compiled CSS outputs
+	types/              # TypeScript definition modules
+	utils/              # Utility helpers (icons registry, class helpers)
+	widgets/            # Page-level composite sections (domain-specific)
 public/               # Static assets (images, videos, SVG not inlined)
 ```
 
@@ -411,9 +434,9 @@ Cookie:
 - HttpOnly, SameSite=Lax, 2 hour expiry
 
 Flow:
-1. User visits `/admin/works` → redirected to `/admin/login` if no valid cookie.
+1. User visits `/admin` (or any `/admin/*`) → redirected to `/admin/login` if no valid cookie.
 2. Login form POSTs `{ username, password }` to `/api/auth/login`.
-3. On success, JWT cookie set; user redirected back to works CMS.
+3. On success, JWT cookie set; user redirected to the admin dashboard (`/admin`).
 4. Publish / create / reorder / upload requests require valid token (middleware returns 401 otherwise).
 5. Logout triggers `/api/auth/logout` → cookie cleared → redirect to login.
 
@@ -435,8 +458,8 @@ Testing:
 To disable auth in local prototype work, temporarily comment out the guard in `middleware.ts` (not recommended for shared branches).
 
 
-Backup Tip:
-- Commit `src/data/works.json` after editorial changes so history tracks content evolution.
+Legacy Note:
+- Early versions stored drafts in `public/uploads/work-drafts/`. This has been removed; references to that path are obsolete.
 
 
 ---
