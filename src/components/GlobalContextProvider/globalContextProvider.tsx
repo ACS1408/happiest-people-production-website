@@ -6,18 +6,31 @@ import ToasterProvider from "./ToasterProvider";
 
 interface GlobalContextProps {
   children: React.ReactNode;
+  contextType?: string;
 }
 
-const GlobalContextProvider = ({ children }: GlobalContextProps) => {
-  return (
-    <PageLayoutContext>
-      <SmoothScrollContext>
-        <CustomCursor />
+const GlobalContextProvider = ({
+  children,
+  contextType,
+}: GlobalContextProps) => {
+  if (contextType === "admin") {
+    return (
+      <>
         {children}
         <ToasterProvider />
-      </SmoothScrollContext>
-    </PageLayoutContext>
-  );
+      </>
+    );
+  } else {
+    return (
+      <PageLayoutContext>
+        <SmoothScrollContext>
+          <CustomCursor />
+          {children}
+        </SmoothScrollContext>
+        <ToasterProvider />
+      </PageLayoutContext>
+    );
+  }
 };
 
 export default GlobalContextProvider;

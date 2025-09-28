@@ -196,6 +196,9 @@ html.lenis { height: auto; }
   .no-scrollbar::-webkit-scrollbar {
     display: none;
   }
+
+  /* Stretched link utility: makes link/button clickable over entire parent card */
+  /* (Removed custom .stretched-link utility; using absolute overlay link in component instead) */
 }
 
 @layer components {

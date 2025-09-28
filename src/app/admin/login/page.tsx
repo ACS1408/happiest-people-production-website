@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import Container from "@/components/Container";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
+import { twc } from "@/utils";
+import GlobalContextProvider from "@/components/GlobalContextProvider";
 
 export default function AdminLoginPage() {
   const [username, setUsername] = useState("");
@@ -35,49 +37,62 @@ export default function AdminLoginPage() {
   };
 
   return (
-    <section className="min-h-screen flex items-center justify-center bg-white py-20">
-      <Container>
-        <div className="max-w-sm mx-auto border border-neutral-200 rounded-2xl p-8 bg-neutral-50/50 shadow-sm">
-          <h1 className="ff-figtree text-2xl font-light mb-1">
-            Admin <em className="not-italic font-medium">Login</em>
-          </h1>
-          <p className="text-sm text-neutral-500 mb-6">
-            Enter credentials to manage works.
-          </p>
-          <form onSubmit={submit} className="flex flex-col gap-5">
-            <label className="flex flex-col gap-1 text-sm font-medium text-neutral-700">
-              <span>Username</span>
-              <input
-                autoFocus
-                required
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                className={inputCls}
-              />
-            </label>
-            <label className="flex flex-col gap-1 text-sm font-medium text-neutral-700">
-              <span>Password</span>
-              <input
-                required
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className={inputCls}
-              />
-            </label>
-            <button
-              disabled={loading}
-              type="submit"
-              className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-md bg-neutral-900 text-white text-sm font-medium hover:bg-neutral-800 disabled:opacity-60"
-            >
-              {loading ? "Signing in…" : "Login"}
-            </button>
-          </form>
-        </div>
-      </Container>
-    </section>
+    <GlobalContextProvider contextType="admin">
+      <section className={twClasses.section}>
+        <Container>
+          <div className={twClasses.inner_container}>
+            <h1 className={twClasses.title}>
+              Admin <em className="not-italic font-medium">Login</em>
+            </h1>
+            <p className={twClasses.description}>
+              Enter credentials to manage works.
+            </p>
+            <form onSubmit={submit} className={twClasses.form}>
+              <label className={twClasses.label}>
+                <span>Username</span>
+                <input
+                  autoFocus
+                  required
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  className={twClasses.input}
+                />
+              </label>
+              <label className={twClasses.label}>
+                <span>Password</span>
+                <input
+                  required
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className={twClasses.input}
+                />
+              </label>
+              <button
+                disabled={loading}
+                type="submit"
+                className={twClasses.button}
+              >
+                {loading ? "Signing in…" : "Login"}
+              </button>
+            </form>
+          </div>
+        </Container>
+      </section>
+    </GlobalContextProvider>
   );
 }
 
-const inputCls =
-  "rounded-md border border-neutral-300 bg-white px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-neutral-900/30 focus:border-neutral-900 transition";
+const twClasses = twc({
+  section: "min-h-screen flex items-center justify-center bg-white py-20",
+  inner_container:
+    "max-w-sm mx-auto border border-neutral-200 rounded-2xl p-8 bg-neutral-50/50 shadow-sm",
+  title: "ff-figtree text-2xl font-light mb-1",
+  description: "text-sm text-neutral-500 mb-6",
+  label: "flex flex-col gap-1 text-sm font-medium text-neutral-700",
+  input:
+    "rounded-md border border-neutral-300 bg-white px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-neutral-900/30 focus:border-neutral-900 transition",
+  button:
+    "inline-flex items-center justify-center gap-2 px-4 py-2 rounded-md bg-neutral-900 text-white text-sm font-medium hover:bg-neutral-800 disabled:opacity-60",
+  form: "flex flex-col gap-5",
+});
