@@ -62,6 +62,35 @@ export default function ApplicationsTable({ search = '' }: { search?: string }) 
 
   useEffect(() => { fetchPage(1); }, [fetchPage, search]);
 
+  const handleDownload = async (a: CareerApplication, e: React.MouseEvent) => {
+    e.preventDefault();
+    if(!a.resume) return;
+    try {
+      // Derive key from stored URL: assume it ends with the key path
+      const url = a.resume;
+      // Extract key after the last '/career-resumes/' occurrence
+      const match = url.match(/career-resumes\/[^?&#]+/);
+      const key = match ? match[0] : undefined;
+      if(!key) throw new Error('Could not determine S3 key');
+      const res = await fetch(`/api/admin/resumes/sign?key=${encodeURIComponent(key)}`, { cache: 'no-store' });
+      const json: any = await res.json();
+      if(!res.ok) throw new Error(json.error || 'Failed to sign');
+      const signed = json.url as string;
+      // Trigger browser download
+      const fileName = buildResumeFileName(a);
+      const aTag = document.createElement('a');
+      aTag.href = signed;
+      aTag.download = fileName; // browser may ignore for cross-origin; fallback handled by content-disposition if added server-side later
+      aTag.target = '_blank';
+      document.body.appendChild(aTag);
+      aTag.click();
+      aTag.remove();
+    } catch (err) {
+      console.error(err);
+      // Optionally surface a toast if toast system imported
+    }
+  };
+
   return (
     <div className="space-y-6">
       <div className="overflow-x-auto border border-neutral-200 rounded-xl shadow-sm">
@@ -97,10 +126,8 @@ export default function ApplicationsTable({ search = '' }: { search?: string }) 
                 <td className={cellCls}>
                   {a.resume ? (
                     <a
-                      href={a.resume}
-                      download={buildResumeFileName(a)}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                      href="#"
+                      onClick={(e) => handleDownload(a, e)}
                       className="inline-flex items-center gap-1 text-neutral-700 hover:text-neutral-900 text-[11px] font-medium px-3 py-1 rounded-md border border-neutral-300 hover:bg-neutral-100 focus:outline-none focus:ring-2 focus:ring-neutral-900/30"
                     >
                       <DownloadIcon /> <span>Download</span>

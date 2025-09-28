@@ -101,8 +101,12 @@ const useCareersApplicationForm = () => {
         let resumeUrl = "";
         if (values.resume) {
           const fd = new FormData();
-            // Upload API expects field name 'file'
+          // Upload API expects field name 'file'
           fd.append("file", values.resume);
+          // Provide meta fields so backend can incorporate them into key naming
+          fd.append("firstName", values.firstName);
+          fd.append("lastName", values.lastName);
+          fd.append("department", values.department); // raw value; backend can slug
           const uploadRes = await fetch("/api/uploads", {
             method: "POST",
             body: fd,

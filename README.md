@@ -25,6 +25,45 @@ Modern marketing / creative production site built with Next.js 15 App Router, Re
 15. Works CMS (Lightweight)
 16. Authentication (Admin CMS)
 
+### AWS S3 (Career Application Resumes - Mandatory)
+
+Resume uploads use Amazon S3 through the `/api/uploads` endpoint. S3 configuration is now **required**; if the required env vars are missing the endpoint returns an error (no local filesystem fallback). This enforces consistent, secure resume handling and avoids leaked artifacts in repo or server disks.
+
+Env vars (add to `.env.local`):
+```
+AWS_S3_REGION=us-east-1
+AWS_S3_BUCKET=your-bucket
+AWS_S3_ACCESS_KEY_ID=AKIA...
+AWS_S3_SECRET_ACCESS_KEY=xxxxxxxx
+# Optional custom CDN domain (omit to default to bucket URL)
+AWS_S3_PUBLIC_BASE_URL=https://cdn.example.com
+```
+
+Upload response shape:
+```
+{ "url": "https://<bucket-or-cdn>/career-resumes/<key>", "key": "career-resumes/<key>", "name": "originalName.ext", "size": 12345, "storage": "s3" }
+```
+
+Private Objects Note: Objects are stored with `ACL: private`. The `url` returned is a reference pattern; direct download will 403 unless you (a) generate a presigned URL, (b) serve via CloudFront signed URLs/cookies, or (c) relax bucket/object permissions. Recommended next enhancement: add a signed download API route issuing short-lived presigned URLs.
+
+Frontend form still POSTs `FormData` with field `file` to `/api/uploads` and then stores the returned `url` in the application record.
+
+#### Signed Resume Downloads
+
+Private resumes are now accessed via a presigned URL endpoint instead of direct S3 links:
+
+`GET /api/admin/resumes/sign?key=career-resumes/<object>` → `{ url: <temporarySignedUrl> }`
+
+- Auth protected (same admin cookie).
+- URL validity: 60 seconds.
+- The Admin Applications table requests this endpoint on click and then triggers a download.
+- If you need longer validity or different content-disposition headers, adjust the presigner configuration.
+
+Hardening ideas:
+- Log access attempts (append to an audit collection).
+- Rate-limit signing (e.g., store timestamps per admin user/IP).
+- Shorter expiry (15–30s) + one-time tokens persisted server-side.
+
 ---
 
 ## 1. Overview
