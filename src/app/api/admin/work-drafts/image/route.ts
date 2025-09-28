@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import fs from "fs";
 import path from "path";
+import os from "os";
 
 export const dynamic = "force-dynamic";
 
@@ -13,12 +14,7 @@ export async function GET(req: NextRequest) {
   if (file.includes("..") || file.includes("/") || file.includes("\\")) {
     return NextResponse.json({ error: "Invalid filename" }, { status: 400 });
   }
-  const draftsDir = path.join(
-    process.cwd(),
-    "public",
-    "uploads",
-    "work-drafts"
-  );
+  const draftsDir = path.join(process.env.TMPDIR || os.tmpdir(), "hpp-work-drafts");
   const fullPath = path.join(draftsDir, file);
   if (!fs.existsSync(fullPath)) {
     return NextResponse.json({ error: "Not found" }, { status: 404 });

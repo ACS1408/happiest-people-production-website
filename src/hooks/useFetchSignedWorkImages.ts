@@ -10,9 +10,7 @@ const useFetchSignedWorkImages = (value: string) => {
     async function fetchSigned() {
       const rawUrl = value;
       // Draft images (local) or already presigned (has X-Amz-Signature) skip signing.
-      const isLocalDraft =
-        rawUrl.startsWith("/uploads/work-drafts/") ||
-        rawUrl.startsWith("/api/admin/work-drafts/image?");
+      const isLocalDraft = rawUrl.startsWith("/api/admin/work-drafts/image?");
       const alreadySigned = rawUrl.includes("X-Amz-Signature");
       // Extract key if it looks like an S3 style URL we generated in migration (base/.../work-images/..)
       // We only sign if the object is in work-images/ prefix.

@@ -4,6 +4,7 @@ import { PutObjectCommand } from "@aws-sdk/client-s3";
 import { s3Client } from "@/lib/s3";
 import fs from "fs";
 import path from "path";
+import os from "os";
 
 export const dynamic = "force-dynamic";
 
@@ -50,31 +51,27 @@ export async function POST(req: NextRequest) {
     const rand = crypto.randomBytes(4).toString("hex");
     const timestamp = Date.now();
 
-    // Work image draft: store locally; resume or other: go to S3 (requires config)
+    // Work image draft: store in ephemeral temp directory; resume or other: go to S3 (requires config)
     if (uploadType === "work-image") {
-      const draftsDir = path.join(
-        process.cwd(),
-        "public",
-        "uploads",
-        "work-drafts"
-      );
-      if (!fs.existsSync(draftsDir))
-        fs.mkdirSync(draftsDir, { recursive: true });
+      const tmpRoot = process.env.TMPDIR || os.tmpdir();
+      const draftsDir = path.join(tmpRoot, "hpp-work-drafts");
+      try {
+        if (!fs.existsSync(draftsDir)) fs.mkdirSync(draftsDir, { recursive: true });
+      } catch (e:any) {
+        return NextResponse.json({ error: 'Failed to create temp dir', details: e.message }, { status: 500 });
+      }
       const baseName = file.name ? path.basename(file.name, ext) : "image";
       const imageSlug = slug(baseName).substring(0, 60) || "image";
       const localName = `${imageSlug}-${timestamp}-${rand}${ext}`;
       const localPath = path.join(draftsDir, localName);
       await fs.promises.writeFile(localPath, buffer);
-      // Instead of exposing the raw /uploads path (which may 404 in some prod platforms),
-      // serve via an API route to guarantee availability even in serverless environments.
-      const url = `/api/admin/work-drafts/image?file=${encodeURIComponent(
-        localName
-      )}`;
+      // Serve via API route (filename only); file resides in temp storage.
+      const url = `/api/admin/work-drafts/image?file=${encodeURIComponent(localName)}`;
       return NextResponse.json({
         url,
         name: file.name,
         size: buffer.length,
-        storage: "local-draft",
+        storage: "tmp-draft",
       });
     }
 
