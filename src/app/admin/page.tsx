@@ -39,6 +39,11 @@ export default async function AdminHomePage() {
                 label="Works"
                 description="Create, edit, reorder and publish work entries."
               />
+              <AdminDashboardCard
+                href="/admin/career-applications"
+                label="Career Applications"
+                description="Browse and download submitted career applications."
+              />
             </nav>
           </div>
         </Container>
