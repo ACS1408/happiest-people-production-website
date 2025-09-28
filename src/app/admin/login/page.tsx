@@ -27,7 +27,7 @@ export default function AdminLoginPage() {
         localStorage.setItem("hpp_admin_user", username);
       } catch {}
       toast.success("Login successful");
-      router.replace("/admin/works");
+      router.replace("/admin");
     } catch (e: any) {
       console.log(e.message);
       toast.error(e.message || "Login failed");
