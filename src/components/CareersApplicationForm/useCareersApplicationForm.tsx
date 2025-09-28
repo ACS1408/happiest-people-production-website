@@ -89,35 +89,57 @@ const useCareersApplicationForm = () => {
   const formik = useFormik({
     initialValues,
     validationSchema,
-    onSubmit: (values, { setSubmitting, resetForm }) => {
-      const formattedPhoneNumber = `${
-        intlTelInputRef.current?.getSelectedCountryData()?.dialCodePlus
-      }-${values.phone}`;
-      const selectedDepartment = departmentOptions?.find(
-        (option) => option.value === values.department
-      )?.label;
+    onSubmit: async (values, { setSubmitting, resetForm }) => {
+      try {
+        const dialCode = intlTelInputRef.current?.getSelectedCountryData()?.dialCodePlus || "";
+        const formattedPhoneNumber = `${dialCode} ${values.phone}`.trim();
+        const selectedDepartment = departmentOptions?.find(
+          (option) => option.value === values.department
+        )?.label;
 
-      // Payload to be sent to the server or API
-      const formData = {
-        ...values,
-        phone: formattedPhoneNumber,
-        department: selectedDepartment,
-      };
-      console.log("Form submitted:", formData);
+        // 1. Upload resume if present
+        let resumeUrl = "";
+        if (values.resume) {
+          const fd = new FormData();
+            // Upload API expects field name 'file'
+          fd.append("file", values.resume);
+          const uploadRes = await fetch("/api/uploads", {
+            method: "POST",
+            body: fd,
+          });
+          const uploadJson = await uploadRes.json();
+          if (!uploadRes.ok) throw new Error(uploadJson.error || "Upload failed");
+          resumeUrl = uploadJson.url;
+        } else {
+          throw new Error("Resume missing");
+        }
 
-      // Simulate API call
-      setTimeout(() => {
-        setSubmitting(false);
+        // 2. Persist application
+        const res = await fetch("/api/careers/applications", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            ...values,
+            phone: formattedPhoneNumber,
+            department: selectedDepartment,
+            resume: resumeUrl,
+          }),
+        });
+        const json = await res.json();
+        if (!res.ok) throw new Error(json.error || "Submission failed");
+        console.log("Application submitted");
         resetForm();
-        // Reset the phone input and phone value
         if (intlTelInputRef.current) {
           intlTelInputRef.current.setCountry("in");
         }
         if (phoneInputRef.current) {
           phoneInputRef.current.value = "";
         }
-        // You can add success message here
-      }, 1000);
+      } catch (e: any) {
+        console.log("Career application submit error", e.message);
+      } finally {
+        setSubmitting(false);
+      }
     },
   });
 
