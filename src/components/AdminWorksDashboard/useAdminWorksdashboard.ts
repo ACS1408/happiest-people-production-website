@@ -55,8 +55,8 @@ const useAdminWorksdashboard = () => {
     const snap = {
       id: w.id,
       title: w.title,
-      imageUrl: w.image.url,
-      imageAlt: w.image.alt,
+      imageUrl: w.image?.url || "",
+      imageAlt: w.image?.alt || "",
       videoId: w.videoId,
     } as FormState;
     setForm(snap);
@@ -85,6 +85,7 @@ const useAdminWorksdashboard = () => {
       }
       for (const d of drafts) {
         const imageAlt = d.imageAlt?.trim() ? d.imageAlt.trim() : "Work image";
+        const imagePayload = d.imageUrl ? { url: d.imageUrl, alt: imageAlt } : undefined;
         if (d.id) {
           const res = await fetch("/api/works", {
             method: "PUT",
@@ -92,7 +93,7 @@ const useAdminWorksdashboard = () => {
             body: JSON.stringify({
               id: d.id,
               title: d.title,
-              image: { url: d.imageUrl, alt: imageAlt },
+              image: imagePayload,
               videoId: d.videoId || undefined,
               published: true,
             }),
@@ -104,7 +105,7 @@ const useAdminWorksdashboard = () => {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
               title: d.title,
-              image: { url: d.imageUrl, alt: imageAlt },
+              image: imagePayload,
               videoId: d.videoId || undefined,
               published: true,
             }),
@@ -133,7 +134,7 @@ const useAdminWorksdashboard = () => {
     setOrderDirty(false);
   };
   const createDraft = () => {
-    if (!form.title || !form.imageUrl) return;
+    if (!form.title) return; // image not mandatory
     const tempId =
       "temp-" + Date.now() + "-" + Math.random().toString(36).slice(2, 7);
     setDrafts((ds) => [...ds, { ...form, tempId }]);

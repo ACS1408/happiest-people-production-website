@@ -6,7 +6,7 @@ export interface WorkImage {
 export interface Work {
   id: string; // uuid
   title: string;
-  image: WorkImage;
+  image?: WorkImage; // now optional
   videoId?: string;
   createdAt: string; // ISO date
   updatedAt: string; // ISO date

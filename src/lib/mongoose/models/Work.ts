@@ -2,13 +2,13 @@ import { Schema, models, model } from 'mongoose';
 
 // Mirror src/types/works.ts structure
 const WorkImageSchema = new Schema({
-  url: { type: String, required: true },
-  alt: { type: String, required: true },
+  url: { type: String, required: false },
+  alt: { type: String, required: false, default: 'Work image' },
 }, { _id: false });
 
 const WorkSchema = new Schema({
   title: { type: String, required: true },
-  image: { type: WorkImageSchema, required: true },
+  image: { type: WorkImageSchema, required: false }, // made optional
   videoId: { type: String },
   published: { type: Boolean, default: false },
   order: { type: Number, required: true, index: true },

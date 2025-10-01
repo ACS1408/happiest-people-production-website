@@ -66,7 +66,7 @@ const AdminWorksDashboard = () => {
               <form
                 onSubmit={(e) => {
                   e.preventDefault();
-                  if (!form.title || !form.imageUrl) return;
+                  if (!form.title) return; // image no longer mandatory
                   const tempId =
                     "temp-" +
                     Date.now() +
@@ -93,11 +93,11 @@ const AdminWorksDashboard = () => {
                 </Field>
                 <Field
                   label="Image"
-                  required
+                  // removed required to make optional
                   hint="Upload and preview. Stored under /public/uploads."
                 >
                   <ImageUploader
-                    value={form.imageUrl}
+                    value={form.imageUrl || ""}
                     onUploaded={(url) =>
                       setForm((f) => ({ ...f, imageUrl: url }))
                     }
@@ -134,7 +134,7 @@ const AdminWorksDashboard = () => {
                 <div className="flex gap-3 pt-2">
                   <button
                     type="submit"
-                    disabled={!form.title || !form.imageUrl}
+                    disabled={!form.title} // only title required now
                     className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-neutral-900 text-white text-sm font-medium hover:bg-neutral-800 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
                   >
                     {form.id ? "Update" : "Create"}

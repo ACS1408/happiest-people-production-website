@@ -1,6 +1,6 @@
 import { Work } from "@/types/works";
 import { useSortable } from "@dnd-kit/sortable";
-import React from "react";
+import React, { useState } from "react";
 import { CSS } from "@dnd-kit/utilities";
 import Image from "next/image";
 import IconButton from "./iconButton";
@@ -30,8 +30,12 @@ const SortableRow = ({ id, work, onEdit, onDelete }: SortableRowProps) => {
   };
 
   const { signedSrc, imgError, setImgError } = useFetchSignedWorkImages(
-    work.image.url
+    work.image?.url || ""
   );
+
+  const [isImageLoaded, setIsImageLoaded] = useState(false);
+
+  console.log("image error: ", imgError);
 
   return (
     <tr
@@ -52,21 +56,35 @@ const SortableRow = ({ id, work, onEdit, onDelete }: SortableRowProps) => {
       <td className="p-3">
         <div className="relative w-24 aspect-[16/9] rounded-md overflow-hidden bg-neutral-200">
           {signedSrc ? (
-            <Image
-              src={signedSrc}
-              alt={work.image.alt}
-              fill
-              className="object-cover"
-              onError={() => setImgError("load error")}
-            />
+            <>
+              <Image
+                src={signedSrc}
+                alt={work.image?.alt || "Work image"}
+                fill
+                className="object-cover"
+                onError={() => setImgError("load error")}
+                onLoad={() => setIsImageLoaded(true)}
+              />
+              {!isImageLoaded ? (
+                <div className="absolute inset-0">
+                  <div
+                    className="skeleton-shimmer"
+                    aria-label="Loading image"
+                  />
+                </div>
+              ) : null}
+            </>
           ) : (
-            <div className="w-full h-full flex items-center justify-center text-[10px] text-neutral-500">
-              IMG…
-            </div>
-          )}
-          {imgError && (
-            <div className="absolute inset-0 bg-neutral-900/50 flex items-center justify-center text-[10px] text-white text-center p-1">
-              {imgError}
+            <div
+              className={`bg-gray-200 flex items-center justify-center p-5 !absolute inset-0`}
+            >
+              <Image
+                src="/images/placeholder-icon.png"
+                alt="placeholder-icon"
+                width={20}
+                height={20}
+                className="object-contain"
+              />
             </div>
           )}
         </div>

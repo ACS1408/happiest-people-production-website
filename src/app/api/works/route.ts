@@ -38,14 +38,21 @@ export async function POST(req: NextRequest) {
       const extracted = extractYouTubeId(input.videoId);
       input.videoId = extracted; // may become undefined if invalid
     }
-    if (!input.title || !input.image?.url || !input.image?.alt) {
-      return NextResponse.json({ error: "Invalid payload" }, { status: 400 });
+    // Relaxed validation: only title required. Image optional; if provided, must have url. Alt defaults.
+    if (!input.title) {
+      return NextResponse.json({ error: "Invalid payload: title required" }, { status: 400 });
+    }
+    if (input.image && !input.image.url) {
+      return NextResponse.json({ error: "Invalid payload: image url missing" }, { status: 400 });
+    }
+    if (input.image && !input.image.alt) {
+      input.image.alt = 'Work image';
     }
     // assign next order if not provided
     if (typeof input.published !== "boolean") input.published = false;
 
     // Promote draft image (legacy local path or tmp-served API) to S3 when publishing
-    if (input.published && isDraftLikeUrl(input.image.url)) {
+    if (input.published && input.image?.url && isDraftLikeUrl(input.image.url)) {
       try {
         const migrated = await migrateDraftImageToS3(
           input.image.url,

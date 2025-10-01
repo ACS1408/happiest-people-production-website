@@ -140,10 +140,18 @@
 }
 
 /* Lenis recommendations */
-html.lenis { height: auto; }
-.lenis.lenis-smooth { scroll-behavior: auto !important; }
-.lenis.lenis-stopped { overflow: hidden; }
-.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+html.lenis {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
 
 @layer utilities {
   .ff-figtree {
@@ -197,8 +205,22 @@ html.lenis { height: auto; }
     display: none;
   }
 
-  /* Stretched link utility: makes link/button clickable over entire parent card */
-  /* (Removed custom .stretched-link utility; using absolute overlay link in component instead) */
+  .skeleton-shimmer {
+    position: absolute;
+    inset: 0;
+    border-radius: 0.375rem; /* match rounded-md */
+    background: linear-gradient(110deg, #e5e7eb 8%, #f5f5f5 18%, #e5e7eb 33%);
+    background-size: 200% 100%;
+    animation: skeleton-shimmer 1.2s ease-in-out infinite;
+  }
+  .skeleton-shimmer[data-variant="dark"] {
+    background: linear-gradient(110deg, #d4d4d4 8%, #ededed 18%, #d4d4d4 33%);
+  }
+}
+@keyframes skeleton-shimmer {
+  to {
+    background-position: -200% 0;
+  }
 }
 
 @layer components {

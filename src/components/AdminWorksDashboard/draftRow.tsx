@@ -15,7 +15,7 @@ const DraftRow = ({
   onRemoveDraft: (id: string) => void;
 }) => {
   const { signedSrc, imgError, setImgError } = useFetchSignedWorkImages(
-    draft.imageUrl
+    draft.imageUrl || ""
   );
   const [isImageLoaded, setIsImageLoaded] = useState(false);
 
@@ -38,15 +38,10 @@ const DraftRow = ({
                 onLoad={() => setIsImageLoaded(true)}
               />
               {!isImageLoaded ? (
-                <div
-                  className={`bg-gray-200 flex items-center justify-center p-5 !absolute inset-0`}
-                >
-                  <Image
-                    src="/images/placeholder-icon.png"
-                    alt="placeholder-icon"
-                    width={20}
-                    height={20}
-                    className="object-contain"
+                <div className="absolute inset-0">
+                  <div
+                    className="skeleton-shimmer"
+                    aria-label="Loading image"
                   />
                 </div>
               ) : null}

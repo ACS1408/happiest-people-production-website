@@ -9,7 +9,7 @@ import useFetchSignedWorkImages from "@/hooks/useFetchSignedWorkImages";
 import ImageBlurLoader from "../ImageBlurLoader";
 
 interface ImageCardProps {
-  image: {
+  image?: {
     url: string;
     alt: string;
   };
@@ -23,7 +23,7 @@ const ImageCard = ({ image, title, videoId }: ImageCardProps) => {
   const hasVideo = !!videoId;
 
   const { signedSrc, imgError, setImgError } = useFetchSignedWorkImages(
-    image.url
+    image?.url || ""
   );
 
   const openVideo = useCallback(() => {
@@ -42,7 +42,7 @@ const ImageCard = ({ image, title, videoId }: ImageCardProps) => {
         <>
           <ImageBlurLoader
             src={signedSrc}
-            alt={image.alt}
+            alt={image?.alt || "Work image"}
             fill
             className={`image-card__image ${twClasses.image} ${twClasses.image.group_hover}`}
             onError={() => setImgError("load error")}
@@ -56,16 +56,8 @@ const ImageCard = ({ image, title, videoId }: ImageCardProps) => {
             setIsImageLoaded={(state) => setIsImageLoaded(state)}
           />
           {!isImageLoaded ? (
-            <div
-              className={`${twClasses.image_wrapper} bg-gray-200 flex items-center justify-center p-5 !absolute inset-0`}
-            >
-              <Image
-                src="/images/placeholder-icon.png"
-                alt="placeholder-icon"
-                width={80}
-                height={80}
-                className="object-contain"
-              />
+            <div className={`${twClasses.image_wrapper} !absolute inset-0`}>
+              <div className="skeleton-shimmer" aria-label="Loading image" />
             </div>
           ) : null}
         </>
