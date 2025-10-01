@@ -73,10 +73,11 @@ const AdminWorksDashboard = () => {
                     "-" +
                     Math.random().toString(36).slice(2, 7);
                   if (form.id) {
-                    setDrafts((ds) => [...ds, { ...form, tempId }]);
+                    setDrafts((ds) => [...ds, { ...form, tempId, action: 'update' }]);
                     setForm(emptyForm);
                   } else {
-                    createDraft();
+                    setDrafts((ds) => [...ds, { ...form, tempId, action: 'create' }]);
+                    setForm(emptyForm);
                   }
                 }}
                 className="mt-6 flex flex-col gap-5"
@@ -229,6 +230,7 @@ const AdminWorksDashboard = () => {
                             .filter(
                               (w) => !drafts.some((d) => d.id && d.id === w.id)
                             )
+                            .filter((w) => !drafts.some(d => d.action === 'delete' && (d.originalId === w.id || d.id === w.id)))
                             .map((w) => (
                               <SortableRow
                                 key={w.id}

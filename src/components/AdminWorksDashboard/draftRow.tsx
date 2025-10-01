@@ -10,7 +10,7 @@ const DraftRow = ({
   onEditDraft,
   onRemoveDraft,
 }: {
-  draft: FormState & { tempId: string };
+  draft: (FormState & { tempId: string; action?: 'create' | 'update' | 'delete'; originalId?: string });
   onEditDraft: (id: string) => void;
   onRemoveDraft: (id: string) => void;
 }) => {
@@ -21,7 +21,10 @@ const DraftRow = ({
 
   console.log("imgError: ", imgError);
 
-  const isUpdate = !!draft.id;
+  const isUpdate = draft.action === 'update';
+  const isCreate = draft.action === 'create' || (!draft.action && !draft.id);
+  const isDelete = draft.action === 'delete';
+
   return (
     <tr className="bg-amber-50/60 hover:bg-amber-50">
       <td className="p-3 align-center text-neutral-400">—</td>
@@ -67,11 +70,11 @@ const DraftRow = ({
         </p>
         <p
           className={
-            "text-[10px] mt-1 tracking-wide " +
-            (isUpdate ? "text-blue-600" : "text-amber-600")
+            'text-[10px] mt-1 tracking-wide ' +
+            (isDelete ? 'text-red-600' : isUpdate ? 'text-blue-600' : 'text-amber-600')
           }
         >
-          {isUpdate ? "Update (staged)" : "Draft (local)"}
+          {isDelete ? 'Delete (staged)' : isUpdate ? 'Update (staged)' : 'Create (staged)'}
         </p>
       </td>
       <td className="p-3 align-center">
@@ -86,13 +89,15 @@ const DraftRow = ({
       <td className="p-3 align-center">
         <span
           className={
-            "inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[11px] font-medium " +
-            (isUpdate
-              ? "bg-blue-200 text-blue-700"
-              : "bg-amber-200 text-amber-700")
+            'inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[11px] font-medium ' +
+            (isDelete
+              ? 'bg-red-200 text-red-700'
+              : isUpdate
+              ? 'bg-blue-200 text-blue-700'
+              : 'bg-amber-200 text-amber-700')
           }
         >
-          {isUpdate ? "Update" : "Draft"}
+          {isDelete ? 'Delete' : isUpdate ? 'Update' : 'Create'}
         </span>
       </td>
       <td className="p-3 align-center">
@@ -104,7 +109,7 @@ const DraftRow = ({
             icon={<Icons.Edit className="w-4 h-4" />}
           />
           <IconButton
-            label="Remove draft"
+            label={isDelete ? 'Remove staged delete' : 'Remove draft'}
             variant="danger"
             onClick={() => onRemoveDraft(draft.tempId)}
             icon={<Icons.Trash className="w-4 h-4" />}

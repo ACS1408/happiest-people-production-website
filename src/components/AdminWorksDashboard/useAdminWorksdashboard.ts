@@ -22,8 +22,8 @@ const useAdminWorksdashboard = () => {
   const [originalWorks, setOriginalWorks] = useState<Work[]>([]);
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState<FormState>(emptyForm);
-  // Removed original snapshot tracking; edits now staged as drafts
-  const [drafts, setDrafts] = useState<Array<FormState & { tempId: string }>>(
+  // Draft now enriched with action type
+  const [drafts, setDrafts] = useState<Array<FormState & { tempId: string; action: 'create' | 'update' | 'delete'; originalId?: string }>>(
     []
   );
   const [saving, setSaving] = useState(false);
@@ -63,9 +63,11 @@ const useAdminWorksdashboard = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
   const onDelete = async (w: Work) => {
-    if (!confirm("Delete this work?")) return;
-    await fetch(`/api/works?id=${w.id}`, { method: "DELETE" });
-    fetchWorks();
+    if (!confirm("Stage deletion for this work?")) return;
+    // Avoid duplicating delete draft
+    const exists = drafts.some(d => d.action === 'delete' && (d.originalId === w.id || d.id === w.id));
+    if (exists) return;
+    setDrafts(ds => [...ds, { tempId: 'temp-' + Date.now() + '-' + Math.random().toString(36).slice(2,7), title: w.title, imageUrl: w.image?.url || '', imageAlt: w.image?.alt || '', videoId: w.videoId, id: w.id, action: 'delete', originalId: w.id }]);
   };
 
   const publishAll = async () => {
@@ -73,7 +75,6 @@ const useAdminWorksdashboard = () => {
     if (drafts.length === 0 && !hasReorder) return;
     setSaving(true);
     try {
-      // Persist reorder first if needed
       if (hasReorder) {
         const res = await fetch("/api/works", {
           method: "POST",
@@ -84,9 +85,15 @@ const useAdminWorksdashboard = () => {
         setOrderDirty(false);
       }
       for (const d of drafts) {
+        if (d.action === 'delete' && (d.originalId || d.id)) {
+          const id = d.originalId || d.id!;
+          const res = await fetch(`/api/works?id=${id}`, { method: 'DELETE' });
+          if (!res.ok) throw new Error('Failed to delete work');
+          continue;
+        }
         const imageAlt = d.imageAlt?.trim() ? d.imageAlt.trim() : "Work image";
         const imagePayload = d.imageUrl ? { url: d.imageUrl, alt: imageAlt } : undefined;
-        if (d.id) {
+        if (d.action === 'update' && d.id) {
           const res = await fetch("/api/works", {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
@@ -99,7 +106,7 @@ const useAdminWorksdashboard = () => {
             }),
           });
           if (!res.ok) throw new Error("Failed to apply staged update");
-        } else {
+        } else if (d.action === 'create') {
           const res = await fetch("/api/works", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -116,7 +123,6 @@ const useAdminWorksdashboard = () => {
       setDrafts([]);
       setForm(emptyForm);
       fetchWorks();
-      // After publishing, trigger asynchronous cleanup of any additional stale drafts
       fetch('/api/admin/work-drafts/cleanup?ageMinutes=0', { method: 'POST' })
         .catch(() => {/* ignore */});
     } catch (e: any) {
@@ -137,20 +143,24 @@ const useAdminWorksdashboard = () => {
     if (!form.title) return; // image not mandatory
     const tempId =
       "temp-" + Date.now() + "-" + Math.random().toString(36).slice(2, 7);
-    setDrafts((ds) => [...ds, { ...form, tempId }]);
+    // Determine whether this is a create or update draft
+    if (form.id) {
+      setDrafts((ds) => [...ds, { ...form, tempId, action: 'update' }]);
+    } else {
+      setDrafts((ds) => [...ds, { ...form, tempId, action: 'create' }]);
+    }
     setForm(emptyForm);
   };
   const editDraft = (id: string) => {
     const d = drafts.find((dr) => dr.tempId === id);
     if (!d) return;
-    const { tempId: _, ...rest } = d;
-    console.log(_);
+    const { tempId: _, action, originalId, ...rest } = d;
     setForm(rest);
     setDrafts((ds) => ds.filter((dr) => dr.tempId !== id));
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
   const removeDraft = (id: string) => {
-    if (!confirm("Remove this draft?")) return;
+    if (!confirm("Remove this staged change?")) return;
     setDrafts((ds) => ds.filter((d) => d.tempId !== id));
   };
 
