@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import IconButton from "./iconButton";
 import Icons from "@/utils/icons";
 import type { FormState } from "@/types/admin";
+import useFetchSignedWorkImages from "@/hooks/useFetchSignedWorkImages";
+import Image from "next/image";
 
 const DraftRow = ({
   draft,
@@ -12,21 +14,54 @@ const DraftRow = ({
   onEditDraft: (id: string) => void;
   onRemoveDraft: (id: string) => void;
 }) => {
+  const { signedSrc, imgError, setImgError } = useFetchSignedWorkImages(
+    draft.imageUrl
+  );
+  const [isImageLoaded, setIsImageLoaded] = useState(false);
+
+  console.log("imgError: ", imgError);
+
   const isUpdate = !!draft.id;
   return (
     <tr className="bg-amber-50/60 hover:bg-amber-50">
       <td className="p-3 align-center text-neutral-400">—</td>
       <td className="p-3">
         <div className="relative w-24 aspect-[16/9] rounded-md overflow-hidden bg-neutral-200">
-          {draft.imageUrl ? ( // eslint-disable-next-line @next/next/no-img-element
-            <img
-              src={draft.imageUrl}
-              alt={draft.imageAlt || "Draft image"}
-              className="object-cover w-full h-full"
-            />
+          {signedSrc ? (
+            <>
+              <Image
+                src={signedSrc}
+                alt={draft.imageAlt || "Draft image"}
+                fill
+                className="object-cover w-full h-full"
+                onError={() => setImgError("load error")}
+                onLoad={() => setIsImageLoaded(true)}
+              />
+              {!isImageLoaded ? (
+                <div
+                  className={`bg-gray-200 flex items-center justify-center p-5 !absolute inset-0`}
+                >
+                  <Image
+                    src="/images/placeholder-icon.png"
+                    alt="placeholder-icon"
+                    width={20}
+                    height={20}
+                    className="object-contain"
+                  />
+                </div>
+              ) : null}
+            </>
           ) : (
-            <div className="flex items-center justify-center text-[10px] text-neutral-400 w-full h-full">
-              No Image
+            <div
+              className={`bg-gray-200 flex items-center justify-center p-5 !absolute inset-0`}
+            >
+              <Image
+                src="/images/placeholder-icon.png"
+                alt="placeholder-icon"
+                width={20}
+                height={20}
+                className="object-contain"
+              />
             </div>
           )}
         </div>

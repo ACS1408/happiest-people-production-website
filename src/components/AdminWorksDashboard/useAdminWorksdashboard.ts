@@ -18,6 +18,8 @@ const emptyForm: FormState = {
 
 const useAdminWorksdashboard = () => {
   const [works, setWorks] = useState<Work[]>([]);
+  // Keep a snapshot of the last fetched (server) ordering so we can revert sorting
+  const [originalWorks, setOriginalWorks] = useState<Work[]>([]);
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState<FormState>(emptyForm);
   // Removed original snapshot tracking; edits now staged as drafts
@@ -35,7 +37,9 @@ const useAdminWorksdashboard = () => {
     try {
       const res = await fetch("/api/works");
       const json = await res.json();
-      setWorks(json.data || []);
+      const incoming: Work[] = json.data || [];
+      setWorks(incoming);
+      setOriginalWorks(incoming);
     } catch (e: any) {
       console.log("Error fetching works: ", e);
     } finally {
@@ -124,6 +128,9 @@ const useAdminWorksdashboard = () => {
   const resetForm = () => {
     setDrafts([]);
     setForm(emptyForm);
+    // Revert any unsaved drag-sort changes
+    setWorks(originalWorks);
+    setOrderDirty(false);
   };
   const createDraft = () => {
     if (!form.title || !form.imageUrl) return;
