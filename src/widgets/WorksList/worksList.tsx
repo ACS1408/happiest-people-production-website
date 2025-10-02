@@ -1,11 +1,16 @@
 import React from "react";
+import { unstable_noStore as noStore } from "next/cache"; // ensure dynamic fetch (Next 13/14 compatibility)
 import Container from "@/components/Container";
 import ImageCard from "@/components/ImageCard";
 import { twc } from "@/utils";
 import { getPublishedWorks } from "@/lib/repositories/workRepository";
 
 // Server component: directly reads from the JSON store (no caching)
+export const dynamic = "force-dynamic"; // hint to Next.js not to prerender statically
+
 const WorksList = async () => {
+  // Prevent Next.js from caching this server component between requests
+  try { noStore(); } catch (_) { /* ignore if not supported */ }
   const works = await getPublishedWorks();
   return (
     <section data-widget="works-list" className={`works-list ${twClasses.section}`}>

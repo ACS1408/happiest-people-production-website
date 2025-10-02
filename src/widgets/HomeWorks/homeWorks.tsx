@@ -1,4 +1,5 @@
 import React from "react";
+import { unstable_noStore as noStore } from "next/cache";
 import Container from "@/components/Container";
 import Button from "@/components/Button";
 import ImageCard from "@/components/ImageCard";
@@ -6,7 +7,10 @@ import Icons from "@/utils/icons";
 import { twc } from "@/utils";
 import { getPublishedWorks } from "@/lib/repositories/workRepository";
 
+export const dynamic = "force-dynamic";
+
 const HomeWorks = async () => {
+  try { noStore(); } catch (_) { /* noop */ }
   // fetch first two published works
   const works = (await getPublishedWorks()).slice(0, 2);
   return (
