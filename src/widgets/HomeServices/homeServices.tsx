@@ -50,21 +50,33 @@ export default HomeServices;
 const services = [
   {
     Icon: Icons.Display,
-    title: "Tv, theatre commercials",
+    title: "TV Commercials",
     description:
-      "Our products are crafted with uncompromising quality, ensuring durability, reliability, and excellence.",
+      "We create cinematic ads that connect instantly. From storyboarding to shoot to post, we handle it all : delivering campaigns that don’t just sell but stay remembered.",
   },
   {
     Icon: Icons.PlayIcon,
-    title: "Social media ads",
+    title: "Digital Films",
     description:
-      "Our products are crafted with uncompromising quality, ensuring durability, reliability, and excellence.",
+      "We understand digital audiences ,short attention spans, big expectations. Our digital films are crafted to engage, entertain, and convert across every platform.",
   },
   {
     Icon: Icons.CameraIcon,
-    title: "Product shoots",
+    title: "Brand Reels & Corporate Videos",
     description:
-      "Our products are crafted with uncompromising quality, ensuring durability, reliability, and excellence.",
+      "Your brand deserves more than just visibility ;it deserves a voice. We help brands communicate their story with authenticity and creative flair.",
+  },
+  {
+    Icon: Icons.CameraIcon,
+    title: "Product Photography",
+    description:
+      "Every product has a story. We make sure it looks its best through stunning visuals that highlight detail, texture, and purpose. perfect for campaigns, websites, and e-commerce.",
+  },
+  {
+    Icon: Icons.CameraIcon,
+    title: "Post-Production",
+    description:
+      "Editing, color grading, sound design .where the magic truly happens. Our team fine-tunes every detail to make your visuals unforgettable.",
   },
 ];
 

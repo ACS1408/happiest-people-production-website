@@ -38,7 +38,18 @@ const HomeAbout = () => {
             </h2>
 
             <p className={`home-about__description ${twClasses.description}`}>
-              Lorem ipsum solutions tailored to tackle specific challenges
+              Founded in 2020, Happiest People Production is an Indian based ad
+              production company fueled by imagination and innovation, we
+              specialize in bringing stories to life through powerful visuals
+              and meaningful narratives. Our team creates a wide range of
+              content for global clients, delivering campaigns that inspire,
+              engage, and endure.
+            </p>
+
+            <p className={`home-about__description ${twClasses.description}`}>
+              we craft TV commercials, Digital videos, Social media ads, product
+              photography, and high-impact visuals that bring brands to life
+              across every platform.
             </p>
 
             <Button
@@ -105,10 +116,11 @@ const twClasses = twc({
   tag: "inline-block bg-gray-900 text-white px-3.5 py-1.5 rounded-full text-sm font-medium mb-8",
   grid: "grid xl:grid-cols-2 gap-12 items-center mb-20",
   left: "space-y-8",
-  title: "fs-title-secondary ff-figtree lg:text-6xl xl:text-7xl font-light leading-tight",
+  title:
+    "fs-title-secondary ff-figtree lg:text-6xl xl:text-7xl font-light leading-tight",
   title_em:
     "bg-gradient-to-r from-white to-primary text-transparent bg-clip-text font-semibold pe-2",
-  description: "text-gray-400 text-lg leading-relaxed max-w-md",
+  description: "text-gray-400 text-lg leading-relaxed max-w-xl",
   button: "mt-4 w-max",
   image_wrapper: "flex justify-center items-start",
   image_figure: "relative lg:-mt-16 flex justify-center",

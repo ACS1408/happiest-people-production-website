@@ -28,20 +28,30 @@ const HomeTailoredServices = () => {
             className={`home-tailored-service__contents ${twClasses.contents}`}
           >
             <h2 className={`home-tailored-service__title ${twClasses.title}`}>
-              We serve{" "}
+              Our small{" "}
               <span className={`asterisk ${twClasses.asterisk}`}>
                 <Icons.AsteriskIcon ref={asteriskRef} className="size-5" />
               </span>
-              wide{" "}
               <em className={`font-semibold ${twClasses.title_em}`}>
-                tailored
+                Victories
               </em>
             </h2>
             <p
               className={`home-tailored-service__description ${twClasses.description}`}
             >
-              HPP empowers businesses with complete control over their SaaS
-              backups, eliminating vendor lock-in
+              Beginning with nothing but passion, our journey started in the
+              smallest corners—from our own kitchen to the studio we once only
+              dreamed of. Those humble spaces shaped our creativity and fueled
+              our ambition.
+            </p>
+
+            <p
+              className={`home-tailored-service__description ${twClasses.description}`}
+            >
+              Today, HAPPIEST PEOPLE PRODUCTION stands as a celebration of that
+              journey ,proof that with passion, persistence, and a love for
+              creating, even the smallest beginnings can grow into something
+              extraordinary.
             </p>
           </div>
         </div>
@@ -53,7 +63,7 @@ const HomeTailoredServices = () => {
 export default HomeTailoredServices;
 
 const twClasses = twc({
-  section: "bg-tertiary xl:pt-32 pt-16 max-xl:pb-16",
+  section: "bg-tertiary xl:py-32 py-16",
   grid: "grid lg:grid-cols-2 lg:gap-20",
   image: "relative aspect-square w-full -ms-[5%]",
   contents: "xl:pt-20 pt-8",

@@ -30,9 +30,16 @@ const HomeWorkspace = () => {
               className={`home-workspace__description ${twClasses.description}`}
               ref={descriptionRef}
             >
-              Dataravn empowers businesses with complete control over their SaaS
-              backups, eliminating vendor lock-in and ensuring data security,
-              compliance, and flexibility.
+              We provide fully equipped editing suites, a 2000 sq ft studio
+              floor, a dedicated makeup room with an attached bedroom, a dining
+              area, a vibrant courtyard, a DI room along with a dedicated light
+              and camera unit.
+              <br />
+              <br />
+              Every corner is thoughtfully crafted to support the creative
+              process, making it a peaceful heaven for filmmakers, artists, and
+              storytellers. Whether you’re shaping a concept or perfecting the
+              final cut, our space is made to help you create your best work.
             </p>
           </div>
         </div>
