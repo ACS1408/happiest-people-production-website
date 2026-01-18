@@ -13,6 +13,7 @@ import Th from "./th";
 import DraftRow from "./draftRow";
 import SortableRow from "./sortableRow";
 import { twc } from "@/utils";
+import { extractYouTubeId } from "@/utils/youtube";
 import useAdminWorksdashboard from "./useAdminWorksdashboard";
 
 const AdminWorksDashboard = () => {
@@ -95,15 +96,49 @@ const AdminWorksDashboard = () => {
                 <Field
                   label="Image"
                   // removed required to make optional
-                  hint="Upload and preview. Stored under /public/uploads."
+                  hint="Upload and preview, or provide a URL."
                 >
-                  <ImageUploader
-                    value={form.imageUrl || ""}
-                    onUploaded={(url) =>
-                      setForm((f) => ({ ...f, imageUrl: url }))
-                    }
-                    onClear={() => setForm((f) => ({ ...f, imageUrl: "" }))}
-                  />
+                  <div className="space-y-3">
+                    <div className="flex gap-3">
+                      <label className="flex items-center gap-2 cursor-pointer flex-1">
+                        <input
+                          type="radio"
+                          name="imageSource"
+                          checked={!form.imageSource || form.imageSource === 'upload'}
+                          onChange={() => setForm((f) => ({ ...f, imageSource: 'upload' }))}
+                        />
+                        <span className="text-sm">Upload Image</span>
+                      </label>
+                      <label className="flex items-center gap-2 cursor-pointer flex-1">
+                        <input
+                          type="radio"
+                          name="imageSource"
+                          checked={form.imageSource === 'url'}
+                          onChange={() => setForm((f) => ({ ...f, imageSource: 'url' }))}
+                        />
+                        <span className="text-sm">Enter URL</span>
+                      </label>
+                    </div>
+                    {(!form.imageSource || form.imageSource === 'upload') ? (
+                      <ImageUploader
+                        value={form.imageUrl || ""}
+                        onUploaded={(url) =>
+                          setForm((f) => ({ ...f, imageUrl: url }))
+                        }
+                        onClear={() => setForm((f) => ({ ...f, imageUrl: "" }))}
+                      />
+                    ) : (
+                      <input
+                        type="text"
+                        className={`${twClasses.input} w-full`}
+                        placeholder="https://example.com/image.jpg"
+                        value={form.imageUrl || ""}
+                        onChange={(e) =>
+                          setForm((f) => ({ ...f, imageUrl: e.target.value }))
+                        }
+                      />
+                    )}
+                  </div>
                 </Field>
                 <Field
                   label="Image Alt"
@@ -122,14 +157,30 @@ const AdminWorksDashboard = () => {
                   label="Video URL"
                   hint="Store raw value (URL or ID shown as entered)"
                 >
-                  <input
-                    className={twClasses.input}
-                    value={form.videoId || ""}
-                    placeholder="dQw4w9WgXcQ"
-                    onChange={(e) =>
-                      setForm((f) => ({ ...f, videoId: e.target.value }))
-                    }
-                  />
+                  <div className="space-y-3">
+                    <input
+                      className={`${twClasses.input} w-full`}
+                      value={form.videoId || ""}
+                      placeholder="dQw4w9WgXcQ"
+                      onChange={(e) =>
+                        setForm((f) => ({ ...f, videoId: e.target.value }))
+                      }
+                    />
+                    {form.videoId && extractYouTubeId(form.videoId) && (
+                      <div className="relative w-full aspect-video rounded-lg overflow-hidden ring-1 ring-neutral-200 bg-neutral-900">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          src={`https://img.youtube.com/vi/${extractYouTubeId(form.videoId)}/maxresdefault.jpg`}
+                          alt="YouTube thumbnail"
+                          className="object-cover w-full h-full"
+                          onError={(e) => {
+                            // Fallback to standard quality if maxres not available
+                            (e.target as HTMLImageElement).src = `https://img.youtube.com/vi/${extractYouTubeId(form.videoId)}/hqdefault.jpg`;
+                          }}
+                        />
+                      </div>
+                    )}
+                  </div>
                 </Field>
                 {/* Order field removed – ordering managed solely via drag & drop list */}
                 <div className="flex gap-3 pt-2">
@@ -153,7 +204,7 @@ const AdminWorksDashboard = () => {
             <div className="xl:col-span-2 space-y-6">
               <div className="flex items-center justify-between">
                 <h2 className="ff-figtree text-xl font-light">
-                  All <em className="font-medium not-italic">Works</em>
+                  All <em className="font-medium not-italic">Works</em> ({works?.length})
                 </h2>
                 <div className="flex items-center gap-3 shrink-0">
                   <button

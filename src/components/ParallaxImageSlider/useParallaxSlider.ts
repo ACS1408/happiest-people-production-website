@@ -57,11 +57,24 @@ const useParallaxSlider = () => {
 
       // Compute dynamic end distance for ScrollTrigger (re-evaluated on refresh)
       const getScrollEnd = () => {
-        const firstSlideWidth =
-          (parallax_image_slider_slide as any)?.[0]?.clientWidth || 0;
-        const slidesLen = (parallax_image_slider_slide as any)?.length || 0;
-        const total = (firstSlideWidth * slidesLen) / 2;
-        return `+=${total}px`;
+        // Calculate the actual scroll distance needed by summing all slide widths
+        const slides = parallax_image_slider_slide as any;
+        const slidesLen = slides?.length || 0;
+        const wrapperElement = (parallax_image_slider_wrapper as any)?.[0];
+        const gap = wrapperElement
+          ? parseInt(window.getComputedStyle(wrapperElement).gap) || 0
+          : 0;
+        
+        // Sum all individual slide widths
+        const totalContentWidth = Array.from(slides).reduce((sum: number, slide: any) => sum + (slide.clientWidth || 0), 0) + gap * (slidesLen - 1);
+        
+        // Get the viewport width (outer wrapper width)
+        const viewportWidth = wrapperElement?.clientWidth || window.innerWidth;
+        
+        // Scroll only until the last slide's right edge aligns with viewport's right edge
+        const scrollDistance = Math.max(0, totalContentWidth - viewportWidth);
+        console.log(scrollDistance, "scrollDistance", totalContentWidth, "totalContentWidth", viewportWidth, "viewportWidth");
+        return scrollDistance;
       };
 
       ScrollTrigger.matchMedia({
@@ -76,15 +89,16 @@ const useParallaxSlider = () => {
             scrollTrigger: {
               trigger: main.current,
               start: "center center+=38",
-              end: getScrollEnd, // dynamic end; recalculated on refresh
+              end: `+=${getScrollEnd()}px`, // dynamic end; recalculated on refresh
               scrub: 0.8,
               pin: true,
               anticipatePin: 1,
               invalidateOnRefresh: true,
             },
           });
+
           tl.to(parallax_image_slider_wrapper, {
-            x: `-100%`,
+            x: -getScrollEnd(),
           });
           tl.to(
             parallax_image_slider_image,
@@ -120,7 +134,7 @@ const useParallaxSlider = () => {
       if (parentEl) observer.observe(parentEl);
     } catch (e) {
       // no-op if observation fails
-      console.log(e)
+      console.log(e);
     }
 
     // Also run a refresh once after mount to catch any async content/layout shifts

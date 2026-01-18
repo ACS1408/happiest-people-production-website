@@ -4,4 +4,5 @@ export interface FormState {
   imageUrl?: string; // optional now
   imageAlt: string;
   videoId?: string;
+  imageSource?: 'upload' | 'url'; // 'upload' or 'url', defaults to 'upload'
 }

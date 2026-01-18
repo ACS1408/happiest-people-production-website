@@ -1,4 +1,3 @@
-import React from "react";
 import { unstable_noStore as noStore } from "next/cache"; // ensure dynamic fetch (Next 13/14 compatibility)
 import Container from "@/components/Container";
 import ImageCard from "@/components/ImageCard";

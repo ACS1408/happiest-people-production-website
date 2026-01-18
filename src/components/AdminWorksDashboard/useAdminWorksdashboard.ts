@@ -14,6 +14,7 @@ const emptyForm: FormState = {
   imageUrl: "",
   imageAlt: "",
   videoId: "",
+  imageSource: "upload",
 };
 
 const useAdminWorksdashboard = () => {

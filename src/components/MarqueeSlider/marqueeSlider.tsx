@@ -12,7 +12,7 @@ interface MarqueeSliderProps {
 const MarqueeSlider = ({
   className = "",
   children,
-  speed = 20,
+  speed = 60,
 }: MarqueeSliderProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [shouldAnimate, setShouldAnimate] = useState(false);

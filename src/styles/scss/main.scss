@@ -61,11 +61,11 @@
     transform: translateY(0);
   }
   .home-banner {
-    height: calc(100svh - 88px);
+    height: calc(100svh - 125px);
   }
   @media (min-width: 992px) {
     .home-banner {
-      height: calc(100svh - 96px);
+      height: calc(100svh - 128px);
     }
   }
 }

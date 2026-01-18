@@ -1,4 +1,3 @@
-import React from "react";
 import MainFooter from "@/widgets/MainFooter";
 import MainHeader from "@/widgets/MainHeader";
 import TailoredServiceBanner from "@/widgets/TailoredServiceBanner";

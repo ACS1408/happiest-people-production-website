@@ -1,9 +1,9 @@
-import React from "react";
 import Container from "@/components/Container";
 import Button from "@/components/Button";
 import Image from "next/image";
 import Icons from "@/utils/icons";
 import { twc } from "@/utils";
+import { clientLogos } from "@/data/clients";
 
 const HomeClients = () => {
   return (
@@ -24,17 +24,17 @@ const HomeClients = () => {
           </p>
         </div>
         <div className={`home-clients__list ${twClasses.list}`}>
-          {[...Array(8)]?.map((_, i) => {
+          {clientLogos?.slice(0, 8)?.map((client, i) => {
             return (
               <div
                 className={`home-clients__list--item ${twClasses.list_item}`}
                 key={i}
               >
                 <Image
-                  src="/images/cartknitter.webp"
-                  alt="client logo"
+                  src={client.src}
+                  alt={client.name}
                   width={200}
-                  height={100}
+                  height={200}
                 />
               </div>
             );
@@ -45,7 +45,7 @@ const HomeClients = () => {
             text="View All"
             icon={<Icons.ChevronRight className="h-3 mt-px" />}
             variant="outlined-with-icon"
-            href="/all-works"
+            href="/clients"
             color="black"
           />
         </div>
@@ -64,5 +64,5 @@ const twClasses = twc({
   list: "grid lg:grid-cols-4 sm:grid-cols-3 grid-cols-2 xl:mt-24 mt-12",
   view_all: "flex justify-center xl:mt-24 mt-16",
   list_item:
-    "border border-gray-200 flex justify-center items-center lg:py-16 lg:px-8 py-12 px-6",
+    "border border-gray-200 flex justify-center items-center lg:p-8 p-6",
 });

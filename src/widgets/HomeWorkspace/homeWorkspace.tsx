@@ -55,33 +55,78 @@ export default HomeWorkspace;
 
 const sliderImages = [
   {
-    url: "/images/workspace-1.webp",
-    alt: "workspace-1",
+    url: "/images/workspace/bed-room.webp",
+    alt: "Bed Room",
     ratio: "ratio_1",
   },
   {
-    url: "/images/workspace-2.webp",
-    alt: "workspace-2",
+    url: "/images/workspace/courtyard.webp",
+    alt: "Courtyard",
     ratio: "ratio_2",
   },
   {
-    url: "/images/workspace-3.webp",
-    alt: "workspace-3",
+    url: "/images/workspace/di-out.webp",
+    alt: "Di Out",
     ratio: "ratio_3",
   },
   {
-    url: "/images/workspace-1.webp",
-    alt: "workspace-1",
+    url: "/images/workspace/editing-room.webp",
+    alt: "Editing Room",
     ratio: "ratio_1",
   },
   {
-    url: "/images/workspace-2.webp",
-    alt: "workspace-2",
+    url: "/images/workspace/enhance.webp",
+    alt: "Enhance",
     ratio: "ratio_2",
   },
   {
-    url: "/images/workspace-3.webp",
-    alt: "workspace-3",
+    url: "/images/workspace/floor.webp",
+    alt: "Floor",
+    ratio: "ratio_3",
+  },
+  {
+    url: "/images/workspace/hall-01.webp",
+    alt: "Hall 01",
+    ratio: "ratio_1",
+  },
+  {
+    url: "/images/workspace/hall-02.webp",
+    alt: "Hall 02",
+    ratio: "ratio_2",
+  },
+  {
+    url: "/images/workspace/makeup-room.webp",
+    alt: "Makeup Room",
+    ratio: "ratio_3",
+  },
+  {
+    url: "/images/workspace/office.webp",
+    alt: "Office",
+    ratio: "ratio_1",
+  },
+  {
+    url: "/images/workspace/set-int-01.webp",
+    alt: "Set Int 01",
+    ratio: "ratio_2",
+  },
+  {
+    url: "/images/workspace/wall-set.webp",
+    alt: "Wall Set",
+    ratio: "ratio_3",
+  },
+  {
+    url: "/images/workspace/wall-set-2.webp",
+    alt: "Wall Set 2",
+    ratio: "ratio_1",
+  },
+  {
+    url: "/images/workspace/wall-set-5.webp",
+    alt: "Wall Set 5",
+    ratio: "ratio_2",
+  },
+  {
+    url: "/images/workspace/wall-set-6.webp",
+    alt: "Wall Set 6",
     ratio: "ratio_3",
   },
 ];

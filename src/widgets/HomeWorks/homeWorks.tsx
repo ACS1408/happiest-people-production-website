@@ -1,4 +1,3 @@
-import React from "react";
 import { unstable_noStore as noStore } from "next/cache";
 import Container from "@/components/Container";
 import Button from "@/components/Button";
