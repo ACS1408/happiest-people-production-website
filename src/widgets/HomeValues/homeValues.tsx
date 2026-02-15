@@ -17,7 +17,7 @@ const HomeValues = () => {
               What We Values!
             </div>
             <h2 className={`home-values__title ${twClasses.title}`}>
-              HAPPY PEOPLE's
+              HAPPY PEOPLE&apos;s
               <br />
               Routine that
               <br />

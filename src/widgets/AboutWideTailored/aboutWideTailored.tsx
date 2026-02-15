@@ -28,7 +28,7 @@ const AboutWideTailored = () => {
             className={`about-wide-tailored__description ${twClasses.description}`}
           >
             A Very Thoughtful Team with Extreme Presence of Mind and
-            Extraordinary Passion in the Work they Can. And that's called
+            Extraordinary Passion in the Work they Can. And that&apos;s called
             HAPPIEST PEOPLE PRODUCTION!
           </p>
         </div>
