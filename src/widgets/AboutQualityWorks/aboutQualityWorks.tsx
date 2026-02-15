@@ -23,13 +23,13 @@ const AboutQualityWorks = () => {
             className={`about-quality-works__contents ${twClasses.contents}`}
           >
             <h2 className={`about-quality-works__title ${twClasses.title}`}>
-              We ensure quality <em className="font-medium">works</em>
+              Quality over <em className="font-medium">Conversation</em>
             </h2>
             <p
               className={`about-quality-works__description ${twClasses.description}`}
             >
-              HPP empowers businesses with complete control over their SaaS
-              backups, eliminating vendor lock-in
+              With more Energy in Action and Much Quality in Conversations, We
+              craft your Target to #Trending
             </p>
           </div>
         </div>

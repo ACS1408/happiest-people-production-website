@@ -28,30 +28,31 @@ const HomeTailoredServices = () => {
             className={`home-tailored-service__contents ${twClasses.contents}`}
           >
             <h2 className={`home-tailored-service__title ${twClasses.title}`}>
-              Our small{" "}
+              We serve{" "}
               <span className={`asterisk ${twClasses.asterisk}`}>
                 <Icons.AsteriskIcon ref={asteriskRef} className="size-5" />
               </span>
+              wide{" "}
               <em className={`font-semibold ${twClasses.title_em}`}>
-                Victories
+                tailored
               </em>
             </h2>
             <p
               className={`home-tailored-service__description ${twClasses.description}`}
             >
-              Beginning with nothing but passion, our journey started in the
-              smallest corners—from our own kitchen to the studio we once only
-              dreamed of. Those humble spaces shaped our creativity and fueled
-              our ambition.
+              A Journey from the Smallest corners of our own Kitchen to a
+              Well-Furnished Studio – Was Nothing but Pure Passion! Our Humble
+              Personal Spaces and Every Word from a Satisfied Client not only
+              Shaped the Creativity of our Team, It built an Unstoppable Brand
+              too.
             </p>
 
             <p
               className={`home-tailored-service__description ${twClasses.description}`}
             >
-              Today, HAPPIEST PEOPLE PRODUCTION stands as a celebration of that
-              journey ,proof that with passion, persistence, and a love for
-              creating, even the smallest beginnings can grow into something
-              extraordinary.
+              Today, standing as a Celebration of Passion, Persistence and
+              Purpose, HAPPIEST PEOPLE PRODUCTION proves even the smallest
+              beginnings can grow into something Extraordinary.
             </p>
           </div>
         </div>

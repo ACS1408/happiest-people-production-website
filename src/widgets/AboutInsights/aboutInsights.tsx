@@ -95,14 +95,14 @@ const slides: InsightSlide[] = [
     designation: "Managing Director",
   },
   {
-    image: "/images/workspace-1.webp",
+    image: "/images/mastermind.webp",
     quote:
       "We deliver exceptional digital experiences through innovative solutions",
     author: "John Smith",
     designation: "Technical Director",
   },
   {
-    image: "/images/workspace-2.webp",
+    image: "/images/mastermind.webp",
     quote: "Our team's expertise drives transformative results for our clients",
     author: "Sarah Johnson",
     designation: "Creative Director",

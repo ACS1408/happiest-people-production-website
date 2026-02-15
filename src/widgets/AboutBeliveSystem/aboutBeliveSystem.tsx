@@ -20,8 +20,9 @@ const AboutBeliveSystem = () => {
           <p
             className={`about-belive-system__description ${twClasses.description}`}
           >
-            Dataravn empowers businesses with complete control over their SaaS
-            backups, eliminating vendor lock-in and ensuring
+            More than the Scale, Budget and Glamour –
+            <br />
+            WE BELIEVE IN THE STORIES WE CRAFT!
           </p>
         </div>
         <div className={`about-belive-system__cards ${twClasses.cards}`}>
@@ -48,13 +49,13 @@ const cardData = [
     icon: <Icons.Vision className="h-8" />,
     title: "Our vision",
     description:
-      "Dataravn empowers businesses with complete control over their SaaS",
+      "To create something Unforgettable and Stay with Audience until the Screen turns Black!",
   },
   {
     icon: <Icons.Mission className="h-8" />,
     title: "Our mission",
     description:
-      "Dataravn empowers businesses with complete control over their SaaS",
+      "To bring our vision to life through films that made with a Full Heart and Extreme Clarity.",
   },
 ];
 

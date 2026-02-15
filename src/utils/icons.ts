@@ -20,6 +20,7 @@ import Remuneration from "@/icons/remuneration.svg";
 import PaperClip from "@/icons/paper-clip.svg";
 import Edit from "@/icons/edit.svg";
 import Trash from "@/icons/trash.svg";
+import Youtube from "@/icons/youtube.svg";
 
 const Icons = {
   ChevronRight,
@@ -44,6 +45,7 @@ const Icons = {
   PaperClip,
   Edit,
   Trash,
+  Youtube
 };
 
 export default Icons;

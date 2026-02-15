@@ -17,9 +17,8 @@ const CareerLifeAtHPP = () => {
         <p
           className={`careers-life-at-hpp__description ${twClasses.description}`}
         >
-          What we stand for is seen in every story we tell.
-          <br />
-          Our culture is built on trust, teamwork, and creativity.
+          What we Believe can be seen in Every Stories We Tell. We will be a
+          Team Build with Trust, Hardwork and Understanding.
         </p>
         <div className={`careers-life-at-hpp__grid ${twClasses.grid}`}>
           {features.map(({ icon, title, description }, index) => {
@@ -51,24 +50,25 @@ const features = [
   {
     icon: <Icons.Growth className="h-8 mb-8" />,
     title: "Growth-Oriented",
-    description: "Dataravn empowers businesses with complete control over",
+    description: "HPP Empowers Not Only Clients but Employees Too",
   },
   {
     icon: <Icons.Eco className="h-8 mb-8" />,
-    title: "Eco-Friendly",
-    description: "Dataravn empowers businesses with complete control over",
+    title: "Eco-Friendly workspace",
+    description: "YOU CAN - Live with Your Dreams & Laugh with Team Leaders.",
   },
   {
     icon: <Icons.Remuneration className="h-8 mb-8" />,
     title: "Competitive remuneration",
-    description: "Dataravn empowers businesses with complete control over",
+    description:
+      "You Will Paid For your Hardwork including Some 'Happy Tips of Appreciation'!",
   },
 ];
 
 const twClasses = twc({
   section: "lg:py-32 py-16 bg-primary",
   title: "fs-title-tertiary ff-figtree font-light",
-  description: "fs-para-secondary mt-12",
+  description: "fs-para-secondary mt-12 max-w-[600px] leading-relaxed",
   grid: "grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8 lg:gap-16 lg:mt-28 mt-16",
   card_title: "text-xl font-semibold mb-4",
   card_text: "text-lg leading-relaxed",

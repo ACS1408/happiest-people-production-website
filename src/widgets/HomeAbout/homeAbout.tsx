@@ -30,26 +30,22 @@ const HomeAbout = () => {
         <div className={`home-about__grid ${twClasses.grid}`}>
           <div className={`home-about__grid--left ${twClasses.left}`}>
             <h2 className={`home-about__title ${twClasses.title}`}>
-              We serve a<br />
-              wide{" "}
+              We craft <br />
+              your{" "}
               <em className={`home-about__title--em ${twClasses.title_em}`}>
-                tailored
+                fit!
               </em>
             </h2>
 
             <p className={`home-about__description ${twClasses.description}`}>
-              Founded in 2020, Happiest People Production is an Indian based ad
-              production company fueled by imagination and innovation, we
-              specialize in bringing stories to life through powerful visuals
-              and meaningful narratives. Our team creates a wide range of
-              content for global clients, delivering campaigns that inspire,
-              engage, and endure.
-            </p>
-
-            <p className={`home-about__description ${twClasses.description}`}>
-              we craft TV commercials, Digital videos, Social media ads, product
-              photography, and high-impact visuals that bring brands to life
-              across every platform.
+              Happiest People Production, is an Indian based Production Company
+              that’s specialized in creating innovative Ads which echoes Impact.
+              Founded in 2020, We have crafted wide range of Contents for Global
+              Clients comprising Campaigns that Encourage and Creatives that
+              Engage! Owning expertise, Our Team bring stories to life through
+              influential visuals. We Craft TV Commercials, Digital Videos,
+              Social Media Ads, Product Photography and Groundbreaking works
+              that can make Brands, propagate across every Platform.
             </p>
 
             <Button

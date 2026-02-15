@@ -9,24 +9,36 @@ import { getPublishedWorks } from "@/lib/repositories/workRepository";
 export const dynamic = "force-dynamic";
 
 const HomeWorks = async () => {
-  try { noStore(); } catch (_) { /* noop */ }
+  try {
+    noStore();
+  } catch (_) {
+    /* noop */
+  }
   // fetch first two published works
   const works = (await getPublishedWorks()).slice(0, 2);
   return (
-    <section data-widget="home-works" className={`home-works ${twClasses.section}`}>
+    <section
+      data-widget="home-works"
+      className={`home-works ${twClasses.section}`}
+    >
       <Container>
         <div className="xl:flex xl:items-center">
           <h2 className={`home-works__title ${twClasses.title}`}>
-            Our <em className="font-medium">Works</em>
+            Our <em className="font-medium">Creations!</em>
           </h2>
           <p className={`home-works__description ${twClasses.description}`}>
-            We value our clients as partners and are committed to delivering
-            exceptional results tailored to their unique goals.
+            Valuing our Clients as Partners and strongly committed in delivering
+            Exceptional Results, We Create Uniqueness in your Goals
           </p>
         </div>
         <div className={`home-works__list ${twClasses.grid}`}>
           {works.map((work) => (
-            <ImageCard key={work.id} title={work.title} image={work.image} videoId={work.videoId} />
+            <ImageCard
+              key={work.id}
+              title={work.title}
+              image={work.image}
+              videoId={work.videoId}
+            />
           ))}
         </div>
         <div className={`home-works__view-all ${twClasses.view_all}`}>

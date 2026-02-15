@@ -42,10 +42,10 @@ const MainFooter = () => {
               Email
             </div>
             <a
-              href="mailto:easyhydromechanical@gmail.com"
+              href="mailto:official@happiestpeopleproductions.com"
               className={`main-footer__email ${twClasses.email} ${twClasses.email.hover}`}
             >
-              easyhydromechanical@gmail.com
+              official@happiestpeopleproductions.com
             </a>
           </div>
 
@@ -75,25 +75,30 @@ const MainFooter = () => {
 export default MainFooter;
 
 const socials = [
-  {
-    id: "facebook_01",
-    icon: Icons.Facebook,
-    url: "https://www.facebook.com",
-  },
-  {
-    id: "linkedin_02",
-    icon: Icons.Linkedin,
-    url: "https://www.linkedin.com",
-  },
+  // {
+  //   id: "facebook_01",
+  //   icon: Icons.Facebook,
+  //   url: "https://www.facebook.com",
+  // },
+  // {
+  //   id: "linkedin_02",
+  //   icon: Icons.Linkedin,
+  //   url: "https://www.linkedin.com",
+  // },
   {
     id: "instagram_03",
     icon: Icons.Instagram,
-    url: "https://www.instagram.com",
+    url: "https://www.instagram.com/happiestpeopleproductions",
   },
+  // {
+  //   id: "behance_04",
+  //   icon: Icons.Behance,
+  //   url: "https://www.behance.com",
+  // },
   {
-    id: "behance_04",
-    icon: Icons.Behance,
-    url: "https://www.behance.com",
+    id: "youtube_05",
+    icon: Icons.Youtube,
+    url: "https://youtube.com/@hppstudios?si=7iTBVa5zJuqukVG_",
   },
 ];
 

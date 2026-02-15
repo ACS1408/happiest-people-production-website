@@ -13,16 +13,20 @@ const AboutCareers = () => {
     >
       <Container>
         <h2 className={`about-careers__title ${twClasses.title}`}>
-          We ready to
+          Ready to roll?
           <br />
-          wide <em className="font-medium">together</em>
+          <em className="font-medium">together</em>
         </h2>
 
         <div className={`about-careers__contents ${twClasses.contents}`}>
           <p className={`about-careers__description ${twClasses.description}`}>
-            Dataravn empowers businesses with complete control over their SaaS
-            backups, eliminating vendor lock-in and ensuring data security,
-            compliance, and flexibility.
+            HAPPY PEOPLE PRODUCTION, Welcomes the Creativity in you Onboard!
+          </p>
+          <p
+            className={`about-careers__description ${twClasses.description} !mt-6`}
+          >
+            If you believe You can Generate, Shape and Execute Quality Contents
+            - You can join our Team. For More Info Click!
           </p>
 
           <div className="mt-16 w-max">
@@ -37,7 +41,10 @@ const AboutCareers = () => {
         </div>
       </Container>
 
-      <div data-cursor-text="Scroll" className={`about-careers__slider ${twClasses.slider}`}>
+      <div
+        data-cursor-text="Scroll"
+        className={`about-careers__slider ${twClasses.slider}`}
+      >
         <ParallaxImageSlider images={sliderImages} />
       </div>
     </section>

@@ -40,17 +40,17 @@ const CareersTailored = () => {
             className={`careers-tailored__text-content ${twClasses.text_content}`}
           >
             <h2 className={`careers-tailored__title ${twClasses.title}`}>
-              Tailores
+              Shape your
               <br />
               <span className="font-medium">
-                for{" "}
+                career{" "}
                 <span
                   className={`careers-tailored__title--em-wrap ${twClasses.title_emphasize_wrap} ${twClasses.title_emphasize_wrap.after}`}
                 >
                   <em
                     className={`careers-tailored__title--em ${twClasses.title_emphasize}`}
                   >
-                    you
+                    graph
                   </em>
                 </span>
                 .
@@ -59,7 +59,9 @@ const CareersTailored = () => {
             <p
               className={`careers-tailored__description ${twClasses.description}`}
             >
-              HPP empowers businesses with complete control over their SaaS
+              Happy People Production is incorporated with Talented People and
+              High End Customers. This Opportunity can reshape your Career to
+              Something Better and Bigger.
             </p>
             {/* Bottom right image */}
             <div
@@ -89,7 +91,8 @@ const twClasses = twc({
     "row-start-1 col-start-1 size-[150px] max-sm:size-[100px] aspect-square relative",
   img_cell_2:
     "row-start-2 col-start-2 size-[300px] max-sm:size-[200px] aspect-square relative",
-  img_cell_3: "w-[140px] max-sm:w-[100px] ms-auto xl:mt-36 mt-12 aspect-square relative",
+  img_cell_3:
+    "w-[140px] max-sm:w-[100px] ms-auto mt-12 aspect-square relative",
   title:
     "ff-figtree font-light fs-title-quaternary leading-tight text-black mb-4 max-xl:text-center",
   title_emphasize_wrap: {
@@ -99,5 +102,6 @@ const twClasses = twc({
   },
   title_emphasize: "relative z-[2]",
   text_content: "pt-5",
-  description: "fs-para-secondary text-black max-w-sm mt-8 max-xl:mx-auto max-xl:text-center",
+  description:
+    "fs-para-secondary text-black max-w-sm mt-8 max-xl:mx-auto max-xl:text-center",
 });

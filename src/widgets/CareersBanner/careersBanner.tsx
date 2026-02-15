@@ -26,9 +26,9 @@ const CareersBanner = () => {
     >
       <Container>
         <h1 className="careers-banner__title fs-title-tertiary ff-figtree font-light text-center leading-tight">
-          Join our
+          Want to join
           <br />
-          <em className="font-medium">creative force</em>
+          <em className="font-medium">our creative squad?</em>
         </h1>
         <div className="careers-banner__button w-max mx-auto mt-12 z-[2] relative">
           <Button

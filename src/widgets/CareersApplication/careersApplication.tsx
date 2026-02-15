@@ -17,8 +17,7 @@ const CareersApplication = () => {
               Let&apos;s make <em className="font-medium">together</em>
             </h2>
             <p className="careers-application__description text-gray-400 text-lg leading-relaxed max-w-2xs mt-8">
-              Thank you for your interest in HPP. We look forward to learning
-              more{" "}
+              Thank you for Reaching Out to HPP. Hope we Can Work Together Soon!
             </p>
           </div>
           <div className="careers-application__right">

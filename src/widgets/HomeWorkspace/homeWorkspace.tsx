@@ -20,7 +20,7 @@ const HomeWorkspace = () => {
               Work space
             </div>
             <h2 className={`home-workspace__title ${twClasses.title}`}>
-              We serve
+              Opening doors to
               <br />
               <em className="font-medium">workspace</em>
             </h2>
@@ -30,16 +30,17 @@ const HomeWorkspace = () => {
               className={`home-workspace__description ${twClasses.description}`}
               ref={descriptionRef}
             >
-              We provide fully equipped editing suites, a 2000 sq ft studio
-              floor, a dedicated makeup room with an attached bedroom, a dining
-              area, a vibrant courtyard, a DI room along with a dedicated light
-              and camera unit.
+              A 2000 Sqft Studio Floor, Editing Suites, Professional Makeup Room
+              with attached Bedroom, Dining Area, A vibrant Courtyard, DI Room
+              with radiant Lights and Camera Unit – Will be provided for
+              Projects.
               <br />
               <br />
-              Every corner is thoughtfully crafted to support the creative
-              process, making it a peaceful heaven for filmmakers, artists, and
-              storytellers. Whether you’re shaping a concept or perfecting the
-              final cut, our space is made to help you create your best work.
+              Every corner that’s thoughtfully crafted to support the creative
+              process will be a Reel Retreat for Film makers, Artists and
+              Storytellers. Whether you are in a Rim of a Concept or Reaping the
+              Final Cut of a Creative, Our Space will transform your Work-Piece
+              to a Masterpiece!
             </p>
           </div>
         </div>

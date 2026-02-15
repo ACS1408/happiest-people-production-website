@@ -13,18 +13,21 @@ const AboutBanner = () => {
       <Container>
         <div className={`about-banner__label ${twClasses.tag}`}>Work space</div>
         <h2 className={`about-banner__title ${twClasses.title}`}>
-          We serve
+          Sculpting new
           <br />
-          <em className="font-medium">workspace</em>
+          <em className="font-medium">Realities!</em>
         </h2>
 
         <AboutBannerIllustration />
 
         <div className={`about-banner__contents ${twClasses.contents}`}>
           <p className={`about-banner__description ${twClasses.description}`}>
-            Dataravn empowers businesses with complete control over their SaaS
-            backups, eliminating vendor lock-in and ensuring data security,
-            compliance, and flexibility.
+            HAPPIEST PEOPLE PRODUCTIONS – A visual solution for every Brands
+            Scale!
+          </p>
+          <p className={`about-banner__description ${twClasses.description} !mt-6`}>
+            From Idea to Execution, we create contents and campaigns that engage
+            audience which helps in Brand Productivity as well as Proliferation.
           </p>
 
           <div className={`about-banner__stats ${twClasses.stats}`}>

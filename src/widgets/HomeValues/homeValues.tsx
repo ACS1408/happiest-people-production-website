@@ -14,14 +14,16 @@ const HomeValues = () => {
         <div className={`home-values__grid ${twClasses.grid}`}>
           <div className={`home-values__left ${twClasses.left}`}>
             <div className={`home-values__tag ${twClasses.tag}`}>
-              Our values
+              What We Values!
             </div>
             <h2 className={`home-values__title ${twClasses.title}`}>
-              Experience
+              HAPPY PEOPLE's
               <br />
-              that define
+              Routine that
               <br />
-              <em className="font-medium">happiest people</em>
+              Makes
+              <br />
+              <em className="font-medium">PEOPLE HAPPY!</em>
             </h2>
           </div>
 

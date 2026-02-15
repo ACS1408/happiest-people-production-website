@@ -20,16 +20,16 @@ const AboutWideTailored = () => {
         </figure>
 
         <h2 className={`about-wide-tailored__title ${twClasses.title}`}>
-          wide <em className="font-medium">tailored</em>
+          A team of <em className="font-medium">thoughts!</em>
         </h2>
 
         <div className={`about-wide-tailored__contents ${twClasses.contents}`}>
           <p
             className={`about-wide-tailored__description ${twClasses.description}`}
           >
-            Happiest people production delivers cutting-edge digital solutions
-            tailored to streamline{" "}
-            <em className="font-medium">operations and drive</em>
+            A Very Thoughtful Team with Extreme Presence of Mind and
+            Extraordinary Passion in the Work they Can. And that's called
+            HAPPIEST PEOPLE PRODUCTION!
           </p>
         </div>
       </Container>
